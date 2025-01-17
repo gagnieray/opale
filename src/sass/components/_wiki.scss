@@ -213,8 +213,7 @@ div.wiki {
     width: auto;
     margin-bottom: 1.15em;
     padding: 12px 15px;
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow: auto hidden;
     border-radius: variables.$border-radius-base;
     background-color: color.adjust(variables.$gray-500, $alpha: -.7);
     font-size: variables.$font-size-small;
