@@ -4,5 +4,4 @@ $(function () {
 
   /* eslint-disable no-new */
   new Opale.SidebarToggler()
-  new Opale.MenuCollapse()
 })
