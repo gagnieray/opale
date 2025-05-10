@@ -175,8 +175,6 @@ $icons-selector: ();
         color: variables.$orange;
       } @else if $class == "icon-heart" {
         color: variables.$pink;
-      } @else if $class == "icon-bookmarked-project" {
-        color: variables.$red;
       }
     }
 
@@ -211,7 +209,10 @@ $icons-selector: ();
         or $class == "icon-email-disabled"
         or $class == "icon-email-add"
         or $class == "icon-fav-off"
+        or $class == "icon-user"
+        or $class == "icon-bookmark"
         or $class == "icon-bookmark-off"
+        or $class == "icon-bookmarked-project"
         or $class == "icon-heart-off" {
       @include variants.fa-icon-style("Regular");
     }
@@ -630,25 +631,25 @@ a.project {
   &.my-project,
   &.icon-user,
   &.icon-bookmarked-project {
+    @include variants.fa-icon-style("Regular", "after");
+
     &::after {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-star);
+      @include variants.fa-icon-variant(fa-variables.$fa-var-user);
 
       margin-left: 5px;
-      color: variables.$orange;
+      font-size: .85em;
     }
   }
 
   &.icon-bookmarked-project {
     &::after {
       @include variants.fa-icon-variant(fa-variables.$fa-var-bookmark);
-
-      color: variables.$red;
     }
   }
 
   &.icon-user.icon-bookmarked-project {
-    @include variants.fa-icon-style;
-    @include variants.fa-icon-style(null, "after");
+    @include variants.fa-icon-style("Regular");
+    @include variants.fa-icon-style("Regular", "after");
 
     position: relative;
 
@@ -658,29 +659,31 @@ a.project {
       position: absolute;
       top: 5px;
       right: 0;
-      margin: 0 -20px 0 0;
-      color: variables.$red;
+      margin: 0 -15px 0 0;
+      font-size: .85em;
     }
 
     &::after {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-star);
+      @include variants.fa-icon-variant(fa-variables.$fa-var-user);
 
       margin-left: 5px;
-      color: variables.$orange;
     }
   }
 }
 
 span.my-project {
-  @include variants.fa-icon-style;
+  @include variants.fa-icon-style("Regular");
 
   &::before {
-    @include variants.fa-icon-variant(fa-variables.$fa-var-star);
+    @include variants.fa-icon-variant(fa-variables.$fa-var-user);
+  }
+}
 
-    width: variables.$icon-width;
-    margin-right: 0;
-    color: variables.$orange;
-    text-align: center;
+span.icon-bookmarked-project {
+  @include variants.fa-icon-style("Regular");
+
+  &::before {
+    @include variants.fa-icon-variant(fa-variables.$fa-var-bookmark);
   }
 }
 
