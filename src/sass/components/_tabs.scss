@@ -57,6 +57,7 @@ $tabs-height: variables.$line-height-computed + variables.$tab-padding-vertical 
 
   .tabs-buttons {
     position: absolute;
+    z-index: 2;
     top: 0;
     right: 0;
     width: $tabs-buttons-width;
