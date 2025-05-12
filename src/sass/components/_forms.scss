@@ -55,6 +55,10 @@ form {
       line-height: inherit;
     }
   }
+
+  .attributes select {
+    width: 60%;
+  }
 }
 
 button,
@@ -504,6 +508,10 @@ label[for="closed"] {
       background-repeat: no-repeat;
       background-position: 4px center;
     }
+
+    &.deleted_attachment {
+      width: auto;
+    }
   }
 
   .ajax-waiting input.filename {
@@ -544,27 +552,10 @@ label[for="closed"] {
 
   .splitcontentleft,
   .splitcontentright {
-    width: 100%;
-    padding-right: 0;
-    padding-left: 0;
-    float: left;
-
-    @media screen and (min-width: variables.$screen-sm-min) {
-      width: auto;
-      min-width: 36em;
-    }
-
     textarea.text_cf,
     input.string_cf,
-    input.link_cf,
-    select {
+    input.link_cf {
       width: 90%;
-    }
-  }
-
-  .splitcontentleft {
-    @media screen and (min-width: variables.$screen-sm-min) {
-      margin-right: variables.$padding-side;
     }
   }
 

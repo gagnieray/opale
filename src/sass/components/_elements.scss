@@ -172,27 +172,24 @@ img {
 // Column form layout
 
 .splitcontent {
-  @include clearfix.clearfix;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
 }
 
 .splitcontentleft,
 .splitcontentright {
-  box-sizing: border-box;
-  width: 50%;
+  flex: 1;
+  margin-right: variables.$padding-side * .5;
 
   > .wiki {
     margin-bottom: variables.$line-height-computed;
   }
 }
 
-.splitcontentleft {
-  padding-right: (variables.$padding-side * .5);
-  float: left;
-}
-
-.splitcontentright {
-  padding-left: (variables.$padding-side * .5);
-  float: right;
+.splitcontenttop {
+  flex: 2;
+  flex-basis: 100%;
 }
 
 
@@ -204,7 +201,9 @@ img {
     width: 100%;
   }
 
-  > .watchers {
+  > ul.watchers {
+    margin-left: variables.$sidebar-padding-horizontal;
+
     > li {
       @include clearfix.clearfix;
 
@@ -644,6 +643,7 @@ body.controller-versions.action-show div#roadmap .related-issues {
 
 div#version-summary {
   width: 28%;
+  margin-left: 2%;
   float: right;
 
   fieldset {
