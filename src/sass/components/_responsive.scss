@@ -149,9 +149,29 @@ body {
         }
       }
 
+      .contextual {
+        padding: variables.$padding-large-vertical variables.$padding-large-horizontal;
+        text-align: right;
+      }
+
       &__sidebar {
+        > div {
+          padding-left: 0;
+        }
+
         p {
           padding-left: variables.$padding-large-horizontal;
+        }
+
+        div.wiki {
+          margin-bottom: variables.$padding-large-vertical;
+          color: variables.$flyout-menu-text;
+
+          h3,
+          h4 {
+            font-size: 0.6875rem;
+            font-weight: 400;
+          }
         }
       }
 
@@ -309,11 +329,16 @@ body {
 
       #watchers {
         .contextual {
-          padding-top: variables.$line-height-computed * .5;
-          padding-bottom: variables.$line-height-computed * .5;
+          text-align: left;
+        }
+
+        h3 {
+          margin:0;
         }
 
         .watchers {
+          margin-left: variables.$padding-large-horizontal;
+
           li {
             margin: (variables.$line-height-computed * .5) 0 0;
             padding: 0;
@@ -329,6 +354,7 @@ body {
             }
 
             .delete {
+              width: 25px;
               margin-right: variables.$padding-large-vertical;
               margin-left: auto;
               float: none;
@@ -350,21 +376,6 @@ body {
       &--flyout {
         line-height: normal;
       }
-    }
-
-    .splitcontentleft {
-      margin-bottom: variables.$line-height-computed;
-      padding-right: 0;
-      float: none;
-    }
-
-    .splitcontentright {
-      padding-left: 0;
-      float: none;
-    }
-
-    .attributes .splitcontentleft {
-      margin-bottom: 0;
     }
 
     .tabular {
