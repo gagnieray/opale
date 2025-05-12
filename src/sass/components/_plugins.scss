@@ -1,7 +1,10 @@
+@use "sass:color";
+@use "sass:map";
 @use "sass:math";
 @use "../variables";
-@use "../vendor/font-awesome/variables" as fa-variables;
+@use "../mixins/flash";
 @use "../mixins/variants";
+@use "../vendor/font-awesome/variables" as fa-variables;
 
 // Additionals
 // https://www.redmine.org/plugins/additionals
@@ -122,11 +125,9 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
 // https://www.redmine.org/plugins/redmine-dashboard
 
 @if variables.$enable-sidebar-toggler {
-  #main {
-    // Fix full screen view
-    @at-root .controller-rdb_taskboard & {
-      position: static;
-    }
+  // Fix full screen view
+  .controller-rdb_taskboard #main {
+    position: static;
   }
 }
 
@@ -261,6 +262,19 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
     }
   }
 
+  .rdb-property-version {
+    padding-left: 0;
+    background-image: none;
+
+    @include variants.fa-icon-style;
+
+    &::before {
+      @include variants.fa-icon-variant(fa-variables.$fa-var-cube);
+
+      margin-right: 4px;
+    }
+  }
+
   .rdb-property-assignee {
     padding-left: 0;
     background-image: none;
@@ -271,6 +285,33 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
       @include variants.fa-icon-variant(fa-variables.$fa-var-user);
 
       margin-right: 4px;
+    }
+  }
+
+  .rdb-property-category {
+    padding-left: 0;
+    background-image: none;
+
+    @include variants.fa-icon-style;
+
+    &::before {
+      @include variants.fa-icon-variant(fa-variables.$fa-var-tags);
+
+      margin-right: 4px;
+    }
+  }
+
+  .rdb-property-time {
+    padding-left: 0;
+    background-image: none;
+
+    @include variants.fa-icon-style;
+
+    &::before {
+      @include variants.fa-icon-variant(fa-variables.$fa-var-clock);
+
+      margin-right: 4px;
+      font-size: 1.25em;
     }
   }
 }
@@ -292,6 +333,22 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
     margin-bottom: variables.$line-height-computed;
   }
 
+  span.use_timer {
+    @include variants.fa-icon-style(null, after);
+
+    padding: 0;
+    background-image: none;
+
+    &::after {
+       @include variants.fa-icon-variant(fa-variables.$fa-var-clock);
+
+      color: variables.$gray-900;
+    }
+  }
+}
+
+#global_banner,
+#banner_setting {
   .banner_info {
     @include variants.fa-icon-style;
 
@@ -330,31 +387,14 @@ body .flyout-menu div.sidebar-tags ul.tags-cloud li a {
       color: variables.$red;
     }
   }
-
-  .use_timer {
-    @include variants.fa-icon-style("Regular", "after");
-
-    padding: 0;
-    background-image: none;
-
-    &::after {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-clock);
-    }
-  }
 }
 
 body div.banner_area {
-  @media screen and (max-width: variables.$redmine-responsive-max) {
-    #main #content > & {
-      margin-bottom: variables.$line-height-computed;
-    }
-  }
-
   .banner {
     @include variants.fa-icon-style;
 
     margin: 0;
-    padding: variables.$padding-large-vertical variables.$padding-large-horizontal;
+    padding: variables.$padding-large-horizontal variables.$padding-large-horizontal;
     padding-left: variables.$padding-large-horizontal + 8px + 16px;
     border: 1px solid variables.$component-border;
     border-radius: variables.$border-radius-base;
@@ -362,15 +402,23 @@ body div.banner_area {
     color: variables.$component-color;
 
     @media screen and (min-width: variables.$redmine-responsive-min) {
-      border-radius: 0;
+      &.global_banner {
+        border-radius: 0;
+      }
     }
 
     &::before {
-      @include variants.fa-icon-variant(fa-variables.$fa-var-info);
-
       margin-left: -(8px + 16px);
       float: left;
       line-height: variables.$line-height-computed;
+    }
+
+    &_nodata {
+      @include flash.flash(variables.$flash-warning-text, variables.$flash-warning-bg, variables.$flash-warning-border, variables.$flash-warning-link, "warning");
+    }
+
+    &_normal {
+      padding-left: variables.$padding-large-horizontal;
     }
 
     &_info {
@@ -434,26 +482,38 @@ body div.banner_area {
     }
   }
 
-  .banner_edit {
-    &,
+  div.banner_edit {
+    right: 5px;
+    bottom: 2px;
+    opacity: .8;
+
     &:hover {
-      opacity: 1 !important;
+      opacity: 1;
     }
 
     a {
       margin-left: 5px;
+
+      &::before {
+        margin-right: 3px;
+      }
     }
   }
 
   div.banner_more_info {
+    bottom: 2px;
     transform: translateX(50%);
-    opacity: .75;
+    opacity: .8;
     text-transform: uppercase;
 
     &:hover {
       opacity: 1;
     }
   }
+}
+
+#main #content > .banner_area {
+  margin-bottom: variables.$line-height-computed;
 }
 
 @if variables.$fixed-layout {
@@ -475,6 +535,12 @@ body div.banner_area {
     .banner_area {
       width: variables.$width-lg;
     }
+  }
+}
+
+@media screen and (max-width: variables.$redmine-responsive-max) {
+  #wrapper + .global_banner .banner {
+    border-radius: 0;
   }
 }
 
@@ -616,8 +682,8 @@ body div.banner_area {
 // Redmine Recaptcha
 // https://www.redmine.org/plugins/recaptcha
 
-.new-user .g-recaptcha {
-  padding-left: 170px;
+.new_user .g-recaptcha {
+  padding-left: (variables.$label-width + variables.$label-space);
 
   @media screen and (max-width: variables.$redmine-responsive-max) {
     padding-left: 0;
@@ -654,4 +720,39 @@ body div.banner_area {
       }
     }
   }
+}
+
+
+// Redmine Issues Panel
+// https://github.com/redmica/redmine_issues_panel
+
+.controller-issues_panel .issue-card .card-content {
+  @each $tracker-id, $tracker-colors in variables.$tracker-colors-map {
+    a.tracker-#{$tracker-id} {
+      background-color: map.get($tracker-colors, background);
+      color: map.get($tracker-colors, color);
+
+      &:hover {
+        @if color.channel(map.get($tracker-colors, background), 'hue', $space: hsl) > 15deg and color.channel(map.get($tracker-colors, background), 'hue', $space: hsl) < 40deg {
+          background-color: color.adjust(color.adjust(map.get($tracker-colors, background), $hue: -8deg), $lightness: -8%);
+        } @else {
+          background-color: color.adjust(map.get($tracker-colors, background), $lightness: -10%);
+        }
+
+        color: map.get($tracker-colors, color);
+      }
+    }
+  }
+}
+
+
+// Redmine ONLYOFFICE integration plugin
+// https://www.redmine.org/plugins/onlyoffice_redmine
+
+.onlyoffice-editor {
+  height: calc(100vh - 178px);
+}
+
+.onlyoffice-editor + .gototop {
+  display: none;
 }
