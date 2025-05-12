@@ -178,6 +178,21 @@
   p.buttons {
     margin-bottom: 0;
     text-align: right;
+
+    a {
+      padding-top: 0;
+      padding-bottom: 0;
+      border-width: 0;
+      background-color: transparent;
+      color: variables.$link-color;
+      line-height: variables.$input-height-base;
+
+      &:hover,
+      &:focus {
+        color: variables.$link-hover-color;
+        text-decoration: underline;
+      }
+    }
   }
 }
 
