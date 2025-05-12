@@ -417,6 +417,7 @@ $journal-old-value-color:       color.adjust(shade($orange, 800), $saturation: 2
 $journal-old-value-bg:          color.adjust(shade($orange, 50), $saturation: 50%) !default;
 $journal-new-value-color:       color.adjust(shade($green, 800), $saturation: 25%) !default;
 $journal-new-value-bg:          color.adjust(shade($green, 50), $saturation: 50%) !default;
+$journal-update-info-color:     $orange !default;
 
 
 // Changesets

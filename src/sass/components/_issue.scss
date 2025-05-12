@@ -575,6 +575,13 @@ div.thumbnails {
     .journal-link {
       color: variables.$gray-700;
     }
+
+    .update-info {
+      color: variables.$journal-update-info-color;
+      font-size: 0.9em;
+      font-style: italic;
+      font-weight: 600;
+    }
   }
 
   @if variables.$use-gravatars {
