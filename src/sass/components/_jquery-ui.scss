@@ -212,6 +212,10 @@
     right: .5em;
   }
 
+  .ui-tooltip {
+    font-size: variables.$font-size-small-px;
+  }
+
   input[type="button"] {
     @include variants.button-variant(variables.$btn-link-color, variables.$btn-link-bg, variables.$btn-link-border);
   }
