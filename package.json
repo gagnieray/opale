@@ -30,9 +30,9 @@
   "devDependencies": {
     "@lodder/grunt-postcss": "^3.1.1",
     "autoprefixer": "^10.4.21",
-    "eslint": "^8.57.0",
+    "eslint": "^8.57.1",
     "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.6.0",
     "grunt": "^1.6.1",
@@ -40,11 +40,11 @@
     "grunt-contrib-watch": "^1.1.0",
     "grunt-sass": "^4.0.0",
     "husky": "^9.1.7",
-    "lint-staged": "^15.5.1",
-    "sass": "^1.87.0",
-    "stylelint": "^16.19.1",
+    "lint-staged": "^16.1.2",
+    "sass": "^1.89.2",
+    "stylelint": "^16.21.1",
     "stylelint-config-property-sort-order-smacss": "^10.0.0",
-    "stylelint-config-standard-scss": "^14.0.0"
+    "stylelint-config-standard-scss": "^15.0.1"
   },
   "browserslist": [
     "last 2 versions",
