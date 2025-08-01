@@ -129,11 +129,18 @@ img {
 .splitcontentleft,
 .splitcontentright {
   flex: 1;
-  margin-right: variables.$padding-side * .5;
 
   > .wiki {
     margin-bottom: variables.$line-height-computed;
   }
+}
+
+.splitcontentleft {
+  margin-right: variables.$padding-side * .5;
+}
+
+.splitcontentright {
+  margin-left: variables.$padding-side * .5;
 }
 
 .splitcontenttop {
@@ -232,7 +239,6 @@ p.subtitle {
 
 .block-receiver {
   box-sizing: border-box;
-  flex-basis: 100%;
 
   .dragging & {
     min-height: 20px;
@@ -286,10 +292,6 @@ a.close-icon:not(:has(svg)) {
 }
 
 #my-page {
-  display: flex;
-  flex-wrap: wrap;
-
-
   .mypage-box {
     &:not(.block-welcome, .block-projectinformation, .block-text, .block-text_async) {
       padding: variables.$panel-body-padding;
@@ -313,11 +315,6 @@ a.close-icon:not(:has(svg)) {
     &:hover > .contextual {
       opacity: 1;
     }
-  }
-
-  #list-left,
-  #list-right {
-    flex-basis: 50%;
   }
 }
 

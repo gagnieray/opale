@@ -491,8 +491,13 @@ body {
       }
     }
 
-    #my-page {
-      display: block;
+    .splitcontentleft,
+    .splitcontentright,
+    .splitcontenttop {
+      flex: auto;
+      width: 100%;
+      margin-right: 0;
+      margin-left: 0;
     }
 
     div#issue-changesets {
