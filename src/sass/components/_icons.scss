@@ -5,6 +5,8 @@
 @use "../mixins/variants";
 
 $icon-map: (
+  // Non SVG redmine icons
+  icon-download:                tabler-icons.$ti-icon-download,
   // Non SVG plugins icons
   banner-icon-edit:             tabler-icons.$ti-icon-pencil,
   banner-icon-off:              tabler-icons.$ti-icon-x,
@@ -15,6 +17,8 @@ $icons-selector: ();
   $icons-selector: list.append($icons-selector, string.unquote(".#{$class}"), "comma");
 
   .#{$class}:not(:has(svg)) {
+    @include variants.ti-icon-style;
+
     &::before {
       @include variants.ti-icon-variant($icon);
     }
