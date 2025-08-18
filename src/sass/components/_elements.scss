@@ -317,7 +317,7 @@ a.close-icon:not(:has(svg)) {
 
   #list-left,
   #list-right {
-    flex-basis: 50%;
+    flex-basis: calc(50% - #{variables.$padding-side} * .5);
   }
 }
 
