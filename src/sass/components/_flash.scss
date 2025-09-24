@@ -37,33 +37,27 @@ div.flash,
 .warning,
 .conflict,
 .nodata {
+  @include flash.flash(variables.$flash-warning-text, variables.$flash-warning-bg, variables.$flash-warning-border, variables.$flash-warning-link, "false");
+
   &:not(:has(svg)) {
     @include flash.flash(variables.$flash-warning-text, variables.$flash-warning-bg, variables.$flash-warning-border, variables.$flash-warning-link, "warning");
-  }
-
-  &:has(svg) {
-    @include flash.flash(variables.$flash-warning-text, variables.$flash-warning-bg, variables.$flash-warning-border, variables.$flash-warning-link, "false");
   }
 }
 
 .flash.notice {
+  @include flash.flash(variables.$flash-success-text, variables.$flash-success-bg, variables.$flash-success-border, variables.$flash-success-link, "false");
+
   &:not(:has(svg)) {
     @include flash.flash(variables.$flash-success-text, variables.$flash-success-bg, variables.$flash-success-border, variables.$flash-success-link, "true");
-  }
-
-  &:has(svg) {
-    @include flash.flash(variables.$flash-success-text, variables.$flash-success-bg, variables.$flash-success-border, variables.$flash-success-link, "false");
   }
 }
 
 #errorExplanation,
 .flash.error {
+  @include flash.flash(variables.$flash-error-text, variables.$flash-error-bg, variables.$flash-error-border, variables.$flash-error-link, "false");
+
   &:not(:has(svg)) {
     @include flash.flash(variables.$flash-error-text, variables.$flash-error-bg, variables.$flash-error-border, variables.$flash-error-link, "exclamation");
-  }
-
-  &:has(svg) {
-    @include flash.flash(variables.$flash-error-text, variables.$flash-error-bg, variables.$flash-error-border, variables.$flash-error-link, "false");
   }
 }
 
