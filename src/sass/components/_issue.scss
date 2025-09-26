@@ -302,6 +302,40 @@
   }
 }
 
+div#sticky-issue-header {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  align-items: center;
+  padding: variables.$padding-large-vertical variables.$padding-small-horizontal;
+  border-bottom: 1px solid variables.$issue-border;
+  border-radius: 0;
+  background-color: variables.$body-bg;
+  box-shadow: variables.$toc-shadow;
+  font-size: variables.$font-size-small;
+
+  &.is-visible {
+    display: flex;
+  }
+
+  .issue-heading {
+    flex-shrink: 0;
+    margin-right: calc(variables.$font-size-base / 2);
+    white-space: nowrap;
+  }
+
+  .subject {
+    flex-grow: 1;
+    overflow: hidden;
+    font-weight: variables.$font-weight-bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
 div.fileover,
 p.custom-field-filedroplistner.fileover {
   background-color: variables.$highlight-bg;
