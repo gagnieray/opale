@@ -1,4 +1,38 @@
+@use "sass:color";
+@use "sass:map";
 @use "../variables";
+
+// Initials avatars
+
+.avatar {
+  display: inline-flex;
+  border-radius: variables.$border-radius-large;
+  vertical-align: middle;
+}
+
+span[role="img"].avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  user-select: none;
+
+  $sizes: 13, 16, 22, 24, 40, 50;
+  @each $size in $sizes {
+    &.s#{$size} {
+      block-size: #{$size}px;
+      inline-size: #{$size}px;
+      font-size: $size * 0.4px;
+    }
+  }
+
+  @each $initials-id, $initials-colors in variables.$intitials-avatars-colors-map {
+    &.avatar-color-#{$initials-id} {
+      background: linear-gradient(to bottom right, color.change(map.get($initials-colors, background), $blackness: -40%), color.change(map.get($initials-colors, background), $blackness: 40%));
+      color: map.get($initials-colors, color);
+    }
+  }
+}
 
 // Gravatars
 
