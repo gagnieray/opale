@@ -1,0 +1,28 @@
+@use "sass:list";
+
+span[role="img"].avatar {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  text-align: center;
+
+  $sizes: 13, 16, 22, 24, 40, 50;
+  @each $size in $sizes {
+    &.s#{$size} {
+      font-size: $size * 0.4px;
+      inline-size: #{$size}px;
+      block-size: #{$size}px;
+      line-height: #{$size}px;
+    }
+  }
+
+  $colors: #e38f8f, #e3ce8f, #b9e38f, #8fe3a4, #8fe3e3, #8fa4e3, #b98fe3, #e38fce;
+  $colors2: #a73636, #a78a36, #6ea736, #36a752, #36a7a7, #3652a7, #6e36a7, #a7368a;
+  @for $i from 1 through (list.length($colors)) {
+    &.avatar-color-#{$i - 1} {
+      background: linear-gradient(to bottom right, list.nth($colors, $i), list.nth($colors2, $i));
+      color: black;
+    }
+  }
+}
