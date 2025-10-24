@@ -785,3 +785,26 @@ body div.banner_area {
 .onlyoffice-editor + .gototop {
   display: none;
 }
+
+
+// Redmine Progressive Projects List
+// https://www.redmine.org/plugins/progressive-projects-list
+
+.theme-Opale {
+  ul.projects ul.progressive-project-menu + br {
+    display: block;
+    width: 100%;
+  }
+
+  div#projects-index {
+    ul.projects {
+      div.wiki > :last-child {
+        margin-bottom: 1em;
+      }
+    }
+
+    table.progress {
+      width: 88%;
+    }
+  }
+}
