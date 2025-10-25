@@ -1,0 +1,490 @@
+@use "sass:color";
+@use "../../variables";
+@use "../../mixins/shadows";
+
+$issue-width: 85px;
+$issue-height: 80px;
+$issue-margin: 5px;
+$issue-padding: 5px;
+$swimlane-width: $issue-width + 2 * ($issue-margin + $issue-padding + 1px);
+
+#content {
+  overflow: visible;
+}
+
+#taskboard {
+  position: relative;
+  margin-bottom: variables.$padding-side;
+
+  table {
+    margin-right: variables.$padding-side;
+    margin-left: variables.$padding-side;
+    border-collapse: separate;
+  }
+
+  .issue .subject {
+    white-space: normal;
+  }
+}
+
+#impediments {
+  padding-top: 30px;
+}
+
+#assigned_to_id_options {
+  display: none;
+}
+
+#col_width {
+  margin-left: 5px;
+
+  input {
+    width: 40px;
+    text-align: right;
+  }
+}
+
+
+// Swimlane
+
+// Swimlane class is used by:
+// - #board_header
+// - .board
+// Also use by the Column Width preference to determine the unit width of the
+// swimlanes. See RB.Taskboard.initialize()
+
+.swimlane {
+  width: $swimlane-width;
+  min-width: $swimlane-width;
+  padding: 5px;
+}
+
+
+// Status labels
+
+#board_header {
+  position: absolute;
+  z-index: 200;
+  margin-right: 10px;
+  margin-bottom: 0;
+  border: 1px solid color.adjust(variables.$header-bg, $lightness: -5%);
+  background-color: variables.$header-bg;
+
+  td {
+    height: 20px;
+    border-right: 1px dotted color.mix(variables.$header-bg, variables.$header-text, 70%);
+    background-color: variables.$header-bg;
+    color: variables.$header-text;
+    font-weight: variables.$font-weight-bold;
+    text-align: center;
+    vertical-align: middle;
+
+    &:last-child {
+      border-right: 0 none;
+    }
+  }
+}
+
+.board {
+  border: 1px solid variables.$gray-700;
+  border-top: 0 none;
+  background-color: variables.$body-bg;
+  color: variables.$text-color;
+
+  td {
+    border-right: 1px dotted variables.$table-border-color;
+    border-bottom: 1px dotted variables.$table-border-color;
+    vertical-align: top;
+
+    &:last-child {
+      border-right: 0 none;
+    }
+  }
+
+  tr:last-child td {
+    border-bottom: 0 none;
+  }
+
+  .add_new {
+    display: inline-block;
+    vertical-align: middle;
+
+    &:hover {
+      background-color: #ffc;
+      cursor: pointer;
+    }
+  }
+}
+
+#board_header,
+.board {
+  td:first-child {
+    width: (($issue-width + $issue-margin + $issue-padding) * 2);
+    min-width: (($issue-width + $issue-margin + $issue-padding) * 2);
+    padding: $issue-padding;
+  }
+}
+
+.story,
+.label_sprint_impediments {
+  display: block;
+  position: relative;
+  width: $issue-width * 2;
+  min-height: $issue-height;
+  margin: $issue-margin;
+  padding: $issue-padding;
+  float: left;
+  border: 0 none;
+  border-radius: variables.$border-radius-large;
+  background-color: variables.$highlight-bg;
+  font-size: variables.$font-size-small-px;
+}
+
+.story {
+  color: variables.$gray-900;
+
+  .id {
+    margin-bottom: 5px;
+    padding: 0 3px;
+    overflow: hidden;
+    border-radius: variables.$border-radius-base;
+    opacity: .8;
+    background-color: variables.$body-bg;
+    font-size: .9em;
+    line-height: 16px;
+
+    a,
+    .remaininghours {
+      margin-left: 4px;
+      float: right;
+      font-weight: variables.$font-weight-normal;
+    }
+
+    a {
+      color: variables.$gray-950;
+      font-size: variables.$font-size-small-px;
+      font-weight: variables.$font-weight-bold;
+    }
+
+    .assignee {
+      font-size: 9px;
+    }
+  }
+
+  .subject {
+    height: $issue-height * .6;
+    padding: 2px;
+    overflow: hidden;
+    line-height: 1.3;
+  }
+
+  &.closed .subject {
+    text-decoration: line-through;
+  }
+
+  .project {
+    text-align: left;
+  }
+
+  .id .v {
+    display: none;
+  }
+
+  .story_points.editable {
+    position: absolute;
+    right: -$issue-padding;
+    bottom: -$issue-padding;
+    width: 36px;
+    height: 36px;
+    border: 2px solid variables.$body-bg;
+    border-radius: 50%;
+    background-color: variables.$brand-warning;
+    color: variables.$brand-text;
+    font-weight: variables.$font-weight-bold;
+    line-height: 36px;
+    text-align: center;
+
+    &:empty {
+      display: none;
+    }
+  }
+}
+
+
+// Item styles used by .task and .impediment
+
+#taskboard { /* stylelint-disable-line no-duplicate-selectors */
+  .issue,
+  .placeholder {
+    display: block;
+    position: relative;
+    width: $issue-width;
+    height: $issue-height;
+    margin: $issue-margin;
+    padding: $issue-padding;
+    float: left;
+    border: 0 none;
+    border-radius: variables.$border-radius-large;
+    background-color: variables.$gray-400;
+    color: variables.$gray-900;
+    font-size: 10px;
+    line-height: 1.3;
+    cursor: move;
+  }
+
+  .placeholder {
+    width: 83px;
+    height: 78px;
+    border: 1px dashed variables.$highlight-border;
+    background-color: variables.$highlight-bg;
+  }
+}
+
+.issue {
+  .id {
+    margin-bottom: 5px;
+    padding: 0 3px;
+    overflow: hidden;
+    border-radius: variables.$border-radius-base;
+    opacity: .8;
+    background-color: variables.$body-bg;
+    font-size: variables.$font-size-small-px;
+    font-weight: variables.$font-weight-bold;
+    line-height: 16px;
+    text-align: right;
+
+    .v {
+      display: none;
+    }
+
+    a {
+      color: variables.$gray-950;
+    }
+  }
+
+  .editable:hover {
+    background-color: transparent;
+  }
+
+  .subject.editable {
+    height: $issue-height * .5;
+    padding: 2px;
+    overflow: hidden;
+  }
+
+  &.closed .subject.editable {
+    text-decoration: line-through;
+  }
+
+  .assigned_to_id {
+    &.editable {
+      width: 81px;
+      height: 10px;
+      margin-top: 2px;
+      padding: 2px;
+      padding-top: 0;
+      overflow: hidden;
+      font-size: 9px;
+      white-space: nowrap;
+    }
+
+    .v {
+      display: none;
+    }
+  }
+
+  .priority_id {
+    &.editable {
+      position: absolute;
+      right: -5px;
+      bottom: 10px;
+      height: 13px;
+      padding-right: 5px;
+      padding-left: 5px;
+      border: 2px solid #fff;
+      border-radius: 15px;
+      background-color: #00e;
+      color: #fff;
+      font-size: 9px;
+    }
+
+    .v {
+      display: none;
+    }
+  }
+
+  .remaining_hours.editable {
+    position: absolute;
+    right: -5px;
+    bottom: -5px;
+    height: 13px;
+    padding-right: 5px;
+    padding-left: 5px;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    background-color: #e00;
+    color: #fff;
+    font-size: 9px;
+  }
+
+  .blocks,
+  .remaining_hours.editable:empty {
+    display: none;
+  }
+
+  .indicator {
+    display: none;
+    position: absolute;
+    top: 38px;
+    left: 36px;
+    width: 16px;
+    height: 16px;
+    padding: 2px;
+    border: 2px solid #000;
+    border-radius: 12px;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &.saving .indicator {
+    display: block;
+    background-image: url("images/indicator.gif");
+  }
+
+  &.error .indicator {
+    display: block;
+    border-color: #c00;
+    background-image: url("images/warning.png");
+    background-position: 2px 0;
+  }
+
+  .editors {
+    display: none;
+  }
+}
+
+
+// Dialog
+
+.ui-widget-overlay {
+  z-index: 1001;
+  opacity: .3;
+}
+
+.ui-dialog {
+  .ui-dialog-titlebar-close {
+    display: none;
+  }
+
+  .ui-dialog-buttonpane.ui-widget-content {
+    .ui-button {
+      &:hover,
+      &:active,
+      &:focus {
+        border-color: variables.$header-bg;
+        background-color: variables.$header-bg;
+        color: variables.$header-text;
+      }
+    }
+  }
+}
+
+.rb_editor_dialog.ui-dialog {
+  .ui-dialog-titlebar-close {
+    display: none;
+  }
+
+  .ui-widget-header {
+    opacity: .5;
+    background: none;
+    background-color: variables.$white;
+    color: variables.$black;
+  }
+
+  .ui-dialog-title {
+    width: auto;
+    margin-right: 0;
+    float: right;
+  }
+
+  &.ui-widget-content {
+    @include shadows.nice-shadow(5);
+
+    z-index: 1002;
+    border: 0 none;
+    background: none;
+  }
+
+  .ui-dialog-buttonpane.ui-widget-content {
+    border: 0 none;
+    background: none;
+    background-color: none;
+  }
+}
+
+
+// Item editor
+
+.rb_editor {
+  label {
+    display: block;
+    width: 100%;
+    font-size: 11px;
+    text-transform: capitalize;
+  }
+
+  .editor {
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 11px;
+  }
+
+  .subject {
+    width: 272px;
+    height: 65px;
+  }
+
+  .description {
+    width: 272px;
+    height: 80px;
+  }
+
+  .remaining_hours,
+  .time_entry_hours,
+  .time_entry_user_id,
+  .time_entry_spent_on,
+  .blocks {
+    width: 268px;
+  }
+
+  .time_entry_comments {
+    width: 268px;
+    height: 30px;
+  }
+}
+
+
+// Others
+
+#impediment_template,
+#task_template {
+  display: none;
+}
+
+#preloader {
+  position: absolute;
+  left: -500px;
+}
+
+#spinner {
+  background-image: url("images/indicator.gif");
+}
+
+#warning {
+  background-image: url("images/warning.png");
+}
+
+#ui-datepicker-div {
+  display: none;
+}

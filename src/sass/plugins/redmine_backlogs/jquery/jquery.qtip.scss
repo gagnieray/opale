@@ -1,0 +1,36 @@
+@use "../../../variables";
+@use "../../../mixins/shadows";
+
+.qtip {
+  position: absolute;
+  top: -31000px;
+  left: -31000px;
+  width: auto;
+  max-width: 500px;
+  outline: none;
+}
+
+.ui-tooltip-content {
+  @include shadows.nice-shadow(2);
+
+  position: relative;
+  padding: 10px;
+  overflow: hidden;
+  border: 1px solid variables.$tooltip-border;
+  background-color: variables.$tooltip-bg;
+  color: variables.$tooltip-text;
+  font-size: variables.$font-size-list;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.ui-tooltip-tip {
+  position: absolute;
+  z-index: 10;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 0 none;
+  border-color: variables.$tooltip-border;
+  background: transparent;
+  background-color: variables.$tooltip-bg;
+}

@@ -50,6 +50,10 @@ Regrettably, optional file include is not possible in Sass, so I would recommend
 
 The path `src/sass/_custom-variables.scss` is added to `.gitignore` so it should make upgrading Opale with keeping your changes rather painless, given that the only thing you changed in Opale's source was adding this one line with `@import "custom-variables";`.
 
+## About Redmine Backlogs plugin
+
+This theme also features a new look for [Redmine Backlogs](https://github.com/maedadev/redmine_backlogs) plugin. To install it, simply copy stylesheets from `opale/plugins/redmine_backlogs` and overwrite files in `{redmine}/plugins/redmine_backlogs/assets/stylesheets`. Then restart Redmine.
+
 ## Contributing
 
 [Bug reports](https://github.com/gagnieray/opale/issues) and [Pull requests](https://github.com/gagnieray/opale/pulls) are welcome.

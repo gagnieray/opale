@@ -1,0 +1,863 @@
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
+@use "../../variables";
+@use "../../mixins/shadows";
+@use "../../mixins/text-overflow";
+@use "../../mixins/variants";
+@use "../../vendor/bootstrap/mixins/clearfix";
+
+$header-line-height: math.floor(variables.$line-height-computed * 1.5);
+$header-left-width: 30px;
+$header-right-width: 230px;
+$header-right-width-wider: 280px;
+$story-left-width: 110px;
+$story-right-width: 110px;
+$story-id-width: 51px;
+$story-project-width: 50px;
+$story-status-width: 70px;
+$story-tracker-input-width: 100px;
+$story-status-input-width: 85px;
+$story-sp-input-width: 50px;
+
+@mixin rb-tracker($parent, $background, $color) {
+  #{$parent} .id .t a {
+    background-color: $background;
+    color: $color;
+
+    &::before {
+      color: color.mix($color, $background, 50%);
+    }
+
+    &:hover {
+      @if color.channel($background, "hue", $space: hsl) > 15deg and color.channel($background, "hue", $space: hsl) < 40deg {
+        background-color: color.adjust(color.adjust($background, $hue: -8deg), $lightness: -8%);
+      } @else {
+        background-color: color.adjust($background, $lightness: -10%);
+      }
+    }
+  }
+}
+
+
+// Reserved classes are
+// .backlog (used in master_backlog.js to initialize all backlogs)
+// .model (used in backlog.js editable_inplace.js model.js)
+// .sprint (used in backlog.js
+// .stories (used in backlog.js for sortable)
+// .editor
+// .editable (bind click on)
+// .close_sprint (bind click on)
+
+
+// Fluid, 2-colum layout
+
+#backlogs_container {
+  padding: (variables.$padding-side * .5) (variables.$padding-side * .25);
+
+  .backlogs-panel-inner,
+  #closed_sprint_backlogs_container {
+    padding: 0 (variables.$padding-side * .25);
+  }
+
+  @media screen and (min-width: variables.$screen-md-min) {
+    padding: variables.$padding-side (variables.$padding-side * .5);
+
+    .backlogs-panel-inner,
+    #closed_sprint_backlogs_container {
+      padding: 0 (variables.$padding-side * .5);
+    }
+  }
+
+  .wrapper {
+    position: relative;
+    left: 0;
+    width: 100%;
+    float: left;
+  }
+
+  .left-col {
+    position: relative;
+    left: 0;
+    width: 50%;
+    float: left;
+  }
+
+  .right-col {
+    position: relative;
+    right: 0;
+    width: 50%;
+    float: right;
+  }
+}
+
+
+// Fixed-Fluid-Fixed layout
+
+.fff-wrapmiddle {
+  width: 100%;
+  float: left;
+}
+
+.fff-middle {
+  margin-right: $story-right-width;
+  margin-left: $story-left-width;
+}
+
+.fff-left {
+  width: $story-left-width;
+  margin-left: -100%;
+  float: left;
+}
+
+.fff-right {
+  width: $story-right-width;
+  margin-left: -$story-right-width;
+  float: left;
+}
+
+.header {
+  .fff-middle {
+    margin-right: $header-right-width;
+    margin-left: $header-left-width;
+  }
+
+  .fff-left {
+    width: $header-left-width;
+  }
+
+  .fff-right {
+    width: $header-right-width;
+    margin-left: -$header-right-width;
+  }
+
+  @media screen and (min-width: variables.$screen-md-min) {
+    .fff-middle {
+      margin-right: $header-right-width-wider;
+    }
+
+    .fff-right {
+      width: $header-right-width-wider;
+      margin-left: -$header-right-width-wider;
+    }
+  }
+}
+
+
+// Just some space at the bottom of the page
+
+#dummy_backlog_container {
+  height: 150px;
+}
+
+
+// Base backlog container
+
+#backlogs_container { /* stylelint-disable-line no-duplicate-selectors */
+  .closedbacklog,
+  .backlog {
+    @include shadows.nice-shadow(1);
+
+    display: block;
+    position: relative;
+    margin: 0 0 (variables.$padding-side * .5);
+    border-radius: variables.$border-radius-large variables.$border-radius-large 0 0;
+    background-color: variables.$gray-100;
+
+    @media screen and (min-width: variables.$screen-md-min) {
+      margin: 0 0 variables.$padding-side;
+    }
+  }
+}
+
+
+// Backlog header
+
+#backlogs_container { /* stylelint-disable-line no-duplicate-selectors */
+  .header {
+    position: relative;
+    height: $header-line-height;
+    border: 1px solid color.adjust(variables.$header-bg, $lightness: -5%);
+    border-radius: variables.$border-radius-large variables.$border-radius-large 0 0;
+    background-color: variables.$header-bg;
+    color: variables.$header-text;
+    line-height: $header-line-height;
+
+    input,
+    select {
+      border-color: variables.$header-bg;
+      box-shadow: inset 0 1px 3px rgb(0 0 0 / 0.2);
+
+      &:focus {
+        border-color: color.adjust(variables.$header-bg, $lightness: 25%);
+        box-shadow:
+          inset 0 1px 3px rgb(0 0 0 / 0.2),
+          0 0 0 1px color.adjust(variables.$header-bg, $lightness: 25%);
+        color: variables.$gray-950;
+      }
+    }
+
+    .name,
+    .velocity,
+    .date {
+      white-space: nowrap;
+    }
+
+    .name {
+      padding-left: variables.$padding-base-horizontal;
+      overflow: hidden;
+      font-weight: variables.$font-weight-bold;
+    }
+
+    .date {
+      width: 70px;
+      float: left;
+      font-size: variables.$font-size-small-px;
+      text-align: center;
+
+      + .date {
+        margin-left: variables.$padding-base-horizontal;
+      }
+    }
+
+    .velocity {
+      padding-right: variables.$padding-base-horizontal;
+      text-align: right;
+    }
+
+    .id,
+    .description,
+    .status {
+      display: none;
+    }
+
+    .saving {
+      background-image: url("images/ajax.gif");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .error {
+      background-image: url("images/error.png");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .editing {
+      $editor-padding: (($header-line-height - variables.$input-height-base) * .5);
+
+      .editors {
+        display: block;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding-top: $editor-padding;
+        border-radius: variables.$border-radius-large variables.$border-radius-large 0 0;
+        background-color: variables.$header-bg;
+      }
+
+      label,
+      .id.editor {
+        display: none;
+      }
+
+      .release_end_date.editor,
+      .release_start_date.editor,
+      .effective_date.editor,
+      .sprint_start_date.editor {
+        position: relative;
+        width: 80px;
+        margin-bottom: $editor-padding;
+        margin-left: $editor-padding * 2;
+        padding: 0;
+        float: left;
+        font-size: variables.$font-size-small-px;
+        text-align: center;
+      }
+
+      .name.editor {
+        $name-width-minus: $header-right-width-wider + 35px;
+
+        position: relative;
+        width: calc(100% - #{$name-width-minus}) !important; // stylelint-disable-line declaration-no-important
+        min-width: 128px;
+        margin-left: $header-line-height - 2px;
+        float: left;
+      }
+
+      .description.editor {
+        display: none;
+      }
+
+      .edit-actions {
+        margin-right: $editor-padding * 2;
+        margin-bottom: $editor-padding;
+        float: right;
+      }
+    }
+
+    .menu {
+      position: relative;
+      height: $header-line-height;
+      overflow: visible;
+      transition: background-color 0s .1s, border-color 0s .1s;
+      border-right: 1px solid color.adjust(variables.$header-bg, $lightness: -5%);
+      border-bottom: 1px solid variables.$header-bg;
+      border-radius: (variables.$border-radius-large - 1px) 0 0;
+      font-size: variables.$font-size-small;
+      line-height: variables.$line-height-base;
+      cursor: pointer;
+
+      &:hover {
+        z-index: 1000;
+        transition: background-color 0s 0s, border-color 0s 0s;
+        border-color: variables.$body-bg;
+        background-color: variables.$body-bg;
+      }
+
+      .icon {
+        position: relative;
+        top: 7px;
+        left: 6px;
+        padding: 0;
+        background-image: url("images/ui-icons_222222_256x240.png");
+        background-position: -64px -16px;
+      }
+
+      ul {
+        visibility: hidden;
+        position: absolute;
+        z-index: 999;
+        top: $header-line-height + 1px;
+        left: -1px;
+        margin: 0;
+        padding: variables.$padding-small-vertical 0;
+        transition: visibility 0s .1s;
+        border: 1px solid variables.$header-bg;
+        border-top-width: 0;
+        border-radius: 0 0 variables.$border-radius-base variables.$border-radius-base;
+        background-color: variables.$body-bg;
+        box-shadow: 0 2px 1px rgba(#000, .1);
+        list-style: none;
+
+        a {
+          color: variables.$gray-900;
+        }
+      }
+
+      &:hover .items {
+        visibility: visible;
+        transition: visibility 0s 0s;
+      }
+
+      .item {
+        position: relative;
+        min-width: 100px;
+        white-space: nowrap;
+
+        > a {
+          display: block;
+          padding: 4px 8px;
+
+          &:hover {
+            background-color: variables.$component-active-bg;
+            color: variables.$component-active-color;
+            text-decoration: none;
+          }
+        }
+
+        > .ui-icon {
+          position: absolute;
+          top: 4px;
+          right: 8px;
+          left: auto;
+          background-position: -32px -16px;
+        }
+
+        ul {
+          position: absolute;
+          top: -(variables.$padding-small-vertical + 1px);
+          left: 100%;
+          border-width: 1px;
+        }
+
+        &:hover {
+          background-color: color.adjust(variables.$body-bg, $lightness: -8%);
+
+          ul {
+            visibility: visible;
+            transition: visibility 0s 0s;
+          }
+        }
+      }
+    }
+
+    .model.headertext,
+    .velocity.story_tooltip {
+      cursor: pointer;
+    }
+  }
+
+  .close_sprint {
+    float: left;
+    overflow: hidden;
+    color: variables.$header-link;
+    white-space: nowrap;
+  }
+
+  .closedbacklog {
+    .menu {
+      display: none;
+    }
+
+    .headertext {
+      cursor: default;
+    }
+  }
+}
+
+
+// Backlog items
+
+#backlogs_container { /* stylelint-disable-line no-duplicate-selectors */
+  .stories {
+    position: relative;
+    min-height: (variables.$line-height-computed + variables.$table-condensed-cell-padding * 2);
+    margin: 0;
+    padding: 0;
+    font-size: variables.$font-size-list;
+    list-style: none;
+
+    .v {
+      display: none;
+    }
+
+    .placeholder {
+      min-height: (variables.$line-height-computed + variables.$table-condensed-cell-padding * 2);
+      background-color: variables.$gray-700;
+    }
+  }
+
+  .story {
+    display: block;
+    margin: 0;
+    padding: 0 variables.$table-condensed-cell-padding;
+    border-top: 1px solid variables.$gray-400;
+    background-color: variables.$body-bg;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: move;
+
+    &:nth-child(2n) {
+      background-color: variables.$gray-100;
+    }
+
+    &:hover {
+      background-color: variables.$highlight-bg;
+    }
+
+    &.saving {
+      background-image: url("images/ajax.gif");
+      color: variables.$gray-600;
+    }
+
+    &.error {
+      background-image: url("images/error.png");
+      color: variables.$brand-warning;
+    }
+
+    .tracker_id {
+      display: none;
+    }
+
+    .id {
+      position: relative;
+      width: $story-id-width;
+      margin: variables.$table-condensed-cell-padding 0;
+      float: left;
+
+      .t {
+        a {
+          display: block;
+          padding: variables.$tracker-list-padding;
+          border-radius: variables.$border-radius-small (variables.$border-radius-small * 3) (variables.$border-radius-small * 3) variables.$border-radius-small;
+          @if variables.$color-trackers {
+            background-color: variables.$tracker-default-bg;
+            color: variables.$tracker-default-text;
+          } @else {
+            background-color: color.adjust(variables.$gray-100, $lightness: -3%);
+            color: variables.$gray-800;
+          }
+
+          font-weight: variables.$font-weight-bold;
+          text-align: right;
+
+          &::before {
+            content: "#";
+            margin-left: -1em;
+            @if variables.$color-trackers {
+              color: color.mix(variables.$tracker-default-text, variables.$tracker-default-bg, 50%);
+            } @else {
+              color: variables.$gray-600;
+            }
+
+            font-weight: variables.$font-weight-normal;
+          }
+
+          &:hover {
+            @if variables.$color-trackers {
+              background-color: color.adjust(variables.$tracker-default-bg, $lightness: -10%);
+            } @else {
+              background-color: variables.$gray-400;
+            }
+
+            text-decoration: none;
+          }
+        }
+      }
+    }
+
+    .fff-left > .project,
+    .fff-wrapmiddle > .fff-middle,
+    .fff-right > .status_id,
+    .fff-right > .story_points {
+      min-height: math.floor(.92 * variables.$font-size-base * variables.$line-height-base);
+    }
+
+    .project {
+      display: block;
+      position: relative;
+      width: $story-project-width;
+      padding: variables.$table-condensed-cell-padding 0 variables.$table-condensed-cell-padding variables.$table-condensed-cell-padding;
+      float: left;
+      overflow: hidden;
+      text-align: center;
+      white-space: nowrap;
+
+      .t {
+        overflow: hidden;
+      }
+    }
+
+    .fff-middle {
+      padding: variables.$table-condensed-cell-padding 0;
+    }
+
+    .subject {
+      @include text-overflow.text-overflow;
+    }
+
+    &.closed .subject {
+      text-decoration: line-through;
+    }
+
+    .status_id {
+      width: $story-status-width;
+      padding: variables.$table-condensed-cell-padding 0 variables.$table-condensed-cell-padding variables.$table-condensed-cell-padding;
+      float: left;
+      white-space: nowrap;
+    }
+
+    .story_points {
+      width: $story-right-width - ($story-status-width + variables.$padding-base-horizontal + 1px);
+      padding: variables.$table-condensed-cell-padding variables.$table-condensed-cell-padding variables.$table-condensed-cell-padding 0;
+      float: left;
+      text-align: right;
+    }
+
+    .story_field {
+      overflow: hidden;
+    }
+
+    .fixed_version_id,
+    .higher_item_id,
+    .story_project,
+    .user_status {
+      display: none;
+    }
+
+    &.editing {
+      $input-padding-vertical-small: 3px;
+      $input-padding-horizontal-small: 5px;
+
+      border-color: variables.$highlight-border;
+      background-color: color.adjust(variables.$highlight-bg, $lightness: -10%);
+      cursor: default;
+
+      + .story {
+        border-top-color: variables.$highlight-border;
+      }
+
+      input,
+      select,
+      textarea {
+        border-color: variables.$highlight-border;
+
+        &:focus {
+          border-color: color.adjust(variables.$highlight-border, $lightness: -15%);
+          box-shadow:
+            inset 0 1px 2px rgb(0 0 0 / 0.075),
+            0 0 5px rgba(color.adjust(variables.$highlight-border, $lightness: -15%), .5);
+          color: variables.$gray-950;
+        }
+      }
+
+      .editors {
+        @include clearfix.clearfix;
+
+        display: block;
+        margin-left: $story-tracker-input-width + 5px;
+        padding: variables.$table-condensed-cell-padding 0;
+        text-align: right;
+
+        label {
+          display: none;
+        }
+      }
+
+      .editor {
+        height: (variables.$line-height-computed + ($input-padding-vertical-small * 2) + 2);
+        margin: 0;
+        margin-right: 5px;
+        padding: $input-padding-vertical-small $input-padding-horizontal-small;
+        font-family: inherit;
+        font-size: inherit;
+        vertical-align: top;
+
+        &.tracker_id {
+          display: block;
+          width: $story-tracker-input-width;
+          margin-left: -($story-tracker-input-width + 5px);
+          float: left;
+        }
+
+        &.status_id {
+          width: $story-status-input-width;
+          padding-right: 0;
+          float: left;
+        }
+
+        &.story_points {
+          width: $story-sp-input-width;
+          margin-right: 0;
+          padding-right: 0;
+          float: left;
+          text-align: left;
+        }
+
+        &.subject {
+          $subject-width-minus: $story-status-input-width + $story-sp-input-width + 5px * 2;
+
+          width: calc(100% - #{$subject-width-minus}) !important; // stylelint-disable-line declaration-no-important
+          height: 60px;
+          float: left;
+          overflow: auto;
+          white-space: normal;
+        }
+
+        &.category_id {
+          display: block;
+          top: 4px;
+          left: 456px;
+          width: 60px;
+          margin: 0;
+        }
+      }
+
+      .story_field {
+        display: none;
+      }
+
+      .project,
+      select.project_id.editor {
+        display: none;
+      }
+
+      .edit-actions {
+        margin-top: 5px;
+        float: right;
+      }
+    }
+  }
+
+  .closedbacklog .story {
+    cursor: default;
+  }
+
+  // Override: display story subject in multiple lines
+  .rb-multilinesubject & .subject {
+    height: auto;
+    overflow: show;
+    white-space: normal;
+  }
+
+  @if variables.$color-trackers {
+    @each $tracker-id, $tracker-colors in variables.$tracker-colors-map {
+      @include rb-tracker(
+        ".tracker#{$tracker-id}",
+        map.get($tracker-colors, background),
+        map.get($tracker-colors, color)
+      );
+    }
+  }
+}
+
+
+// Dialog
+
+.ui-widget-overlay {
+  z-index: 1001;
+  opacity: .3;
+  background: variables.$black;
+}
+
+.ui-dialog {
+  .ui-dialog-titlebar-close {
+    display: none;
+  }
+
+  .ui-dialog-title {
+    margin-right: 0;
+    float: left;
+  }
+
+  &.ui-widget-content {
+    @include shadows.nice-shadow(5);
+
+    z-index: 1002;
+    border: 0 none;
+  }
+
+  .ui-dialog-buttonpane.ui-widget-content {
+    border: 0 none;
+
+    .ui-button {
+      &:hover,
+      &:active,
+      &:focus {
+        border-color: variables.$header-bg;
+        background-color: variables.$header-bg;
+        color: variables.$header-text;
+      }
+    }
+  }
+
+  label {
+    display: block;
+    width: 100%;
+    font-size: 11px;
+    text-transform: capitalize;
+  }
+
+  .editor {
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
+}
+
+#sprint_editor .description {
+  height: 65px;
+}
+
+
+// In-place Sprint Editor
+
+#backlogs_container { /* stylelint-disable-line no-duplicate-selectors */
+  #backlogs_container .editing .editable {
+    display: none;
+  }
+
+  .editing .edit-actions {
+    white-space: nowrap;
+
+    a {
+      @include variants.button-size(variables.$input-padding-vertical, variables.$input-padding-horizontal, variables.$font-size-base, variables.$line-height-base, variables.$border-radius-base);
+
+      display: inline-block;
+      margin-bottom: 0;
+      transition:
+        background-color ease-in-out .07s,
+        border-color ease-in-out .07s,
+        box-shadow ease-in-out .07s;
+      border: 1px solid;
+      font-weight: variables.$btn-font-weight;
+      text-align: center;
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+
+      &.save {
+        @include variants.button-variant(variables.$btn-success-color, variables.$btn-success-bg, variables.$btn-success-border);
+      }
+
+      &.cancel {
+        @include variants.button-variant(variables.$btn-default-color, variables.$btn-default-bg, variables.$btn-default-border);
+      }
+
+      + a {
+        margin-left: 3px;
+      }
+
+      &:hover,
+      &:active {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+
+// In-place Story Editor
+
+.debug {
+  .story {
+    .id,
+    .subject,
+    .status_id,
+    .story_points {
+      background-color: #f00;
+    }
+  }
+
+  .header {
+    .name,
+    .sprint_start_date,
+    .effective_date,
+    .actions {
+      background-color: #f00;
+    }
+  }
+
+  .menu,
+  .velocity,
+  #new_story {
+    background-color: #f00;
+  }
+}
+
+
+// Completed sprints
+
+#show_completed_sprints {
+  margin-left: variables.$padding-side * .5;
+  color: variables.$gray-950;
+  cursor: pointer;
+}
+
+
+// Datepicker bugfix: hide until it opens itself
+
+.ui-datepicker {
+  display: none;
+}
+
+
+// New object dropdown bugfix: adjust width and alignment
+
+#usability-compat-wrapper #main-menu > ul > li > a.new-object {
+  width: 18px;
+  text-align: center;
+}
