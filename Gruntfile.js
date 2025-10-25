@@ -14,6 +14,19 @@ module.exports = function (grunt) {
           'stylesheets/application.css': '<%= src %>sass/application.scss'
         }
       },
+
+      plugins: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= src %>sass/plugins/',
+            src: '**/*.scss',
+            dest: 'plugins/',
+            ext: '.css',
+            extDot: 'last'
+          }
+        ]
+      }
     },
 
     postcss: {
