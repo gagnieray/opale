@@ -51,6 +51,11 @@ svg {
     stroke: variables.$brand-success;
   }
 
+  &.svg-loader {
+    transform-origin: center;
+    animation: spin 1s linear infinite;
+  }
+
   &.s20 {
     width: 1.25rem;
     height: 1.25rem;
@@ -258,7 +263,7 @@ div.wiki {
   }
 
   100% {
-    transform: rotate(359deg);
+    transform: rotate(360deg);
   }
 }
 

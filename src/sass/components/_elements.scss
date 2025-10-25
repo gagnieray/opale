@@ -651,7 +651,7 @@ div#version-summary {
   span {
     line-height: variables.$line-height-computed;
 
-    &::before {
+    &:not(.icon-label, .icon)::before {
       content: "";
       display: inline-block;
       box-sizing: border-box;
@@ -663,6 +663,11 @@ div#version-summary {
       border-radius: 50%;
       border-top-color: variables.$highlight-text;
       vertical-align: bottom;
+    }
+
+    &.icon .svg-loader {
+      stroke-width: 3;
+      stroke: variables.$highlight-text;
     }
   }
 }
