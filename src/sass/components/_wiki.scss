@@ -208,6 +208,28 @@ div.wiki {
     font-size: variables.$font-size-small;
   }
 
+  .pre-wrapper {
+    position: relative;
+
+    &:hover {
+      a.copy-pre-content-link {
+        display: block;
+      }
+    }
+
+    a.copy-pre-content-link {
+      display: none;
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      padding: variables.$wiki-copy-pre-padding;
+      border: 1px solid variables.$component-border;
+      border-radius: variables.$border-radius-base;
+      background: variables.$white;
+      cursor: pointer;
+    }
+  }
+
   pre {
     width: auto;
     margin-bottom: 1.15em;
