@@ -95,8 +95,7 @@ a.icon-only:hover svg {
   stroke: variables.$brand-warning;
 }
 
-.icon-fav svg.icon-svg {
-  stroke: variables.$yellow;
+.icon-fav svg.icon-svg:has(use[href$="#icon--fav"]) {
   fill: variables.$yellow;
 }
 
