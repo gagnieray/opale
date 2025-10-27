@@ -22,9 +22,11 @@
     word-wrap: break-word;
 
     @if variables.$use-gravatars {
+      .avatar-with-child,
       .gravatar-with-child {
         position: relative;
 
+        > span[role="img"].avatar,
         > img.gravatar {
           top: 0;
           width: variables.$issue-gravatar-size;
@@ -72,6 +74,7 @@
       }
     }
 
+    > div[data-controller="sticky-issue-header"] > .subject,
     > .subject {
       h3 {
         margin-bottom: .3em;
@@ -85,6 +88,14 @@
         margin-bottom: 5px;
         font-size: variables.$font-size-small;
       }
+    }
+
+    > .reaction {
+      margin-top: -1em;
+      margin-left: 10px;
+      float: right;
+      clear: right;
+      font-size: 0.9em;
     }
 
     > .author {
@@ -663,7 +674,7 @@ div.thumbnails {
 
         > .gravatar,
         > span[role="img"].avatar {
-          transform: translate3d(-24px, -5px, 0);
+          transform: translate3d(-(variables.$bubble-gravatar-size), -5px, 0);
         }
       }
     }
@@ -788,6 +799,12 @@ div.thumbnails {
   margin: -3px -3px -3px 0;
   padding: 3px;
   float: right;
+}
+
+.journals h4.journal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 span.private {

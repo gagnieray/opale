@@ -754,6 +754,14 @@ div.table-list.boards {
       }
     }
 
+    .reaction {
+      margin-top: calc(variables.$bubble-padding-vertical / 2);
+      margin-right: variables.$bubble-padding-horizontal;
+      margin-left: 10px;
+      float: right;
+      font-size: 0.9em;
+    }
+
     .wiki {
       padding: variables.$panel-body-padding;
       border-top: 1px solid variables.$bubble-border;
@@ -939,6 +947,12 @@ div.table-list.boards {
       }
     }
   }
+}
+
+div.news .reaction {
+  margin-left: 10px;
+  float: right;
+  font-size: 0.9em;
 }
 
 .author {

@@ -9,7 +9,7 @@
   $colors: map.get(variables.$icon-color-map, $variant);
 
   @if $svg {
-    svg.icon-svg {
+    svg.icon-svg:not(.icon-svg-filled) {
       stroke: map.get($colors, normal);
     }
 
@@ -17,6 +17,11 @@
     &:hover {
       svg.icon-svg {
         stroke: map.get($colors, hover);
+      }
+
+      svg.icon-svg-filled {
+        stroke: none;
+        fill: map.get($colors, hover);
       }
     }
   } @else {

@@ -56,6 +56,11 @@ svg {
     animation: spin 1s linear infinite;
   }
 
+  &.icon-svg-filled {
+    stroke: none;
+    fill: variables.$link-color;
+  }
+
   &.s20 {
     width: 1.25rem;
     height: 1.25rem;
