@@ -196,6 +196,10 @@ img {
       img.gravatar {
         margin-right: .5em;
       }
+
+      .avatar:not(.gravatar) {
+        margin: 0 .5em .5em 0;
+      }
     }
   }
 }
@@ -816,6 +820,14 @@ div.table-list.boards {
         margin-top: variables.$line-height-computed - variables.$bubble-gravatar-size;
         margin-left: -(variables.$bubble-gravatar-size + variables.$bubble-gravatar-space + variables.$bubble-padding-horizontal + 1px);
         float: left;
+      }
+
+      .journal-info:has(img.gravatar) {
+        margin-left: 0;
+
+        > .gravatar {
+          transform: none;
+        }
       }
     }
   }

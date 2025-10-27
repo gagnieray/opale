@@ -657,6 +657,15 @@ div.thumbnails {
         margin-left: -(variables.$bubble-gravatar-size + variables.$bubble-gravatar-space + variables.$bubble-padding-horizontal + 1px);
         float: left;
       }
+
+      .journal-info {
+        margin-left: -(variables.$bubble-padding-horizontal + 14px);
+
+        > .gravatar,
+        > span[role="img"].avatar {
+          transform: translate3d(-24px, -5px, 0);
+        }
+      }
     }
   }
 

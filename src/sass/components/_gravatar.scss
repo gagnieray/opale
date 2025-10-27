@@ -34,6 +34,12 @@ span[role="img"].avatar {
   }
 }
 
+h2 .avatar:not(.gravatar),
+h3 .avatar:not(.gravatar) {
+  margin-right: .5em;
+  margin-bottom: .4em;
+}
+
 // Gravatars
 
 img.gravatar {
