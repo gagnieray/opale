@@ -19,11 +19,18 @@ A Redmine 6.x theme.
 * Jira-inspired priority icons,
 * Customizable with SCSS.
 
+## Releases
+
+* **Redmine 6.x** : use either the latest stable release ([1.6.1](https://github.com/gagnieray/opale/archive/refs/tags/1.6.1.zip)), or use the `redmine-6.x` branch of this repository.
+* **Redmine 5.x** : use either the latest stable release ([1.5.1](https://github.com/gagnieray/opale/archive/refs/tags/1.5.1.zip)), or use the `redmine-5.x` branch of this repository.
+
 ## Install
 
-To install this theme [download the lastest release](https://github.com/gagnieray/opale/archive/redmine-6.x.zip) and decompress the archive to your Redmine's `themes` folder.
+To install this theme :
 
-Then go to `Redmine > Administration > Settings > Display` and select `Opale` from the theme's list and save the settings.
+1. [download the lastest stable release](https://github.com/gagnieray/opale/archive/refs/tags/1.6.1.zip) and decompress the archive to your Redmine's `themes` folder,
+2. rename the folder `opale-1.6.1` to `opale`,
+3. go to `Redmine > Administration > Settings > Display`, select `Opale` from the theme's list and save the settings.
 
 ## Customize
 
@@ -44,15 +51,40 @@ Now all the dependencies should be ready to use. Run one more command:
 npm run watch
 ```
 
-And now the grunt is watching for changes in files placed in `src/` folder. Just change what you need, and it'll run Sass preprocessor automatically.
+And now the grunt is watching for changes in files placed in `src/` folder. 
 
-Regrettably, optional file include is not possible in Sass, so I would recommend creating a new file, e.g. `src/sass/_custom-variables.scss` and importing it a the beginning of the `application.scss` file. That way all the variables with the `!default` flag could be overridden.
+Just change what you need, and it'll run Sass preprocessor automatically.
 
-The path `src/sass/_custom-variables.scss` is added to `.gitignore` so it should make upgrading Opale with keeping your changes rather painless, given that the only thing you changed in Opale's source was adding this one line with `@import "custom-variables";`.
+Regrettably, optional file include is not possible in Sass, so I would recommend creating a new file, e.g. `src/sass/_custom-variables.scss` and importing it at the beginning of `src/sass/application.scss` using the following at-use rule : `@use "custom-variables";`. 
+
+This way all the variables defined in `src/sass/_variables.scss` with the `!default` flag could be overridden in `src/sass/_custom-variables.scss`:
+
+```scss
+@use 'variables' with (
+  $sidebar-position: right,
+  $brand-primary: #614ba6
+);
+```
+
+The path `src/sass/_custom-variables.scss` is added to `.gitignore` so it should make upgrading Opale with keeping your changes rather painless, given that the only thing you changed in Opale's source was adding this one line `@use "custom-variables";` at the beginning of `src/sass/application.scss`.
+
+## Troubleshooting
+
+**On a first install, depending on your server setup, it might happen that the theme appears to be broken because the CSS were not loaded.**
+
+This happens because assets of the theme have not been compiled properly by Redmine.
+
+Usually simply restarting the server should fix that.
+
+If not, run the command `bundle exec rake assets:precompile RAILS_ENV=production` on your server before restarting it.
 
 ## About Redmine Backlogs plugin
 
-This theme also features a new look for [Redmine Backlogs](https://github.com/maedadev/redmine_backlogs) plugin. To install it, simply copy stylesheets from `opale/plugins/redmine_backlogs` and overwrite files in `{redmine}/plugins/redmine_backlogs/assets/stylesheets`. Then restart Redmine.
+This theme also features a new look for [Redmine Backlogs](https://github.com/maedadev/redmine_backlogs) plugin. 
+
+To install it, simply copy stylesheets from `opale/plugins/redmine_backlogs` and overwrite files in `{redmine}/plugins/redmine_backlogs/assets/stylesheets`. 
+
+Then restart Redmine.
 
 ## Contributing
 
@@ -68,6 +100,7 @@ Please [read more about contributing](./CONTRIBUTING.md).
 Opale is licensed under the [Affero General Public License version 3](https://www.gnu.org/licenses/agpl-3.0), the text of which can be found in [LICENSE](./LICENSE), or any later version of the AGPL, unless otherwise noted.
 
 Licensing of included components:
+
 * Normalize.css : [MIT License](https://github.com/necolas/normalize.css/blob/master/LICENSE.md),
 * Bootstrap Mixins : [MIT License](https://github.com/twbs/bootstrap/blob/main/LICENSE),
 * Tabler Icons: [MIT License](https://github.com/tabler/tabler-icons/blob/main/LICENSE).
