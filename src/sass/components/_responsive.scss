@@ -4,7 +4,11 @@
 @use "../vendor/tabler-icons";
 
 .hidden,
-.mobile-show {
+.mobile-show,
+input[type="button"].mobile-show,
+input[type="submit"].mobile-show,
+input[type="reset"].mobile-show,
+button.mobile-show {
   display: none;
 }
 
@@ -19,6 +23,22 @@
 // stylelint-disable selector-max-compound-selectors
 body {
   @media screen and (max-width: variables.$redmine-responsive-max) {
+    .mobile-show,
+    input[type="button"].mobile-show,
+    input[type="submit"].mobile-show,
+    input[type="reset"].mobile-show,
+    button.mobile-show {
+      display: initial;
+    }
+
+    .mobile-hide,
+    input[type="button"].mobile-hide,
+    input[type="submit"].mobile-hide,
+    input[type="reset"].mobile-hide,
+    button.mobile-hide {
+      display: none;
+    }
+
     .flyout-menu + div {
       #header {
         height: variables.$responsive-header-height;
@@ -552,6 +572,10 @@ body {
           display: inline;
         }
       }
+    }
+
+    #tracker_project_ids.box:last-child {
+      margin-bottom: variables.$line-height-computed;
     }
   }
 
