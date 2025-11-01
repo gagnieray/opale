@@ -1,4 +1,5 @@
 @use "sass:color";
+@use "sass:map";
 @use "sass:math";
 @use "../variables";
 
@@ -413,6 +414,30 @@ p.footnote {
 
     > form {
       padding-top: 0;
+    }
+  }
+}
+
+.markdown-alert {
+  margin-left: variables.$mardown-alerts-margin;
+  padding-left: variables.$mardown-alerts-padding;
+  border-left: variables.$mardown-alerts-border;
+
+  &-title {
+    font-weight: bold;
+  }
+
+  @each $markdown-alert, $markdown-alert-color in variables.$markdown-alerts-map {
+    &-#{$markdown-alert} {
+      border-color: map.get($markdown-alert-color, color);
+
+      .markdown-alert-title {
+        color: color.adjust(map.get($markdown-alert-color, color), $lightness: -10%);
+
+        svg {
+          stroke: color.adjust(map.get($markdown-alert-color, color), $lightness: -10%);
+        }
+      }
     }
   }
 }

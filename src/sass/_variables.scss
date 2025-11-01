@@ -81,11 +81,15 @@ $brand-accent:                  shade($brand-primary, 100) !default;
 $brand-success:                 $green !default;
 $brand-info:                    $blue !default;
 $brand-warning:                 $orange !default;
+$brand-caution:                 $yellow !default;
+$brand-important:               $purple !default;
 $brand-danger:                  $red !default;
 
 $state-success:                 shade($green, 100) !default;
 $state-info:                    shade($blue, 100) !default;
 $state-warning:                 shade($orange, 100) !default;
+$state-caution:                 shade($yellow, 100) !default;
+$state-important:               shade($purple, 100) !default;
 $state-danger:                  shade($red, 100) !default;
 
 
@@ -758,6 +762,30 @@ $badge-padding-h:               5px !default;
 $badge-border-radius:           $border-radius-base !default;
 $badge-font-size:               $font-size-small !default;
 $badge-font-weight:             $font-weight-bold !default;
+
+
+// Markdown alerts
+
+$mardown-alerts-margin:         $padding-small-horizontal !default;
+$mardown-alerts-padding:        $padding-small-horizontal !default;
+$mardown-alerts-border:         4px solid !default;
+$markdown-alerts-map: (
+  tip: (
+    color:                      $brand-success
+  ),
+  note: (
+    color:                      $brand-info
+  ),
+  warning: (
+    color:                      $brand-warning
+  ),
+  caution: (
+    color:                      $brand-caution
+  ),
+  important: (
+    color:                      $brand-important
+  )
+) !default;
 
 
 // Media queries breakpoints
