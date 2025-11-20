@@ -98,7 +98,7 @@ img {
   border-radius: variables.$border-radius-base;
   background-color: variables.$panel-bg;
   color: variables.$panel-color;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 
   .ui-dialog-content & {
     padding: 0;
@@ -304,7 +304,7 @@ a.close-icon:not(:has(svg)) {
       background-color: variables.$panel-bg;
       color: variables.$panel-color;
       font-size: .92em;
-      word-wrap: break-word;
+      overflow-wrap: break-word;
 
       > h3 {
         margin-bottom: variables.$panel-body-padding-vertical;

@@ -19,7 +19,7 @@
 
   &.details {
     margin-bottom: variables.$line-height-computed;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 
     @if variables.$use-gravatars {
       .avatar-with-child,
@@ -214,7 +214,7 @@
   div.attributes {
     @if variables.$css-grid-layout {
       display: grid;
-      grid-gap: 0 variables.$padding-side;
+      gap: 0 variables.$padding-side;
       grid-template-columns: auto;
 
       @media screen and (min-width: variables.$screen-lg-min) {

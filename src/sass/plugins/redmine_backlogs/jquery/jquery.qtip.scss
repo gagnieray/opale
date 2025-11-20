@@ -21,7 +21,7 @@
   color: variables.$tooltip-text;
   font-size: variables.$font-size-list;
   text-align: left;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .ui-tooltip-tip {

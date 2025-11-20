@@ -24,20 +24,20 @@
     "lint": "npm run -S lint:sass"
   },
   "dependencies": {
-    "@tabler/icons-webfont": "^3.34.0"
+    "@tabler/icons-webfont": "^3.35.0"
   },
   "devDependencies": {
     "@lodder/grunt-postcss": "^3.1.1",
-    "autoprefixer": "^10.4.21",
+    "autoprefixer": "^10.4.22",
     "grunt": "^1.6.1",
     "grunt-contrib-watch": "^1.1.0",
-    "grunt-sass": "^4.0.0",
+    "grunt-sass": "^4.0.1",
     "husky": "^9.1.7",
-    "lint-staged": "^16.1.2",
-    "sass": "^1.89.2",
-    "stylelint": "^16.21.1",
+    "lint-staged": "^16.2.7",
+    "sass": "^1.94.2",
+    "stylelint": "^16.25.0",
     "stylelint-config-property-sort-order-smacss": "^10.0.0",
-    "stylelint-config-standard-scss": "^15.0.1"
+    "stylelint-config-standard-scss": "^16.0.0"
   },
   "browserslist": [
     "last 2 versions",

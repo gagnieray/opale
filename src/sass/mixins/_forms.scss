@@ -58,6 +58,6 @@
   float: none;
 
   @media screen and (min-width: variables.$screen-sm-min) {
-    padding-bottom: 0;
+    padding-bottom: 0; // stylelint-disable-line no-invalid-position-declaration
   }
 }
