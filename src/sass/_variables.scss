@@ -1,6 +1,7 @@
 @use "sass:color";
 @use "sass:map";
 @use "sass:math";
+@use "sass:meta";
 @use "vendor/font-awesome/variables" as fa-variables;
 
 
@@ -58,8 +59,8 @@ $shade-map: (
 ) !default;
 
 @function shade($color, $shade: 500) {
-  $mixer: if($shade < 500, $white, $black);
-  $saturation: if($shade < 500, 0, math.div($shade - 500, 20));
+  $mixer: if(sass($shade < 500): $white; else: $black);
+  $saturation: if(sass($shade < 500): 0; else: math.div($shade - 500, 20));
   @return color.adjust(color.mix($mixer, $color, map.get($shade-map, $shade)), $saturation: ($saturation * 1%));
 }
 
