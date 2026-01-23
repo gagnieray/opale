@@ -24,13 +24,12 @@
     "lint:sass": "stylelint src/sass/**/*.scss",
     "lint": "npm run -S lint:sass"
   },
-  "dependencies": {
-    "@tabler/icons-webfont": "^3.36.1"
-  },
   "devDependencies": {
     "@lodder/grunt-postcss": "^3.1.1",
+    "@tabler/icons-webfont": "^3.36.1",
     "autoprefixer": "^10.4.23",
     "grunt": "^1.6.1",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-sass": "^4.0.1",
     "husky": "^9.1.7",
