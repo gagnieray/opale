@@ -9,18 +9,27 @@
 // Additionals
 // https://www.redmine.org/plugins/additionals
 
-#sidebar .dashboards .dashboard-system-default {
+.dashboards .icon-cube {
   position: absolute;
-  transform: translateY(-175%);
-  @if variables.$sidebar-position == "right" {
-    right: 15px;
+  top: variables.$padding-large-vertical;
+}
+
+@if variables.$sidebar-position == "right" {
+  #sidebar .dashboards .icon-cube {
+      right: 3px;
   }
 }
 
-.flyout-menu .dashboard-system-default {
-  position: absolute;
-  right: 10px;
-  transform: translateY(-190%);
+.flyout-menu {
+  .dashboards {
+    li {
+      position: relative;
+    }
+
+    .icon-cube {
+      right: 3px;
+    }
+  }
 }
 
 #sidebar {
@@ -79,6 +88,15 @@
 
 .controller-rdb_taskboard .gototop {
   margin-right: variables.$padding-side;
+}
+
+@media screen and (max-width: variables.$redmine-responsive-max) {
+  body .dashboard {
+    .splitcontentleft,
+    .splitcontentright {
+      width: 100%;
+    }
+  }
 }
 
 
