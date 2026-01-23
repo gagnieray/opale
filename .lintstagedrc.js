@@ -2,6 +2,6 @@ module.exports = {
   "src/**/*.scss": files => [
     `stylelint "${files.join('" "')}"`,
     'grunt css',
-    'git add stylesheets/'
+    'git add stylesheets/ plugins/'
   ],
 }

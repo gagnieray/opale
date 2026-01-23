@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/gagnieray/opale",
   "scripts": {
+    "prepare": "husky",
     "build": "grunt",
     "watch": "grunt watch",
     "lint:sass": "stylelint src/sass/**/*.scss",
@@ -34,7 +35,7 @@
     "grunt-sass": "^4.0.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
-    "sass": "^1.97.2",
+    "sass": "^1.97.3",
     "stylelint": "^16.26.1",
     "stylelint-config-property-sort-order-smacss": "^10.0.0",
     "stylelint-config-standard-scss": "^16.0.0"
