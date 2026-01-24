@@ -909,6 +909,10 @@ div.table-list.boards {
       }
     }
   }
+
+  .document-group:not(:last-child) {
+    margin-bottom: variables.$line-height-computed;
+  }
 }
 
 
