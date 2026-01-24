@@ -890,7 +890,7 @@ div.table-list.boards {
     }
   }
 
-  .document-group {
+  .document-group:not(:last-child) {
     margin-bottom: variables.$line-height-computed;
   }
 }
