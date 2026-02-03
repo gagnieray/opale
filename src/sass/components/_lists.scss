@@ -790,6 +790,10 @@ table.list.enumerations {
     svg,
     span {
       margin-right: .4em;
+
+      &.highlight {
+        margin-right: auto;
+      }
     }
   }
 
