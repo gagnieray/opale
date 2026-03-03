@@ -36,9 +36,9 @@
     display: block;
     position: absolute;
     z-index: 2;
-    bottom: -1px;
-    width: 14px;
-    height: 16px;
+    bottom: -(variables.$sidebar-toggler-top-position);
+    width: variables.$sidebar-toggler-size;
+    height: variables.$sidebar-toggler-size;
     padding: 1px;
     transform: translateY(100%);
     border: 2px solid variables.$gray-700;
