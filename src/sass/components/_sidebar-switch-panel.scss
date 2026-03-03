@@ -29,9 +29,9 @@
     display: block;
     position: absolute;
     z-index: 2;
-    top: 0;
-    width: 18px;
-    height: 18px;
+    top: variables.$sidebar-switch-top-position;
+    width: variables.$sidebar-switch-size;
+    height: variables.$sidebar-switch-size;
     will-change: margin;
     transition: margin .5s;
     border: 2px solid variables.$gray-700;
@@ -61,6 +61,11 @@
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
       }
+    }
+
+    .icon-svg {
+      width: variables.$sidebar-switch-size;
+      height: variables.$sidebar-switch-size;
     }
 
     @media screen and (max-width: variables.$redmine-responsive-max) {
