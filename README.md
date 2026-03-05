@@ -23,7 +23,7 @@ A Redmine 5.x theme.
 ## Releases
 
 * **Redmine 5.x** : use either the latest stable release ([1.5.2](https://github.com/gagnieray/opale/archive/refs/tags/1.5.2.zip)), or use the `redmine-5.x` branch of this repository.
-* **Redmine 6.x** : use either the latest stable release ([1.6.3](https://github.com/gagnieray/opale/archive/refs/tags/1.6.3.zip)), or use the `redmine-6.x` branch of this repository.
+* **Redmine 6.x** : use either the latest stable release ([1.6.4](https://github.com/gagnieray/opale/archive/refs/tags/1.6.4.zip)), or use the `redmine-6.x` branch of this repository.
 
 ## Install
 
