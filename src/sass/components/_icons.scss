@@ -118,6 +118,12 @@ $icons-selector: ();
         @include variants.ti-icon-variant(tabler-icons.$ti-icon-folder-open);
       }
     }
+
+    @if $class == "icon-bookmarked-project" or $class == "icon-user" {
+      &.project::before {
+        content: none;
+      }
+    }
   }
 }
 
