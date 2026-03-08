@@ -119,6 +119,7 @@
       background-image: url("../images/logo/logo.png");
       background-repeat: no-repeat;
       background-position: variables.$logo-position-horizontal variables.$logo-position-vertical;
+      background-size: auto variables.$logo-image-height;
     }
 
     .root {
@@ -149,6 +150,7 @@
   #header & {
     margin-top: math.floor((variables.$header-title-line-height + variables.$header-padding-vertical * 2 - variables.$input-height-base) * .5) - 1px;
     margin-right: variables.$header-padding-horizontal;
+    margin-bottom: variables.$padding-large-vertical;
     float: right;
     color: variables.$header-text;
   }
