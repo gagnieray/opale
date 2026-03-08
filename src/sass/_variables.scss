@@ -564,9 +564,9 @@ $quick-search-dropdown-border:  $gray-400 !default;
 
 $logo-image-width:              60px !default;
 $logo-image-height:             40px !default;
-$logo-position-horizontal:      $header-padding-vertical !default;
+$logo-position-horizontal:      $header-padding-horizontal !default;
 $logo-position-vertical:        center !default;
-$logo-space:                    math.floor($header-padding-vertical * .5) !default;
+$logo-space:                    $header-padding-vertical !default;
 
 $main-menu-bg:                  $gray-100 !default;
 $main-menu-bg-hover:            $gray-100 !default;
