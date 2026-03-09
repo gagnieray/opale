@@ -64,6 +64,13 @@
       > .author {
         padding-left: variables.$issue-gravatar-size * 1.1 + 10px;
       }
+
+      .gravatar-with-child:not(:has(img)) {
+        & + .subject,
+        & + .subject + .author {
+          padding-left: 0;
+        }
+      }
     }
 
     &.assigned-to-me {
