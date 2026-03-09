@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "../variables";
 @use "../mixins/variants";
 
@@ -96,8 +97,8 @@ ul.cal {
       border: 1px solid variables.$table-border-color;
       border-right: 0;
       border-bottom: 0;
-      font-size: 1em;
-      line-height: 1.6;
+      font-size: .9em;
+      line-height: 1.25;
       vertical-align: top;
 
       p.day-num {
@@ -134,6 +135,15 @@ ul.cal {
 
       &.nwday:not(.odd) {
         background-color: variables.$table-bg-accent;
+      }
+
+      div.issue {
+        margin-bottom: variables.$padding-base-vertical;
+        padding: variables.$table-cell-padding;
+        border: 1px solid variables.$table-border-color;
+        border-radius: variables.$border-radius-base;
+        background: color.adjust(variables.$yellow, $lightness: 40%);
+        box-shadow: variables.$panel-shadow;
       }
     }
   }
