@@ -1,5 +1,4 @@
-Opale
-=====
+# Opale Redmine Theme
 
 A Redmine 5.x theme.
 
@@ -22,54 +21,22 @@ A Redmine 5.x theme.
 
 ## Releases
 
-* **Redmine 5.x** : use either the latest stable release ([1.5.2](https://github.com/gagnieray/opale/archive/refs/tags/1.5.2.zip)), or use the `redmine-5.x` branch of this repository.
-* **Redmine 6.x** : use either the latest stable release ([1.6.4](https://github.com/gagnieray/opale/archive/refs/tags/1.6.4.zip)), or use the `redmine-6.x` branch of this repository.
+* **Redmine 5.x** : use either the latest stable release ([1.5.3](https://github.com/gagnieray/opale/archive/refs/tags/1.5.3.zip)), or use the `redmine-5.x` branch of this repository.
+* **Redmine 6.x** : use either the latest stable release ([1.6.5](https://github.com/gagnieray/opale/archive/refs/tags/1.6.5.zip)), or use the `redmine-6.x` branch of this repository.
 
 ## Install
 
 To install this theme :
 
-1. [download the lastest stable release](https://github.com/gagnieray/opale/archive/refs/tags/1.5.2.zip) and decompress the archive to your Redmine's `themes` folder,
-2. rename the folder `opale-1.5.2` to `opale`,
+1. [download the lastest stable release](https://github.com/gagnieray/opale/archive/refs/tags/1.5.3.zip) and decompress the archive to your Redmine's `themes` folder,
+2. rename the folder `opale-1.5.3` to `opale`,
 3. go to `Redmine > Administration > Settings > Display`, select `Opale` from the theme's list and save the settings.
 
 ## Customize
 
-If you want to customize Opale to your needs, first, make sure that you have installed [Node.js](https://nodejs.org/) and `npm` is available in your terminal.
+If you wish to customize this theme to your needs, it is recommended that you use [Custom Opale Redmine Theme Builder](https://github.com/gagnieray/custom-opale-builder).
 
-Then, from the directory that contains Opale run:
-
-```bash
-npm install
-```
-
-Now all the dependencies should be ready to use. Run one more command:
-
-```bash
-npm run watch
-```
-
-And now the grunt is watching for changes in files placed in `src/` folder.
-
-Just change what you need, and it'll run Sass preprocessor automatically.
-
-> [!TIP]
-> Instead of using the `npm run watch` command, you can alternatively run the `npm run lint` and `npm run build` commands as needed to lint and build your code.
->
-> In any case, thanks to [Husky](https://typicode.github.io/husky/), all your changes should be linted and built automatically with each commit.
-
-Regrettably, optional file include is not possible in Sass, so I would recommend creating a new file, e.g. `src/sass/_custom-variables.scss` and importing it at the beginning of `src/sass/application.scss` using the following at-use rule : `@use "custom-variables";`.
-
-This way all the variables defined in `src/sass/_variables.scss` with the `!default` flag could be overridden in `src/sass/_custom-variables.scss`:
-
-```scss
-@use 'variables' with (
-  $sidebar-position: right,
-  $brand-primary: #614ba6
-);
-```
-
-The path `src/sass/_custom-variables.scss` is added to `.gitignore` so it should make upgrading Opale with keeping your changes rather painless, given that the only thing you changed in Opale's source was adding this one line `@use "custom-variables";` at the beginning of `src/sass/application.scss`.
+You will be able to override the Sass variables defined in `src/sass/_variables.scss` with the `!default` flag, add a logo and/or a favicon, and eventually add any custom Sass style rules you want.
 
 ## About Redmine Backlogs plugin
 
@@ -90,7 +57,7 @@ Please [read more about contributing](./CONTRIBUTING.md).
 
 ## Copying
 
-Opale is licensed under the [Affero General Public License version 3](https://www.gnu.org/licenses/agpl-3.0), the text of which can be found in [LICENSE](./LICENSE), or any later version of the AGPL, unless otherwise noted.
+_Opale Redmine Theme_ is licensed under the [GNU Affero General Public License v3.0 or later](https://www.gnu.org/licenses/agpl-3.0), the text of which can be found in [LICENSE](./LICENSE).
 
 Licensing of included components:
 
