@@ -53,6 +53,10 @@ table.permissions {
     text-align: center;
     vertical-align: bottom;
   }
+
+  td.name {
+    min-width: 10rem;
+  }
 }
 
 
