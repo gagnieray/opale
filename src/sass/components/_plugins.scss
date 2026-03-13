@@ -724,20 +724,28 @@ body div.banner_area {
 // Redmine Issues Panel
 // https://github.com/redmica/redmine_issues_panel
 
-.controller-issues_panel .issue-card .card-content {
-  @each $tracker-id, $tracker-colors in variables.$tracker-colors-map {
-    a.tracker-#{$tracker-id} {
-      background-color: map.get($tracker-colors, background);
-      color: map.get($tracker-colors, color);
+.controller-issues_panel .issue-card {
+    @each $priority-id, $priority-color in variables.$priority-color-map {
+      div.priority-#{$priority-id} {
+        box-shadow: 4px 0 0 0 color.adjust(map.get($priority-color, background)) inset;
+      }
+    }
 
-      &:hover {
-        @if color.channel(map.get($tracker-colors, background), 'hue', $space: hsl) > 15deg and color.channel(map.get($tracker-colors, background), 'hue', $space: hsl) < 40deg {
-          background-color: color.adjust(color.adjust(map.get($tracker-colors, background), $hue: -8deg), $lightness: -8%);
-        } @else {
-          background-color: color.adjust(map.get($tracker-colors, background), $lightness: -10%);
-        }
-
+  .card-content {
+    @each $tracker-id, $tracker-colors in variables.$tracker-colors-map {
+      a.tracker-#{$tracker-id} {
+        background-color: map.get($tracker-colors, background);
         color: map.get($tracker-colors, color);
+
+        &:hover {
+          @if color.channel(map.get($tracker-colors, background), 'hue', $space: hsl) > 15deg and color.channel(map.get($tracker-colors, background), 'hue', $space: hsl) < 40deg {
+            background-color: color.adjust(color.adjust(map.get($tracker-colors, background), $hue: -8deg), $lightness: -8%);
+          } @else {
+            background-color: color.adjust(map.get($tracker-colors, background), $lightness: -10%);
+          }
+
+          color: map.get($tracker-colors, color);
+        }
       }
     }
   }
