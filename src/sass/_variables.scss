@@ -263,11 +263,11 @@ $priority-icon-space:           5px !default;
 $priority-default-icons-map: (
   lowest: (
     icon:                       fa-variables.$fa-var-arrow-down,
-    color:                      $green
+    color:                      shade($blue, 400)
   ),
   low2: (
     icon:                       fa-variables.$fa-var-angles-down,
-    color:                      color.mix($teal, $green)
+    color:                      color.mix($teal, $blue)
   ),
   low3: (
     icon:                       fa-variables.$fa-var-angle-down,
@@ -275,15 +275,15 @@ $priority-default-icons-map: (
   ),
   default: (
     icon:                       "=",
-    color:                      $blue
+    color:                      $text-color
   ),
   high5: (
     icon:                       fa-variables.$fa-var-angle-up,
-    color:                      $purple
+    color:                      $orange
   ),
   high4: (
     icon:                       fa-variables.$fa-var-angle-up,
-    color:                      $orange
+    color:                      shade($orange, 600)
   ),
   high3: (
     icon:                       fa-variables.$fa-var-angles-up,
@@ -303,16 +303,16 @@ $priority-icons-map:            map.merge($priority-default-icons-map, $priority
 
 $priority-default-color-map: (
   lowest: (
-    border:                     shade($green, $table-color-border-shade),
-    background:                 shade($green, 300),
+    border:                     shade($blue, $table-color-border-shade),
+    background:                 shade($blue, 100),
     color:                      $text-color,
-    link:                       shade($green, 700),
+    link:                       shade($blue, 700),
   ),
   low2: (
-    border:                     shade(color.mix($teal, $green), $table-color-border-shade),
-    background:                 shade(color.mix($teal, $green), 300),
+    border:                     shade(color.mix($teal, $blue), $table-color-border-shade),
+    background:                 shade(color.mix($teal, $blue), 200),
     color:                      $text-color,
-    link:                       shade(color.mix($teal, $green), 700),
+    link:                       shade(color.mix($teal, $blue), 700),
   ),
   low3: (
     border:                     shade($teal, $table-color-border-shade),
@@ -321,16 +321,16 @@ $priority-default-color-map: (
     link:                       shade($teal, 700),
   ),
   default: (
-    border:                     shade($blue, $table-color-border-shade),
+    border:                     shade($text-color, $table-color-border-shade),
     background:                 transparent,
     color:                      $text-color,
-    link:                       shade($blue, 700),
+    link:                       inherit,
   ),
   high5: (
-    border:                     shade($purple, $table-color-border-shade),
-    background:                 shade($purple, 300),
+    border:                     shade($orange, $table-color-border-shade),
+    background:                 shade($orange, 200),
     color:                      $text-color,
-    link:                       shade($purple, 700),
+    link:                       shade($orange, 700),
   ),
   high4: (
     border:                     shade($orange, $table-color-border-shade),
@@ -352,9 +352,9 @@ $priority-default-color-map: (
   ),
   highest: (
     border:                     shade($red, $table-color-border-shade),
-    background:                 shade($red, 300),
+    background:                 shade($red, 400),
     color:                      $text-color,
-    link:                       shade($red, 700),
+    link:                       shade($red, 800),
   )
 ) !default;
 $priority-custom-color-map:     () !default;
