@@ -386,8 +386,10 @@ tr.entry {
 
     @if variables.$color-priorities {
       @each $priority-id, $priority-color in variables.$priority-color-map {
-        &.priority-#{$priority-id} {
-          background-color: color.adjust(map.get($priority-color, background), $alpha: variables.$table-color-hover-factor);
+        @if $priority-id != "default" {
+          &.priority-#{$priority-id} {
+            background-color: color.adjust(map.get($priority-color, background), $alpha: variables.$table-color-hover-factor);
+          }
         }
       }
     }
