@@ -272,6 +272,7 @@ a.icon:empty {
   padding-left: 0;
 
   &::after {
+    margin-right: 0;
     margin-left: .2em;
   }
 
