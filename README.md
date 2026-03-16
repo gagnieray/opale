@@ -20,15 +20,15 @@ A Redmine 6.x theme.
 
 ## Releases
 
-* **Redmine 6.x** : use either the latest stable release ([1.6.5](https://github.com/gagnieray/opale/archive/refs/tags/1.6.5.zip)), or use the `redmine-6.x` branch of this repository.
-* **Redmine 5.x** : use either the latest stable release ([1.5.3](https://github.com/gagnieray/opale/archive/refs/tags/1.5.3.zip)), or use the `redmine-5.x` branch of this repository.
+* **Redmine 6.x** : use either the latest stable release ([1.6.6](https://github.com/gagnieray/opale/archive/refs/tags/1.6.6.zip)), or use the `redmine-6.x` branch of this repository.
+* **Redmine 5.x** : use either the latest stable release ([1.5.4](https://github.com/gagnieray/opale/archive/refs/tags/1.5.4.zip)), or use the `redmine-5.x` branch of this repository.
 
 ## Install
 
 To install this theme :
 
-1. [download the lastest stable release](https://github.com/gagnieray/opale/archive/refs/tags/1.6.5.zip) and decompress the archive to your Redmine's `themes` folder,
-2. rename the folder `opale-1.6.5` to `opale`,
+1. [download the lastest stable release](https://github.com/gagnieray/opale/archive/refs/tags/1.6.6.zip) and decompress the archive to your Redmine's `themes` folder,
+2. rename the folder `opale-1.6.6` to `opale`,
 3. go to `Redmine > Administration > Settings > Display`, select `Opale` from the theme's list and save the settings.
 
 ## Customize
@@ -39,17 +39,17 @@ You will be able to override the Sass variables defined in `src/sass/_variables.
 
 ## Troubleshooting
 
-**With Redmine 6.x, upon initial installation, depending on your server setup, it might occur that the theme appears to be broken because the assets were not loaded**
+**With Redmine 6.x, upon initial installation, it might occur that the theme appears to be broken because the assets were not loaded**.
 
 This happens because the assets of the theme have not been precompiled properly by Redmine.
 
 Usually simply restarting the server should fix that.
 
-If not, run the command `bundle exec rake assets:precompile RAILS_ENV=production`.
+If not, run the command `bundle exec rake assets:precompile RAILS_ENV=production` before restarting the server.
 
 If deploying to a sub-uri, set the relative URL root as follows: `bundle exec rake assets:precompile RAILS_ENV=production RAILS_RELATIVE_URL_ROOT=/sub-uri`.
 
-If you still experience issues with missing assets in the browser, try removing the public/assets directory before re-running the precompile: ̀`bundle exec rake assets:clobber RAILS_ENV=production`.
+If you still experience issues with missing assets in the browser, try removing the public/assets directory before re-running the precompile: `bundle exec rake assets:clobber RAILS_ENV=production`.
 
 ## About Redmine Backlogs plugin
 
