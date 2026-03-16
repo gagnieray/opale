@@ -432,10 +432,10 @@ p.footnote {
       border-color: map.get($markdown-alert-color, color);
 
       .markdown-alert-title {
-        color: color.adjust(map.get($markdown-alert-color, color), $lightness: -10%);
+        color: color.adjust(map.get($markdown-alert-color, color), $lightness: -17%);
 
         svg {
-          stroke: color.adjust(map.get($markdown-alert-color, color), $lightness: -10%);
+          stroke: color.adjust(map.get($markdown-alert-color, color), $lightness: -17%);
         }
       }
     }
