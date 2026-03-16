@@ -440,4 +440,22 @@ p.footnote {
       }
     }
   }
+
+  ul.projects & {
+    padding-left: 5px;
+
+    p,
+    ul,
+    ol {
+      margin-bottom: .5em;
+    }
+
+    ul li {
+      list-style-type: initial;
+    }
+
+    ol li {
+      list-style-type: decimal;
+    }
+  }
 }
