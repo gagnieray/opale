@@ -79,19 +79,17 @@ $brand-primary:                 #628db6 !default;
 $brand-text:                    $white !default;
 $brand-accent:                  shade($brand-primary, 100) !default;
 
-$brand-success:                 $green !default;
 $brand-info:                    $blue !default;
-$brand-warning:                 $orange !default;
-$brand-caution:                 $yellow !default;
+$brand-success:                 $green !default;
 $brand-important:               $purple !default;
+$brand-warning:                 $orange !default;
 $brand-danger:                  $red !default;
 
-$state-success:                 shade($green, 100) !default;
-$state-info:                    shade($blue, 100) !default;
-$state-warning:                 shade($orange, 100) !default;
-$state-caution:                 shade($yellow, 100) !default;
-$state-important:               shade($purple, 100) !default;
-$state-danger:                  shade($red, 100) !default;
+$state-info:                    shade($brand-info, 100) !default;
+$state-success:                 shade($brand-success, 100) !default;
+$state-important:               shade($brand-important, 100) !default;
+$state-warning:                 shade($brand-warning, 100) !default;
+$state-danger:                  shade($brand-danger, 100) !default;
 
 
 // Scaffolding
@@ -639,23 +637,23 @@ $sidebar-switch-size:           18px !default;
 
 // Flash messages (alerts)
 
-$flash-success-bg:              shade($green, 400) !default;
-$flash-success-border:          shade($green, 500) !default;
+$flash-success-bg:              shade($brand-success, 400) !default;
+$flash-success-border:          shade($brand-success, 500) !default;
 $flash-success-text:            $white !default;
 $flash-success-link:            $white !default;
 
-$flash-info-bg:                 shade($blue, 100) !default;
-$flash-info-border:             shade($blue, 200) !default;
-$flash-info-text:               shade($blue, 800) !default;
-$flash-info-link:               shade($blue, 900) !default;
+$flash-info-bg:                 shade($brand-info, 100) !default;
+$flash-info-border:             shade($brand-info, 200) !default;
+$flash-info-text:               shade($brand-info, 800) !default;
+$flash-info-link:               shade($brand-info, 900) !default;
 
-$flash-warning-bg:              shade($yellow, 200) !default;
-$flash-warning-border:          shade($yellow, 300) !default;
-$flash-warning-text:            shade($yellow, 800) !default;
-$flash-warning-link:            shade($yellow, 900) !default;
+$flash-warning-bg:              shade($brand-warning, 200) !default;
+$flash-warning-border:          shade($brand-warning, 300) !default;
+$flash-warning-text:            shade($brand-warning, 800) !default;
+$flash-warning-link:            shade($brand-warning, 900) !default;
 
-$flash-error-bg:                $red !default;
-$flash-error-border:            shade($red, 600) !default;
+$flash-error-bg:                $brand-danger !default;
+$flash-error-border:            shade($brand-danger, 600) !default;
 $flash-error-text:              $white !default;
 $flash-error-link:              $white !default;
 
@@ -773,20 +771,20 @@ $mardown-alerts-margin:         $padding-small-horizontal !default;
 $mardown-alerts-padding:        $padding-small-horizontal !default;
 $mardown-alerts-border:         4px solid !default;
 $markdown-alerts-map: (
+  note: (
+    color:                      $brand-info
+  ),
   tip: (
     color:                      $brand-success
   ),
-  note: (
-    color:                      $brand-info
+  important: (
+    color:                      $brand-important
   ),
   warning: (
     color:                      $brand-warning
   ),
   caution: (
-    color:                      $brand-caution
-  ),
-  important: (
-    color:                      $brand-important
+    color:                      $brand-danger
   )
 ) !default;
 
