@@ -83,8 +83,7 @@ div.flash,
   }
 }
 
-.nodata:not(:has(svg)),
-.warning {
+.nodata:not(:has(svg)) {
   padding-left: variables.$padding-large-horizontal;
   text-align: center;
 
