@@ -121,6 +121,10 @@
     background-color: $active-bg;
     box-shadow: $active-shadow;
   }
+
+  svg {
+    stroke: $color;
+  }
 }
 
 @mixin button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
