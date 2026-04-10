@@ -840,3 +840,132 @@ body div.banner_area {
     }
   }
 }
+
+
+// Redmine Knowledgebase
+// https://www.redmine.org/plugins/redmine_knowledgebase
+
+table.list {
+  th {
+    .desc,
+    .asc {
+      @include variants.ti-icon-style("after");
+
+      background-image: none;
+    }
+
+    .desc::after {
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-descending);
+    }
+
+    .asc::after {
+      @include variants.ti-icon-variant(tabler-icons.$ti-icon-sort-ascending);
+    }
+  }
+}
+
+#query_form_content {
+  #options {
+    margin-left: 0;
+    padding: (variables.$line-height-computed * .5) 0;
+
+    .icon {
+      top: 0;
+      left: 0;
+    }
+  }
+}
+
+.controller-articles,
+.controller-categories {
+  #sidebar-wrapper {
+    #options {
+      .icon {
+        position: initial;
+
+        &.icon-del:hover::before {
+          color: variables.$link-hover-color;
+        }
+      }
+
+      ul.watchers {
+        margin-left: variables.$sidebar-padding-horizontal;
+
+        & > li {
+          margin-bottom: variables.$sidebar-padding-vertical;
+          padding-right: variables.$sidebar-padding-horizontal;
+        }
+
+        .avatar:not(.gravatar) {
+          margin: 0 .5em .5em 0;
+        }
+
+        .user {
+          display: inline;
+          padding: 0;
+          border-width: 0;
+          color: variables.$link-color;
+
+          &:hover {
+            background-color: transparent;
+            color: variables.$link-hover-color;
+            text-decoration: variables.$link-hover-decoration;
+          }
+        }
+      }
+    }
+
+    h3 + .autoscroll {
+      table.list {
+        tr:hover,
+        td {
+          background-color: transparent;
+        }
+
+        td {
+          padding-top: .25em;
+          padding-bottom: .25em;
+        }
+      }
+    }
+  }
+
+  #content .contextual .icon-add::before {
+    color: variables.$brand-success;
+  }
+
+  .articles,
+  .category-articles {
+    div.flex-item {
+      box-shadow: variables.$panel-shadow;
+
+      &:last-child {
+        margin-bottom: variables.$padding-base-vertical;
+      }
+    }
+  }
+}
+
+.controller-articles {
+  .other-formats + .wiki h1 {
+    margin-top: .5em;
+    margin-bottom: .5em;
+  }
+
+  .tab-content {
+    .article-info,
+    #comments h4 {
+      color: variables.$gray-700;
+    }
+
+    #comments h4 {
+      padding-bottom: .2em;
+      border-bottom: 1px solid variables.$tab-border;
+    }
+
+    #article {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}
