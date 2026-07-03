@@ -169,3 +169,36 @@
     top: variables.$input-height-base;
   }
 }
+
+.dropdown-trigger:focus {
+  text-decoration: none;
+}
+
+div.dropdown-content {
+  @include shadows.nice-shadow(2);
+
+  border: none;
+  border-radius: variables.$border-radius-base;
+  background-color: variables.$body-bg;
+  color: variables.$gray-750;
+
+  li {
+    margin-right: 0;
+    float: none;
+
+    a {
+      margin: 3px;
+      border-radius: variables.$border-radius-base;
+      color: variables.$gray-750;
+
+      &:hover {
+        background-color: variables.$pagination-hover-bg;
+        color: variables.$pagination-color;
+      }
+    }
+  }
+}
+
+div.dropdown-divider {
+  border-block-start: 1px solid variables.$toc-border;
+}

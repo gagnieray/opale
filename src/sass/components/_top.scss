@@ -15,7 +15,9 @@
 
   @include clearfix.clearfix;
 
+  display: flex;
   box-sizing: border-box;
+  flex-direction: row-reverse;
   padding: $top-menu-padding-vertical $top-menu-padding-horizontal;
   background: variables.$top-menu-bg;
   color: variables.$top-menu-text;
@@ -24,6 +26,7 @@
   ul {
     @include clearfix.clearfix;
 
+    flex-grow: 1;
     margin: 0;
     padding: 0;
   }
@@ -88,13 +91,76 @@
 
   #loggedas {
     margin-left: 1em;
-    float: right;
+  }
+
+  .general-menu {
+    flex-grow: 1;
+    order: 1;
+
+    .action-login & {
+      min-height: calc(1em * variables.$line-height-base);
+    }
+  }
+
+  .profile-menu {
+    position: absolute;
+    top: 1px;
+
+    #account {
+      .action-login & {
+        margin-top: variables.$padding-small-vertical;
+      }
+
+      .my-profile {
+        @include variants.ti-icon-style;
+
+        &::before {
+          @include variants.ti-icon-variant(tabler-icons.$ti-icon-id);
+
+          margin-right: 4px;
+          line-height: variables.$line-height-base;
+        }
+      }
+    }
+  }
+
+  .dropdown {
+    .dropdown-content {
+      z-index: 1003;
+
+      .user-info {
+        padding-block: variables.$padding-large-vertical;
+        padding-inline: variables.$padding-large-horizontal;
+        color: variables.$wiki-text;
+
+        .user-name {
+          font-weight: variables.$font-weight-bold;
+        }
+      }
+
+      li {
+        margin-right: 0;
+        float: none;
+
+        a {
+          color: variables.$gray-750;
+          font-weight: variables.$font-weight-normal;
+
+          &:hover {
+            background-color: variables.$pagination-hover-bg;
+            color: variables.$pagination-color;
+          }
+
+          &::before {
+            line-height: variables.$line-height-base;
+          }
+        }
+      }
+    }
   }
 }
 
 #account {
-  float: right;
-
   > ul > li {
     margin-right: 0;
     margin-left: .8em;

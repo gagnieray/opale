@@ -223,6 +223,16 @@ body {
           }
         }
 
+        &.my-profile {
+          @include variants.ti-icon-style;
+
+          &::before {
+            @include variants.ti-icon-variant(tabler-icons.$ti-icon-id);
+
+            margin-right: 6px;
+          }
+        }
+
         &.my-account {
           @include variants.ti-icon-style;
 
