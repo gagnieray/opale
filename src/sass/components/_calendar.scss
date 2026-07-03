@@ -105,6 +105,15 @@ ul.cal {
         font-size: 1.1em;
         text-align: right;
 
+        .day-value {
+            display: inline-flex;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            width: 1.5em;
+            height: 1.5em;
+        }
+
         .abbr-day {
           display: none;
         }
@@ -125,6 +134,20 @@ ul.cal {
 
         p.day-num {
           font-weight: variables.$font-weight-bold;
+
+          .day-value {
+            color: variables.$white;
+            isolation: isolate;
+
+            &::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                z-index: -1;
+                border-radius: 50%;
+                background:  variables.$brand-info;
+            }
+          }
         }
       }
 
