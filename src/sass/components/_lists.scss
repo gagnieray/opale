@@ -137,8 +137,12 @@ table.list {
     &.estimated_hours,
     &.float,
     &.int,
+    &.estimated_hours,
+    &.total_estimated_hours,
     &.remaining_hours,
+    &.estimated_remaining_hours,
     &.spent_hours,
+    &.total_spent_hours,
     &.story_points {
       text-align: right;
     }
