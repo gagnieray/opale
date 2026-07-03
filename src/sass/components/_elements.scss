@@ -589,10 +589,41 @@ div#roadmap {
   }
 
   header {
-    display: block;
+    display: flex;
+    align-items: center;
+    margin-bottom: variables.$padding-small-vertical;
+    padding-block: variables.$padding-small-vertical;
+    gap: .5em;
+
+    .contextual {
+      flex-grow: 2;
+      order: 3;
+      text-align: right;
+    }
 
     > h3 {
-      display: inline-block;
+      display: inline-flex;
+      gap: .5em;
+    }
+
+    .badge {
+      margin-top: 2px;
+    }
+
+    &:target {
+      position: relative;
+
+      &::before {
+        $border: variables.$bubble-target-border;
+        $shadow: color.adjust(variables.$bubble-target-border, $alpha: variables.$bubble-target-shadow-alpha);
+
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        border-radius: (variables.$panel-border-radius - 1px);
+        box-shadow: 0 0 0 1px $border, 0 0 0 4px $shadow;
+      }
     }
   }
 
