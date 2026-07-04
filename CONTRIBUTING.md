@@ -44,7 +44,4 @@ This way, before making your changes, you can run the `npm run watch` command. T
 
 ### Base branch
 
-**Choose the proper base branch to merge your changes:**
-
-- If your changes concern _Redmine 6.x_, choose the branch `redmine-6.x`.
-- If your changes concern _Redmine 5.x_, choose the branch `redmine-5.x`.
+Choose the `redmine-5.x` branch to merge your changes.

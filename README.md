@@ -21,15 +21,18 @@ A Redmine 5.x theme.
 
 ## Releases
 
-* **Redmine 5.x** : use either the latest stable release ([1.5.5](https://github.com/gagnieray/opale/archive/refs/tags/1.5.5.zip)), or use the `redmine-5.x` branch of this repository.
-* **Redmine 6.x** : use either the latest stable release ([1.6.7](https://github.com/gagnieray/opale/archive/refs/tags/1.6.7.zip)), or use the `redmine-6.x` branch of this repository.
+> [!IMPORTANT]
+> Since the release of Redmine 7.0 on June 30, 2026, Redmine 5.1 is now officially End of Life (EOL) and will no longer receive security or maintenance patches. As a result, **Opale support for Redmine 5.x also ends with its latest version, 1.5.6**.
+
+* **Redmine 5.x** : use either the latest 1.5.x release ([1.5.6](https://github.com/gagnieray/opale/archive/refs/tags/1.5.6.zip)), or use the `redmine-5.x` branch of this repository.
+* **Redmine >=6.x** : see the [README.md](https://github.com/gagnieray/opale/blob/master/README.md) file on the master branch of this repository.
 
 ## Install
 
 To install this theme :
 
-1. [download the lastest stable release](https://github.com/gagnieray/opale/archive/refs/tags/1.5.5.zip) and decompress the archive to your Redmine's `themes` folder,
-2. rename the folder `opale-1.5.5` to `opale`,
+1. [download the lastest stable release](https://github.com/gagnieray/opale/archive/refs/tags/1.5.6.zip) and decompress the archive to your Redmine's `themes` folder,
+2. rename the folder `opale-1.5.6` to `opale`,
 3. go to `Redmine > Administration > Settings > Display`, select `Opale` from the theme's list and save the settings.
 
 ## Customize
