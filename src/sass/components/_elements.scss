@@ -640,6 +640,14 @@ div#roadmap {
       }
     }
   }
+
+  .version-article {
+    .version-overview,
+    .wiki,
+    form {
+      padding-inline-start: calc(variables.$padding-large-horizontal + variables.$padding-small-horizontal);
+    }
+  }
 }
 
 body.controller-versions.action-show div#roadmap .related-issues {
@@ -899,11 +907,9 @@ div.table-list.boards {
 
 .controller-documents {
   &.action-index {
-    h2 {
-      font-size: variables.$font-size-h2;
-    }
-
     h4 {
+      display: flex;
+      align-items: center;
       margin-bottom: 0;
       font-size: variables.$font-size-h4;
     }
@@ -924,10 +930,6 @@ div.table-list.boards {
     }
   }
 
-  h3 {
-    font-size: variables.$font-size-h3;
-  }
-
   #content > h2,
   #content > h4 {
     + p {
@@ -939,8 +941,45 @@ div.table-list.boards {
     }
   }
 
+  #document-list {
+    h3 {
+      margin-block-end: 0;
+      padding: variables.$panel-body-padding;
+      border: 1px solid variables.$panel-border;
+      border-radius: variables.$border-radius-base;
+      background-color: variables.$panel-bg;
+      color: variables.$panel-color;
+
+      & + .document-item {
+        margin-block-start: calc(variables.$line-height-computed / 2);
+      }
+    }
+  }
+
   .document-group:not(:last-child) {
-    margin-bottom: variables.$line-height-computed;
+    margin-block-end: calc(variables.$line-height-computed * 2);
+  }
+
+  .document-item {
+    margin-block-start: variables.$line-height-computed;
+
+    svg.icon-svg {
+      margin-inline-end: variables.$icon-space;
+    }
+
+    .updated_on {
+      margin-block-end: calc(variables.$line-height-computed / 2);
+      color: variables.$gray-750;
+
+      em {
+        font-style: normal;
+      }
+    }
+
+    .updated_on,
+    .wiki.description {
+      padding-inline-start: calc(variables.$padding-large-horizontal + variables.$padding-small-horizontal);
+    }
   }
 }
 
@@ -993,12 +1032,17 @@ div.table-list.boards {
 
   header {
     h3 {
-      margin-bottom: variables.$line-height-computed * .5;
+      margin-bottom: calc(variables.$line-height-computed / 10);
 
       > a {
         font-weight: variables.$font-weight-bold;
       }
     }
+  }
+
+  header p.author,
+  .wiki {
+    padding-inline-start: calc(variables.$padding-large-horizontal + variables.$padding-small-horizontal);
   }
 }
 
