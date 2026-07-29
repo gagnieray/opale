@@ -42,8 +42,11 @@
       }
     }
   }
+}
 
-  #context-menu {
+#context-menu {
+  #wrapper &,
+  body > & {
     > ul,
     > ul > li > ul {
       @include shadows.nice-shadow(2);
