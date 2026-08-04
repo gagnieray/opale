@@ -107,7 +107,7 @@
     top: 1px;
 
     #account {
-      .action-login & {
+      &.top-menu__links {
         margin-top: variables.$padding-small-vertical;
       }
 
