@@ -20,15 +20,15 @@ A Redmine 5.x, 6.x & 7.x theme.
 
 ## Releases
 
-* **Redmine 6.x & 7.x** : use either the latest release ([1.7.0](https://github.com/gagnieray/opale/archive/refs/tags/1.7.0.zip)), or use the `master` branch of this repository.
+* **Redmine 6.x & 7.x** : use either the latest release ([1.7.1](https://github.com/gagnieray/opale/archive/refs/tags/1.7.1.zip)), or use the `master` branch of this repository.
 * **Redmine 5.x** : use either the latest 1.5.x release ([1.5.6](https://github.com/gagnieray/opale/archive/refs/tags/1.5.6.zip)), or use the `redmine-5.x` branch of this repository.
 
 ## Install
 
 To install this theme :
 
-1. [download the lastest release](https://github.com/gagnieray/opale/archive/refs/tags/1.7.0.zip) and decompress the archive to your Redmine's `themes` folder,
-2. rename the folder `opale-1.7.0` to `opale`,
+1. [download the lastest release](https://github.com/gagnieray/opale/archive/refs/tags/1.7.1.zip) and decompress the archive to your Redmine's `themes` folder,
+2. rename the folder `opale-1.7.1` to `opale`,
 3. go to `Redmine > Administration > Settings > Display`, select `Opale` from the theme's list and save the settings.
 
 ## Customize
