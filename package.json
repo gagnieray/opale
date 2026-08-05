@@ -33,7 +33,7 @@
     "grunt-contrib-watch": "^1.1.0",
     "grunt-sass": "^4.1.0",
     "husky": "^9.1.7",
-    "lint-staged": "^17.2.0",
+    "lint-staged": "^17.3.0",
     "sass": "^1.102.0",
     "stylelint": "^17.14.1",
     "stylelint-config-property-sort-order-smacss": "^11.2.0",
