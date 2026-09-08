@@ -59,18 +59,28 @@ module.exports = function (grunt) {
         ]
       },
 
-      all: {
+      theme: {
         src: [
-          'stylesheets/*.css',
+          'stylesheets/*.css'
+        ]
+      },
+
+      plugins: {
+        src: [
           'plugins/**/*.css'
         ]
       }
     },
 
     watch: {
-      css: {
-        files: ['<%= src %>sass/**/*.scss'],
-        tasks: ['css']
+      theme: {
+        files: ['src/sass/components/*.scss', 'src/sass/_*.scss'],
+        tasks: ['css-theme']
+      },
+
+      plugins: {
+        files: ['src/sass/plugins/**/*.scss', 'src/sass/_*.scss'],
+        tasks: ['css-plugins']
       }
     }
   })
@@ -80,7 +90,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('@lodder/grunt-postcss')
   grunt.loadNpmTasks('grunt-contrib-watch')
 
-  grunt.registerTask('css', ['copy', 'sass', 'postcss'])
+  grunt.registerTask('css-theme', ['copy', 'sass:theme', 'postcss:theme'])
+  grunt.registerTask('css-plugins', ['copy', 'sass:plugins', 'postcss:plugins'])
 
-  grunt.registerTask('default', ['css'])
+  grunt.registerTask('default', ['css-theme'])
 }

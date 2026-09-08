@@ -20,6 +20,8 @@
   "scripts": {
     "prepare": "husky",
     "build": "grunt",
+    "build:theme": "grunt css-theme",
+    "build:plugins": "grunt css-plugins",
     "watch": "grunt watch",
     "lint:sass": "stylelint src/sass/**/*.scss",
     "lint": "npm run -S lint:sass"
