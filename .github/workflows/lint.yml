@@ -48,5 +48,8 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
+      - name: Test color mode switch
+        run: npm test
+
       - name: Check build
         run: npm run build

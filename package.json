@@ -21,6 +21,7 @@
     "prepare": "husky",
     "build": "grunt",
     "watch": "grunt watch",
+    "test": "node tests/theme.test.js",
     "lint:sass": "stylelint src/sass/**/*.scss",
     "lint": "npm run -S lint:sass"
   },
