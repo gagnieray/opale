@@ -1,0 +1,501 @@
+// Keep Opale's layout and light palette. Dark styles never affect printing.
+@media screen {
+  #opale-color-mode-toggle {
+    position: absolute;
+    z-index: 10;
+    top: 9px;
+    right: 20px;
+    min-height: 32px;
+    padding: 5px 10px;
+    border: 1px solid #d1d9e0;
+    border-radius: 6px;
+    background: #f6f8fa;
+    box-shadow: none;
+    color: #1f2328;
+    font-size: 12px;
+    line-height: 20px;
+
+    &:hover {
+      background: #eaeef2;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #58a6ff;
+      outline-offset: 3px;
+    }
+  }
+
+  #header:has(#opale-color-mode-toggle) {
+    > h1 {
+      padding-right: 140px;
+    }
+
+    #quick-search {
+      margin-right: 145px;
+    }
+  }
+
+  body > #opale-color-mode-toggle {
+    position: fixed;
+  }
+
+  @media (width <= 899px) {
+    html[data-opale-color-mode="dark"] table.list.issues {
+      min-width: 760px;
+    }
+
+    #header #opale-color-mode-toggle {
+      top: 5px;
+      right: 58px;
+      min-height: 44px;
+    }
+
+    #header:has(#opale-color-mode-toggle) {
+      #quick-search {
+        margin-right: 0;
+      }
+
+      #project-jump {
+        padding-right: 175px;
+
+        .drdn-trigger {
+          min-width: 0;
+        }
+      }
+    }
+  }
+
+  html[data-opale-color-mode="dark"] {
+    --opale-bg: #0d1117;
+    --opale-surface: #161b22;
+    --opale-raised: #21262d;
+    --opale-hover: #30363d;
+    --opale-border: #30363d;
+    --opale-fg: #e6edf3;
+    --opale-muted: #9da7b3;
+    --opale-link: #58a6ff;
+
+    background: var(--opale-bg);
+    color: var(--opale-fg);
+    color-scheme: dark;
+
+    body, #wrapper, #main, #content, #footer {
+      background: var(--opale-bg);
+      color: var(--opale-fg);
+    }
+
+    a, a:link, a:visited {
+      color: var(--opale-link);
+    }
+
+    a:hover {
+      color: #79c0ff;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--opale-link);
+      outline-offset: 2px;
+    }
+
+    ::selection {
+      background: #264f78;
+      color: #fff;
+    }
+
+    :is(h1, h2, h3, h4, h5, h6, legend),
+    div.wiki, .issue .attribute .value, .issue.details .subject h3 {
+      color: var(--opale-fg);
+    }
+
+    #footer, .author, .created_on, .updated_on, .description > .contextual,
+    .issue .attribute .label, .issue table.attributes th, .journal .update-info,
+    #activity .time, #activity .description, #search-results .description,
+    .wiki blockquote, .wiki h6, .pagination, .nodata, .info, .help, .tabular .info {
+      color: var(--opale-muted);
+    }
+
+    #top-menu, #header, #main-menu, #sidebar, .flyout-menu,
+    .flyout-menu h3, .flyout-menu h4 {
+      border-color: var(--opale-border);
+      background: var(--opale-surface);
+      box-shadow: none;
+      color: var(--opale-fg);
+    }
+
+    #top-menu a, #header a, #sidebar a, .flyout-menu a,
+    #main-menu > ul > li > a, #header h1 .root {
+      color: var(--opale-fg);
+    }
+
+    #main-menu {
+      box-shadow: inset 0 -1px var(--opale-border);
+    }
+
+    #main-menu > ul > li > a.selected {
+      border-bottom-color: #f78166;
+      background: transparent;
+      color: var(--opale-fg);
+    }
+
+    #main-menu > ul > li > a:hover,
+    #sidebar ul:not(.watchers) li > a:not(.icon-only):hover,
+    #sidebar ul:not(.watchers) li > a:not(.icon-only).selected, .flyout-menu a.selected {
+      border-color: var(--opale-border);
+      background: var(--opale-raised);
+      box-shadow: none;
+      color: var(--opale-fg);
+    }
+
+    #sidebar ul:not(.watchers) li > a:not(.icon-only).selected {
+      border-left-color: #f78166;
+    }
+
+    #admin-menu li > a {
+      &::before { color: inherit; }
+
+      svg.icon-svg:not(.icon-svg-filled) { stroke: currentcolor; }
+
+      svg.icon-svg-filled {
+        stroke: none;
+        fill: currentcolor;
+      }
+    }
+
+    #admin-index > #admin-menu {
+      max-width: 22rem;
+
+      li { padding: 0; }
+
+      a {
+        display: flex;
+        box-sizing: border-box;
+        align-items: center;
+        min-height: 40px;
+        padding: 6px 12px;
+        border-radius: 6px;
+        color: var(--opale-fg);
+
+        &:hover, &:focus-visible, &.selected {
+          background: var(--opale-raised);
+          color: var(--opale-link);
+          text-decoration: none;
+        }
+      }
+
+      .icon-label { margin-inline-start: 8px; }
+    }
+
+    .box, #projects-index ul.projects.root > li, #my-page .mypage-box,
+    #login-form, .journal, .journal > div > h4,
+    .journal > h4, .journal.changeset h4 + p, .wiki pre, .wiki code,
+    .wiki ul.toc, .wiki div.toc, .jstTabs, .jstElements,
+    .ui-widget-content, .ui-widget-header, #ajax-indicator,
+    div#sticky-issue-header, .text-diff, #content table.filecontent,
+    #content table.filecontent th.filename, #content table.filecontent th.line-num {
+      border-radius: 6px;
+      border-color: var(--opale-border);
+      background: var(--opale-surface);
+      box-shadow: none;
+      color: var(--opale-fg);
+    }
+
+    #projects-index ul.projects ul.projects {
+      border-color: var(--opale-border);
+    }
+
+    #my-page .mypage-box {
+      outline-color: var(--opale-border);
+
+      &:hover { outline-color: var(--opale-muted); }
+
+      .nodata {
+        border-color: var(--opale-border);
+        background: var(--opale-bg);
+        color: var(--opale-muted);
+
+        svg.icon-svg { stroke: currentcolor; }
+      }
+    }
+
+    .journal > div > h4, .journal > h4 {
+      border-radius: 6px 6px 0 0;
+
+      &::before { border-right-color: var(--opale-border); }
+      &::after { border-right-color: var(--opale-surface); }
+    }
+
+    .journal h4 a, .ui-widget-content a, .ui-widget-header a {
+      color: var(--opale-link);
+    }
+
+    hr, fieldset, .issue hr, .issue .attachments, #update > form,
+    .wiki blockquote, .wiki table th, .wiki table td, .wiki h1, .wiki h2,
+    table.list th, table.list td, table.cal, table.cal td, ul.cal,
+    ul.cal .calbody, .gantt_hdr, .attachments, .tabs > ul {
+      border-color: var(--opale-border);
+    }
+
+    table.list th, .box table.list th, table.list .table-list-header,
+    table.cal thead th, table.cal .week-number, ul.cal .calhead,
+    ul.cal .week-number, .gantt_hdr, .wiki table th {
+      background: var(--opale-surface);
+      color: var(--opale-muted);
+    }
+
+    table.list th a { color: var(--opale-fg); }
+
+    #content table.filecontent tr:hover,
+    #content table.filecontent tr:hover th.line-num {
+      background: var(--opale-raised);
+    }
+
+    #wrapper table.list tr.issue :is(.id, .issue_id, .legacy_id) > a,
+    #wrapper a.issue {
+      background: #1f3048;
+      color: #79c0ff;
+
+      &::before { color: inherit; }
+      &:hover { background: #264568; }
+    }
+
+    table.list td { border-bottom-width: 1px; }
+
+    table.list:not(.odd-even) tbody tr:nth-child(odd):not(.ui-sortable-helper) > td,
+    .odd > td, table.cal .nwday, ul.cal .nwday:not(.odd) {
+      background: rgb(22 27 34 / .6);
+    }
+
+    table.list > tbody > tr:nth-child(n):hover:not(.ui-sortable-helper) {
+      background: var(--opale-raised);
+    }
+
+    #wrapper .context-menu-selection,
+    #wrapper .context-menu-selection > td,
+    #wrapper .context-menu-selection a {
+      // Opale marks selection colors important; match that existing rule.
+      background-color: #1f3a5b !important;
+      color: #fff !important;
+    }
+
+    table.cal .today, ul.cal .today, .highlight {
+      background: #332b00;
+      color: #e3b341;
+    }
+
+    ul.cal .calbody div.issue { background: var(--opale-raised); }
+
+    .gantt_hdr[style*="background"] {
+      background: var(--opale-surface) !important;
+    }
+
+    input:not([type="submit"], [type="button"], [type="reset"], [type="checkbox"], [type="radio"], [type="range"]),
+    select, textarea, #project-jump .drdn-trigger, #quick-search input {
+      border-radius: 6px;
+      border-color: var(--opale-border);
+      background-color: var(--opale-bg);
+      box-shadow: none;
+      color: var(--opale-fg);
+
+      &:focus {
+        border-color: var(--opale-link);
+        box-shadow: 0 0 0 1px var(--opale-link);
+      }
+
+      &:disabled, &[readonly] {
+        background-color: var(--opale-raised);
+        color: var(--opale-muted);
+      }
+    }
+
+    input, select, textarea { accent-color: #58a6ff; }
+    ::placeholder { color: var(--opale-muted); }
+
+    #quick-search label, #quick-search option {
+      background: var(--opale-surface);
+      color: var(--opale-fg);
+    }
+
+    button, input[type="button"], input[type="reset"],
+    #content .contextual > a, p.buttons > a, .other-formats > span > a,
+    .contextual .drdn-trigger, .pagination .pages > li > a,
+    .ui-state-default, .ui-widget-content .ui-state-default,
+    #opale-color-mode-toggle, .jstElements button,
+    #main-menu > ul > li > a.new-object,
+    #query_form_with_buttons > .contextual > span:not(.drdn) {
+      border-radius: 6px;
+      border-color: var(--opale-border);
+      background-color: var(--opale-raised);
+      box-shadow: none;
+      color: var(--opale-fg);
+
+      &:hover {
+        border-color: #8b949e;
+        background-color: var(--opale-hover);
+        color: #fff;
+      }
+    }
+
+    .jstElements button {
+      position: relative;
+      background-size: 0;
+
+      // SVG background icons ignore text color; lighten only the icon layer.
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: inherit;
+        background-repeat: no-repeat;
+        background-position: center;
+        filter: invert(1);
+        pointer-events: none;
+      }
+    }
+
+    .jstElements .jstb_pre::before {
+      color: inherit;
+    }
+
+    input[type="submit"], #content .contextual > a.icon-add {
+      border-radius: 6px;
+      border-color: rgb(240 246 252 / .1);
+      background: #238636;
+      box-shadow: none;
+      color: #fff;
+
+      &:hover { background: #29903b; }
+    }
+
+    #content .contextual > a.icon-add::before { color: #fff; }
+
+    .drdn-content, .dropdown-content, #project-jump .drdn-content,
+    #main-menu .menu-children, #context-menu ul, .tooltip span.tip {
+      border: 1px solid var(--opale-border);
+      background: var(--opale-surface);
+      box-shadow: 0 8px 24px rgb(0 0 0 / .4);
+      color: var(--opale-fg);
+    }
+
+    .drdn-items, #top-menu .dropdown .dropdown-content .user-info,
+    #top-menu .dropdown .dropdown-content li a, #context-menu a {
+      color: var(--opale-fg);
+    }
+
+    .drdn-items > a:hover, #main-menu .menu-children a:hover,
+    #context-menu li:hover, .ui-menu .ui-state-active {
+      background: var(--opale-raised);
+      color: var(--opale-fg);
+    }
+
+    div.tabs:not(#main-menu) > ul > li > a {
+      color: var(--opale-muted);
+
+      &.selected, &:hover {
+        border-color: var(--opale-border);
+        background: var(--opale-surface);
+        color: var(--opale-fg);
+      }
+    }
+
+    .tabs .tabs-buttons, .tabs .tabs-buttons > button,
+    #main-menu .tabs-buttons, #main-menu .tabs-buttons > button {
+      border-color: var(--opale-border);
+      background: var(--opale-surface);
+      color: var(--opale-fg);
+    }
+
+    #main-menu > ul > li:hover > a.new-object {
+      border-bottom-color: var(--opale-border);
+    }
+
+    .tabs .tabs-buttons > button,
+    #main-menu .tabs-buttons > button {
+      opacity: 1;
+
+      &:hover, &:focus-visible {
+        background: var(--opale-raised);
+        color: var(--opale-link);
+      }
+
+      &:disabled, &.disabled {
+        opacity: .5;
+        background: var(--opale-surface);
+        color: var(--opale-muted);
+      }
+
+      svg.icon-svg { stroke: currentcolor; }
+    }
+
+    #main-menu a.new-object svg.icon-svg,
+    #query_form_with_buttons > .contextual svg.icon-svg {
+      stroke: currentcolor;
+    }
+
+    #query_form_with_buttons > .contextual span.icon {
+      color: var(--opale-muted);
+    }
+
+    #query_form_with_buttons > .contextual > span > a {
+      border-color: var(--opale-border);
+      background-color: transparent;
+      color: var(--opale-link);
+
+      &:hover, &:focus-visible {
+        background-color: var(--opale-raised);
+        color: #79c0ff;
+      }
+    }
+
+    .flash.notice, .flash.notice:not(:has(svg)) {
+      border-color: #238636;
+      background: #12261e;
+      color: #7ee787;
+    }
+
+    .warning, .conflict, .nodata {
+      border-color: #9e6a03;
+      background: #2d240f;
+      color: #e3b341;
+    }
+
+    #errorExplanation, .flash.error, .flash.error:not(:has(svg)) {
+      border-color: #da3633;
+      background: #301b20;
+      color: #ff7b72;
+    }
+
+    .flash a, .warning a, #errorExplanation a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    .syntaxhl {
+      color: var(--opale-fg);
+
+      .c, .ch, .cm, .c1, .cs, .w { color: #8b949e; }
+      .k, .kd, .kn, .kp, .kr, .kt, .o, .ow, .cp, .sa, .dl { color: #ff7b72; }
+      .s, .sb, .sc, .sd, .s2, .se, .sh, .sx, .sr, .s1, .cpf { color: #a5d6ff; }
+
+      .m, .mb, .mf, .mh, .mi, .mo, .il, .kc, .na, .nb, .no, .ni, .ne,
+      .nl, .si, .ss, .bp, .fm, .vm, .gh, .gt { color: #79c0ff; }
+      .nc, .nd, .nf, .nn, .gu { color: #d2a8ff; }
+      .nt { color: #7ee787; }
+      .nv, .vc, .vg, .vi { color: var(--opale-fg); }
+      .hll { background: #332b00; }
+    }
+
+    .diff_in, .diff_in span, .syntaxhl .gi {
+      background: #12261e;
+      color: #7ee787;
+    }
+
+    .diff_out, .diff_out span, .syntaxhl .gd {
+      background: #301b20;
+      color: #ff7b72;
+    }
+  }
+}
+
+@media print {
+  #opale-color-mode-toggle { display: none; }
+}
