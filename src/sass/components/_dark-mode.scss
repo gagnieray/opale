@@ -68,6 +68,7 @@
   html[data-opale-color-mode="dark"] {
     --opale-bg: #0d1117;
     --opale-surface: #161b22;
+    --opale-header: #24364b;
     --opale-raised: #21262d;
     --opale-hover: #30363d;
     --opale-border: #30363d;
@@ -125,6 +126,14 @@
     #top-menu a, #header a, #sidebar a, .flyout-menu a,
     #main-menu > ul > li > a, #header h1 .root {
       color: var(--opale-fg);
+    }
+
+    #top-menu {
+      background: #1b2938;
+    }
+
+    #header, #main-menu {
+      background: var(--opale-header);
     }
 
     #main-menu {
@@ -406,6 +415,10 @@
 
     #main-menu > ul > li:hover > a.new-object {
       border-bottom-color: var(--opale-border);
+    }
+
+    #main-menu .tabs-buttons, #main-menu .tabs-buttons > button {
+      background: var(--opale-header);
     }
 
     .tabs .tabs-buttons > button,
