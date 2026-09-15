@@ -55,7 +55,9 @@ If you still experience issues with missing assets in the browser, try removing 
 
 This theme also features a new look for [Redmine Backlogs](https://github.com/maedadev/redmine_backlogs) plugin.
 
-To install it, simply copy stylesheets from `opale/plugins/redmine_backlogs` and overwrite files in `{redmine}/plugins/redmine_backlogs/assets/stylesheets`.
+To install it, simply copy the stylesheets from the archive provided in the assets of a release, and overwrite files in `{redmine}/plugins/redmine_backlogs/assets/stylesheets`.
+
+You can also build the stylesheets yourself from the sources using the command : `npm run build:plugins`. The stylesheets will then be available in the `plugins/redmine_backlogs/` directory.
 
 Then restart Redmine.
 

@@ -30,7 +30,7 @@ To do this, ensure you have installed all the required dependencies before commi
 This way, before making your changes, you can run the `npm run watch` command. The Sass preprocessor will then run automatically while you are developing.
 
 > [!TIP]
-> Instead of using the `npm run watch` command, you can alternatively run the `npm run lint` and `npm run build` commands as needed to lint and build your code.
+> Instead of using the `npm run watch` command, you can alternatively run the `npm run lint`, `npm run build:theme` and `npm run build:plugins` commands as needed to lint and build your code.
 >
 > In any case, thanks to [Husky](https://typicode.github.io/husky/), all your changes should be linted and built automatically with each commit.
 
