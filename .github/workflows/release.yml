@@ -1,0 +1,130 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref_name }}
+  cancel-in-progress: false
+
+env:
+  VERSION: ${{ github.ref_name }}
+
+jobs:
+  release:
+    name: Build and create release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout tagged commit
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Validate tag format
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Invalid tag: $VERSION"
+            echo "Expected format: MAJOR.MINOR.PATCH"
+            exit 1
+          fi
+
+      - name: Check release does not already exist
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if gh release view "$VERSION" \
+            --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "::error::Release $VERSION already exists"
+            exit 1
+          fi
+
+      - name: Build release assets
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ ! -f ./scripts/release.sh ]]; then
+            echo "::error::scripts/release.sh not found"
+            exit 1
+          fi
+
+          chmod +x ./scripts/release.sh
+          ./scripts/release.sh "$VERSION"
+
+      - name: Collect release assets
+        id: assets
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          main_asset="dist/opale-${VERSION}.zip"
+          assets=()
+
+          if [[ -f "$main_asset" ]]; then
+            assets+=("$main_asset")
+          fi
+
+          while IFS= read -r -d '' asset; do
+            [[ "$asset" == "$main_asset" ]] && continue
+            assets+=("$asset")
+          done < <(
+            find dist \
+              -maxdepth 1 \
+              -type f \
+              -name "opale-*-${VERSION}.zip" \
+              -print0 |
+            sort -z
+          )
+
+          if (( ${#assets[@]} == 0 )); then
+            echo "::error::No release assets found in dist/"
+            exit 1
+          fi
+
+          echo "Release assets in upload order:"
+          index=1
+
+          for asset in "${assets[@]}"; do
+            printf ' %d. %s\n' "$index" "$asset"
+            ((index++))
+          done
+
+          {
+            echo 'assets<<EOF'
+            printf '%s\n' "${assets[@]}"
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create draft release
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mapfile -t assets < <(
+            printf '%s\n' '${{ steps.assets.outputs.assets }}'
+          )
+
+          gh release create "$VERSION" \
+            --repo "$GITHUB_REPOSITORY" \
+            --verify-tag \
+            --title "$VERSION" \
+            --generate-notes \
+            --draft \
+            "${assets[@]}"
+
