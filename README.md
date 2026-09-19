@@ -16,7 +16,8 @@ A Redmine 5.x, 6.x & 7.x theme.
 * Left sidebar,
 * Colored trackers links,
 * Jira-inspired priority icons,
-* Customizable with SCSS.
+* Customizable with SCSS,
+* GitHub-style dark mode with a light/dark button.
 
 ## Releases
 
@@ -30,6 +31,23 @@ To install this theme :
 1. [download the lastest release](https://github.com/gagnieray/opale/archive/refs/tags/1.7.1.zip) and decompress the archive to your Redmine's `themes` folder,
 2. rename the folder `opale-1.7.1` to `opale`,
 3. go to `Redmine > Administration > Settings > Display`, select `Opale` from the theme's list and save the settings.
+
+## Color mode
+
+Use the button in the header to switch between light and dark mode. Light mode
+is the default. Your choice is saved in this browser using `localStorage`; if
+storage is unavailable, switching still works for the current page. Button
+labels are Chinese on Chinese pages and English otherwise. Printing uses the
+original light styles.
+
+Install the whole theme, including `javascripts/theme.js` and
+`stylesheets/application.css`. Redmine loads the switch automatically without
+plugin or template changes. See [Troubleshooting](#troubleshooting) if updated
+assets do not appear.
+
+The dark palette is in `src/sass/components/_dark-mode.scss`. After editing it,
+run `npm run lint` and `npm run build`. Run `npm test` to check the switch;
+it uses Node.js built-ins and requires no additional test dependencies.
 
 ## Customize
 

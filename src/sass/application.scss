@@ -47,3 +47,6 @@
 
 @use "components/plugins";
 @use "components/plugins-commercial";
+
+// Optional GitHub-style dark palette and the theme switch.
+@use "components/dark-mode";
