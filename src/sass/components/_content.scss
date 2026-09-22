@@ -251,7 +251,7 @@
 
     #top-menu,
     #header,
-    #main-menu ul,
+    #main-menu ul:not(.menu-children),
     #main,
     #footer {
       width: variables.$width-sm;
@@ -278,7 +278,7 @@
   @media screen and (min-width: variables.$screen-md-min) {
     #top-menu,
     #header,
-    #main-menu ul,
+    #main-menu ul:not(.menu-children),
     #main,
     #footer {
       width: variables.$width-md;
@@ -288,7 +288,7 @@
   @media screen and (min-width: variables.$screen-lg-min) {
     #top-menu,
     #header,
-    #main-menu ul,
+    #main-menu ul:not(.menu-children),
     #main,
     #footer {
       width: variables.$width-lg;

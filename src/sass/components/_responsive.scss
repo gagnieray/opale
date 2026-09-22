@@ -601,12 +601,6 @@ body {
     }
   }
 
-  @media screen and (max-width: variables.$screen-md-max) {
-    #main-menu.tabs {
-      overflow: hidden;
-    }
-  }
-
   // Tweaks for smartphones, touchscreens
   @media (hover: none) and (pointer: coarse) {
     .query-columns {

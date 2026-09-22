@@ -361,7 +361,13 @@
 
   &.tabs {
     margin-bottom: 0;
-    overflow: inherit;
+    overflow-y: inherit;
+
+    @if variables.$fixed-layout {
+      overflow-x: clip;
+    } @else {
+      overflow-x: inherit;
+    }
 
     > ul {
       height: $tabs-height;
