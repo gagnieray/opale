@@ -68,6 +68,7 @@ h1 {
 h2 {
   margin-top: 0;
   margin-bottom: variables.$line-height-computed;
+  padding-inline: 0 variables.$padding-small-horizontal;
   font-size: 1.43em;
   font-weight: variables.$font-weight-semi-bold;
   line-height: variables.$line-height-large;
