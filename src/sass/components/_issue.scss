@@ -702,7 +702,8 @@ div.thumbnails {
   .details,
   .details + p,
   .journal-content > p,
-  .journal-details {
+  .journal-details,
+  .journal-note {
     border-top: 1px solid variables.$bubble-border;
   }
 
@@ -737,7 +738,8 @@ div.thumbnails {
 
   .wiki,
   .journal-content > p,
-  .journal-content .journal-details {
+  .journal-content .journal-details,
+  .journal-content .journal-note {
     margin-bottom: 0;
     padding: variables.$issue-padding;
   }
