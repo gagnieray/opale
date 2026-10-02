@@ -158,7 +158,9 @@ img {
   }
 
   > ul.watchers {
-    margin-left: variables.$sidebar-padding-horizontal;
+    @if variables.$sidebar-position == "left" {
+      margin-left: variables.$sidebar-padding-horizontal;
+    }
 
     > li {
       @include clearfix.clearfix;
@@ -168,8 +170,6 @@ img {
 
       @if variables.$sidebar-position == "left" {
         padding-right: variables.$sidebar-padding-horizontal;
-      } @else {
-        padding-left: variables.$sidebar-padding-horizontal;
       }
 
       > a:not(.icon-only) {
