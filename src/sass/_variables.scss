@@ -835,6 +835,8 @@ $redmine-responsive-min:        900px !default;
 
 $login-form-width:              24em !default;
 $login-form-label-width:        8em !default;
+$login-form-bg:                 shade($yellow, 100) !default;
+$login-form-border-color:       shade($yellow, 300) !default;
 $login-form-box-breakpoint:     $screen-xs-min !default;
 $login-form-adjustments-map: (
   -2: da en en-GB ko pl tr uk,
