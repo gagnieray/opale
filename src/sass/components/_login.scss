@@ -9,9 +9,9 @@
   width: variables.$login-form-width;
   margin: variables.$line-height-computed * 2 auto variables.$line-height-computed;
   padding: variables.$padding-side;
-  border: 1px solid variables.shade(variables.$yellow, 300);
+  border: 1px solid variables.$login-form-border-color;
   border-radius: variables.$border-radius-base;
-  background-color: variables.shade(variables.$yellow, 100);
+  background-color: variables.$login-form-bg;
   box-shadow: variables.$panel-shadow;
   color: variables.$panel-color;
 
