@@ -34,9 +34,9 @@
     height: variables.$sidebar-switch-size;
     will-change: margin;
     transition: margin .5s;
-    border: 2px solid variables.$gray-700;
+    border: 2px solid variables.$sidebar-switch-border;
     border-radius: variables.$border-radius-base;
-    background-color: variables.$gray-200;
+    background-color: variables.$sidebar-switch-bg;
     background-position: center;
     line-height: 1;
     user-select: none;
@@ -75,7 +75,7 @@
     &:hover,
     &:focus,
     &:active {
-      background-color: variables.$gray-300;
+      background-color: variables.$sidebar-switch-hover-bg;
     }
   }
 
