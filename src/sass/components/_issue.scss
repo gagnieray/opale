@@ -85,7 +85,7 @@
     > .subject {
       h3 {
         margin-bottom: .3em;
-        color: variables.$gray-950;
+        color: variables.$issue-primary-text;
         font-size: variables.$issue-heading-size * 1em;
         font-weight: variables.$font-weight-bold;
         line-height: 1.1;
@@ -199,7 +199,7 @@
       }
 
       td {
-        color: variables.$gray-950;
+        color: variables.$issue-primary-text;
       }
     }
 
@@ -279,11 +279,11 @@
     .label {
       box-sizing: border-box;
       float: left;
-      color: variables.$gray-750;
+      color: variables.$issue-secondary-text;
     }
 
     .value {
-      color: variables.$gray-950;
+      color: variables.$issue-primary-text;
 
       &:empty::after {
         content: "-";
@@ -596,7 +596,7 @@ div.thumbnails {
     > a.journal-link {
       padding-left: variables.$issue-attribute-padding-h;
       opacity: 1;
-      color: variables.$gray-750;
+      color: variables.$issue-secondary-text;
 
       &::before {
         content: "";
@@ -611,12 +611,12 @@ div.thumbnails {
     padding: variables.$bubble-padding-vertical variables.$bubble-padding-horizontal;
     border-radius: variables.$panel-border-radius variables.$panel-border-radius 0 0;
     background-color: variables.$bubble-bg;
-    color: variables.$gray-750;
+    color: variables.$issue-secondary-text;
     font-size: variables.$font-size-list;
     font-weight: variables.$font-weight-normal;
 
     a {
-      color: variables.$gray-900;
+      color: variables.$issue-primary-text;
 
       &.user {
         font-weight: variables.$font-weight-bold;
@@ -624,7 +624,7 @@ div.thumbnails {
     }
 
     .journal-link {
-      color: variables.$gray-750;
+      color: variables.$issue-secondary-text;
     }
 
     .update-info {
