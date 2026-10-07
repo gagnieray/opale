@@ -34,7 +34,7 @@
     height: variables.$sidebar-switch-size;
     will-change: margin;
     transition: margin .5s;
-    border: 2px solid variables.$sidebar-switch-border;
+    border: 2px solid variables.$sidebar-switch-border-color;
     border-radius: variables.$border-radius-base;
     background-color: variables.$sidebar-switch-bg;
     background-position: center;
