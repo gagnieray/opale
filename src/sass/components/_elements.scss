@@ -347,7 +347,7 @@ a.close-icon:not(:has(svg)) {
   th.line-num {
     border-color: color.adjust(variables.$body-bg, $lightness: -10%);
     background-color: color.adjust(variables.$body-bg, $lightness: -5%);
-    color: variables.$gray-750;
+    color: variables.$text-color-light;
   }
 
   th.line-num,
@@ -527,7 +527,7 @@ table.projects {
 
   tbody tr {
     &.subtotal {
-      color: variables.$gray-750;
+      color: variables.$text-color-light;
       font-style: italic;
 
       td.hours {
@@ -737,7 +737,7 @@ div#version-summary {
 
 tr.message {
   &.locked {
-    color: variables.$gray-750;
+    color: variables.$text-color-light;
   }
 
   &.sticky td.subject {
@@ -798,11 +798,11 @@ div.table-list.boards {
     > p {
       margin-bottom: 0;
       padding: variables.$bubble-padding-vertical variables.$bubble-padding-horizontal;
-      color: variables.$gray-750;
+      color: variables.$text-color-light;
       font-size: variables.$font-size-list;
 
       a {
-        color: variables.$gray-900;
+        color: variables.$text-color-dark;
 
         &.user {
           font-weight: variables.$font-weight-bold;
@@ -932,7 +932,7 @@ div.table-list.boards {
   #content > h2,
   #content > h4 {
     + p {
-      color: variables.$gray-750;
+      color: variables.$text-color-light;
 
       em {
         font-style: normal;
@@ -968,7 +968,7 @@ div.table-list.boards {
 
     .updated_on {
       margin-block-end: calc(variables.$line-height-computed / 2);
-      color: variables.$gray-750;
+      color: variables.$text-color-light;
 
       em {
         font-style: normal;
@@ -1052,7 +1052,7 @@ div.news .reaction {
 }
 
 .author {
-  color: variables.$gray-750;
+  color: variables.$issue-text-light;
 
   .flyout-menu & {
     color: inherit;

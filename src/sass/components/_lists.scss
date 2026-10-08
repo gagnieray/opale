@@ -806,7 +806,7 @@ table.list.enumerations {
 
   span.description {
     display: block;
-    color: variables.$gray-750;
+    color: variables.$text-color-light;
     font-style: italic;
   }
 }
@@ -839,7 +839,7 @@ table.list.enumerations {
     }
 
     .time {
-      color: variables.$gray-750;
+      color: variables.$text-color-light;
     }
 
     @if variables.$use-gravatars {
