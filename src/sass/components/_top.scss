@@ -121,6 +121,12 @@
           line-height: variables.$line-height-base;
         }
       }
+
+      .dropdown-trigger {
+        .icon-svg {
+          stroke: variables.$top-menu-link;
+        }
+      }
     }
   }
 
