@@ -262,7 +262,7 @@ span.required {
 em.info {
   display: block;
   padding: 2px 0;
-  color: variables.$gray-750;
+  color: variables.$text-color-light;
   font-size: variables.$font-size-small;
   font-style: normal;
   line-height: variables.$line-height-base;
@@ -529,7 +529,7 @@ label[for="closed"] {
       padding: 1px;
       animation: spin 1s linear infinite;
       background: variables.$body-bg;
-      color: variables.$gray-750;
+      color: variables.$text-color-light;
     }
 
     input.filename {
