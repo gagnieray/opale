@@ -740,6 +740,14 @@ $context-menu-text:             $link-color !default;
 $context-menu-hover-bg:         $pagination-hover-bg !default;
 $context-menu-disabled-text:    $text-color-light !default;
 
+
+// Gantt
+
+$gantt-header-bg:               $gray-200 !default;
+$gantt-header-border:           $gray-500 !default;
+$gantt-header-text:             $gray-700 !default;
+
+
 // Initials avatars colors
 
 $intitials-avatars-colors-map: (

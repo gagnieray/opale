@@ -41,29 +41,29 @@ table.gantt-table {
     top: 0;
     height: 16px;
     overflow: hidden;
-    border-block: 1px solid variables.$gray-500;
-    border-inline-start: 1px solid variables.$gray-500 !important;
+    border-block: 1px solid variables.$gantt-header-border;
+    border-inline-start: 1px solid variables.$gantt-header-border !important;
     text-align: center;
 
     &[style*="background"] {
-      background: variables.$gray-200 !important;
+      background: variables.$gantt-header-bg !important;
     }
 
     &.nwday {
-      background-color: variables.$gray-200;
-      color: variables.$gray-700;
+      background-color: variables.$gantt-header-bg;
+      color: variables.$gantt-header-text;
     }
   }
 
   #gantt_area .gantt_hdr {
-    border-inline-end: 1px solid variables.$gray-500;
+    border-inline-end: 1px solid variables.$gantt-header-border;
     border-inline-start: 0;
   }
 
   .gantt_subjects_container:not(.draw_selected_columns) .gantt_hdr,
   .last_gantt_selected_column .gantt_hdr {
     z-index: 1;
-    border-inline-end: 1px solid variables.$gray-500;
+    border-inline-end: 1px solid variables.$gantt-header-border;
   }
 
   .last_gantt_selected_column .gantt_selected_column_container,
@@ -73,7 +73,7 @@ table.gantt-table {
 
   .gantt_subjects_column {
     .gantt_hdr {
-      border-left: 1px solid variables.$gray-500;
+      border-left: 1px solid variables.$gantt-header-border;
     }
 
     + td {
