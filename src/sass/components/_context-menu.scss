@@ -69,12 +69,14 @@
         background-color: variables.$context-menu-hover-bg;
       }
     }
+    
     a,
     a:hover {
       color: variables.$context-menu-text;
       
       &.disabled {
         color: variables.$context-menu-disabled-text;
+      }
     }
   }
 }
