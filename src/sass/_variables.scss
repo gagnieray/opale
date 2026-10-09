@@ -651,7 +651,9 @@ $sidebar-link-active-side:      $red !default;
 $sidebar-link-active-text:      $gray-950 !default;
 $sidebar-switch-top-position:   1px !default;
 $sidebar-switch-size:           18px !default;
-
+$sidebar-switch-bg:             $gray-200 !default;
+$sidebar-switch-hover-bg:       $gray-300 !default;
+$sidebar-switch-border-color:   $gray-700 !default;
 
 // Flash messages (alerts)
 
