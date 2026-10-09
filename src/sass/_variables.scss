@@ -99,7 +99,9 @@ $state-danger:                  shade($brand-danger, 100) !default;
 // Scaffolding
 
 $body-bg:                       $white !default;
+$text-color-light:              $gray-750 !default;
 $text-color:                    $gray-800 !default;
+$text-color-dark:               $gray-950 !default;
 
 $link-color:                    $blue !default;
 $link-hover-color:              $red !default;
@@ -714,7 +716,9 @@ $tooltip-link:                  $link-color !default;
 
 $issue-bg:                      $gray-50 !default;
 $issue-border:                  $gray-500 !default;
+$issue-text-light:              $text-color-light !default;
 $issue-text:                    $text-color !default;
+$issue-text-dark:               $text-color-dark !default;
 
 $issue-padding:                 15px !default;
 $issue-gravatar-size:           50px !default;
