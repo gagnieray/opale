@@ -106,6 +106,7 @@ div.jstElements {
     background-color: transparent;
     box-shadow: none;
     color: variables.$gray-800;
+    filter: variables.$jstoolbar-icon-filter;
     vertical-align: top;
 
     &::before {
@@ -114,7 +115,7 @@ div.jstElements {
 
     &:hover,
     &:focus {
-      background-color: color.adjust(variables.$tab-hover-bg, $lightness: -3%);
+      background-color: variables.$jstoolbar-hover-bg;
       color: variables.$gray-900;
     }
   }

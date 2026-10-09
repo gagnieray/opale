@@ -728,6 +728,12 @@ $issue-attribute-padding-v:     3px !default;
 $issue-attribute-padding-h:     5px !default;
 
 
+// Toolbar
+
+$jstoolbar-icon-filter: none !default;
+$jstoolbar-hover-bg: color.adjust($tab-hover-bg, $lightness: -3%) !default;
+
+
 // Initials avatars colors
 
 $intitials-avatars-colors-map: (
