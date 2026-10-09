@@ -748,6 +748,12 @@ $gantt-header-border:           $gray-500 !default;
 $gantt-header-text:             $gray-700 !default;
 
 
+// jsToolBar
+
+$jstoolbar-icon-filter: none !default;
+$jstoolbar-hover-bg: color.adjust($tab-hover-bg, $lightness: -3%) !default;
+
+
 // Initials avatars colors
 
 $intitials-avatars-colors-map: (
