@@ -728,6 +728,13 @@ $issue-attribute-padding-v:     3px !default;
 $issue-attribute-padding-h:     5px !default;
 
 
+// Context menu
+
+$context-menu-bg:               $body-bg !default;
+$context-menu-text:             $link-color !default;
+$context-menu-hover-bg:         $pagination-hover-bg !default;
+$context-menu-disabled-text:    $text-color-light !default;
+
 // Initials avatars colors
 
 $intitials-avatars-colors-map: (
@@ -847,6 +854,11 @@ $login-form-adjustments-map: (
   1: fr hr nl sr-YU sv,
   2: el eu lt pt sk sr th
 ) !default;
+
+
+// Footer
+
+$footer-border-color:           $gray-400 !default;
 
 
 // Content widths
