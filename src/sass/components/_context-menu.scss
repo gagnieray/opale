@@ -52,6 +52,7 @@
       @include shadows.nice-shadow(2);
 
       border: 0 none !important;
+      background-color: variables.$context-menu-bg;
     }
 
     ul {
@@ -63,15 +64,19 @@
       border: 0 none;
       border-radius: variables.$border-radius-small;
       background: transparent;
-
+          
       &:hover {
-        background-color: variables.$pagination-hover-bg;
+        background-color: variables.$context-menu-hover-bg;
       }
     }
-
-    a.disabled,
-    a.disabled:hover {
-      color: variables.$gray-750;
+    
+    a,
+    a:hover {
+      color: variables.$context-menu-text;
+      
+      &.disabled {
+        color: variables.$context-menu-disabled-text;
+      }
     }
   }
 }
