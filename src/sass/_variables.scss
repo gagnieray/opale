@@ -856,6 +856,11 @@ $login-form-adjustments-map: (
 ) !default;
 
 
+// Footer
+
+$footer-border-color:           $gray-400 !default;
+
+
 // Content widths
 
 $width-sm:                      $screen-sm - ($padding-side * 2) !default;
