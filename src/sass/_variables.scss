@@ -3,6 +3,7 @@
 @use "sass:math";
 @use "sass:meta";
 @use "vendor/tabler-icons";
+@use "functions";
 
 
 // Variables
@@ -29,19 +30,19 @@ $wiki-page-more-vertical-space: true !default;
 
 // Colors
 
-$blue:                          #169 !default;
-$indigo:                        #4e65e5 !default;
-$purple:                        #614ba6 !default;
-$pink:                          #eb5286 !default;
-$red:                           #e5123d !default;
-$orange:                        #fc8c12 !default;
-$yellow:                        #ffc107 !default;
-$green:                         #029934 !default;
-$teal:                          #00b3ad !default;
+$blue:                          var(--opale-blue) !default;
+$indigo:                        var(--opale-indigo) !default;
+$purple:                        var(--opale-purple) !default;
+$pink:                          var(--opale-pink) !default;
+$red:                           var(--opale-red) !default;
+$orange:                        var(--opale-orange) !default;
+$yellow:                        var(--opale-yellow) !default;
+$green:                         var(--opale-green) !default;
+$teal:                          var(--opale-teal) !default;
 
-$white:                         #fff !default;
-$black:                         #000 !default;
-$gray:                          hsl(color.channel($indigo, 'hue', $space: hsl), 20%, 85%) !default;
+$white:                         var(--opale-white) !default;
+$black:                         var(--opale-black) !default;
+$gray:                          var(--opale-gray) !default;
 
 $shade-map: (
   50:                           87.5%,
@@ -59,57 +60,58 @@ $shade-map: (
   950:                          87.5%
 ) !default;
 
-@function shade($color, $shade: 500) {
-  $mixer: if(sass($shade < 500): $white; else: $black);
-  $saturation: if(sass($shade < 500): 0; else: math.div($shade - 500, 20));
-  @return color.adjust(color.mix($mixer, $color, map.get($shade-map, $shade)), $saturation: ($saturation * 1%));
+@function shade($color, $shade) {
+  @if $shade < 500 {
+    @return color-mix(in srgb, #{$color}, var(--opale-shade-low-mixer) #{map.get($shade-map, $shade)});
+  }
+  @return color-mix(in srgb, #{$color}, var(--opale-shade-high-mixer) #{map.get($shade-map, $shade)});
 }
 
-$gray-50:                       shade($gray, 50) !default;
-$gray-100:                      shade($gray, 100) !default;
-$gray-200:                      shade($gray, 200) !default;
-$gray-250:                      shade($gray, 250) !default;
-$gray-300:                      shade($gray, 300) !default;
-$gray-400:                      shade($gray, 400) !default;
-$gray-500:                      $gray !default;
-$gray-600:                      shade($gray, 600) !default;
-$gray-700:                      shade($gray, 700) !default;
-$gray-750:                      shade($gray, 750) !default;
-$gray-800:                      shade($gray, 800) !default;
-$gray-900:                      shade($gray, 900) !default;
-$gray-950:                      shade($gray, 950) !default;
+$gray-50:                       var(--opale-gray-50) !default;
+$gray-100:                      var(--opale-gray-100) !default;
+$gray-200:                      var(--opale-gray-200) !default;
+$gray-250:                      var(--opale-gray-250) !default;
+$gray-300:                      var(--opale-gray-300) !default;
+$gray-400:                      var(--opale-gray-400) !default;
+$gray-500:                      var(--opale-gray-500) !default;
+$gray-600:                      var(--opale-gray-600) !default;
+$gray-700:                      var(--opale-gray-700) !default;
+$gray-750:                      var(--opale-gray-750) !default;
+$gray-800:                      var(--opale-gray-800) !default;
+$gray-900:                      var(--opale-gray-900) !default;
+$gray-950:                      var(--opale-gray-950) !default;
 
-$brand-primary:                 #628db6 !default;
-$brand-text:                    $white !default;
-$brand-accent:                  shade($brand-primary, 50) !default;
+$brand-primary:                 var(--opale-brand-primary) !default;
+$brand-text:                    var(--opale-brand-text) !default;
+$brand-accent:                  var(--opale-brand-accent) !default;
 
-$brand-info:                    $blue !default;
-$brand-success:                 $green !default;
-$brand-important:               $purple !default;
-$brand-warning:                 $orange !default;
-$brand-danger:                  $red !default;
+$brand-info:                    var(--opale-brand-info) !default;
+$brand-success:                 var(--opale-brand-success) !default;
+$brand-important:               var(--opale-brand-important) !default;
+$brand-warning:                 var(--opale-brand-warning) !default;
+$brand-danger:                  var(--opale-brand-danger) !default;
 
-$state-info:                    shade($brand-info, 100) !default;
-$state-success:                 shade($brand-success, 100) !default;
-$state-important:               shade($brand-important, 100) !default;
-$state-warning:                 shade($brand-warning, 100) !default;
-$state-danger:                  shade($brand-danger, 100) !default;
+$state-info:                    var(--opale-state-info) !default;
+$state-success:                 var(--opale-state-success) !default;
+$state-important:               var(--opale-state-important) !default;
+$state-warning:                 var(--opale-state-warning) !default;
+$state-danger:                  var(--opale-state-danger) !default;
 
 
 // Scaffolding
 
-$body-bg:                       $white !default;
-$text-color-light:              $gray-750 !default;
-$text-color:                    $gray-800 !default;
-$text-color-dark:               $gray-950 !default;
+$body-bg:                       var(--opale-body-bg) !default;
+$text-color-light:              var(--opale-text-color-light) !default;
+$text-color:                    var(--opale-text-color) !default;
+$text-color-dark:               var(--opale-text-color-dark) !default;
 
-$link-color:                    $blue !default;
-$link-hover-color:              $red !default;
+$link-color:                    var(--opale-link-color) !default;
+$link-hover-color:              var(--opale-link-hover-color) !default;
 $link-hover-decoration:         underline !default;
 $link-closed-decoration:        line-through !default;
-$link-color-issue-closed:       $gray-750 !default;
-$link-color-project-closed:     $gray-750 !default;
-$link-color-user-locked:        $gray-750 !default;
+$link-color-issue-closed:       var(--opale-link-color-issue-closed) !default;
+$link-color-project-closed:     var(--opale-link-color-project-closed) !default;
+$link-color-user-locked:        var(--opale-link-color-user-locked) !default;
 
 
 // Typography
@@ -161,27 +163,27 @@ $line-height-computed:          math.floor(($font-size-base * $line-height-base)
 
 $headings-font-weight:          600 !default;
 $headings-line-height:          1.4 !default;
-$headings-anchor-color:         $gray-400 !default;
-$headings-anchor-color-active:  $gray-600 !default;
+$headings-anchor-color:         var(--opale-headings-anchor-color) !default;
+$headings-anchor-color-active:  var(--opale-headings-anchor-color-active) !default;
 
 
 // Wiki
 
-$wiki-text:                     $gray-950 !default;
+$wiki-text:                     var(--opale-wiki-text) !default;
 $wiki-font-size:                16px !default;
 $wiki-line-height:              1.6 !default;
-$wiki-preview-bg:               $body-bg !default;
+$wiki-preview-bg:               var(--opale-wiki-preview-bg) !default;
 $wiki-copy-pre-padding:         0 3px 3px 3px !default;
 
-$toc-bg:                        $gray-50 !default;
-$toc-border:                    $gray-300 !default;
-$toc-text:                      $text-color !default;
-$toc-link:                      $link-color !default;
-$toc-link-hover:                $link-hover-color !default;
-$toc-shadow:                    0 1px 3px rgba($black, .07) !default;
-$toc-active-link:               color.adjust($link-color, $lightness: -10%) !default;
-$toc-active-link-hover:         shade($toc-active-link, 700) !default;
-$toc-active-border:             $link-color !default;
+$toc-bg:                        var(--opale-toc-bg) !default;
+$toc-border:                    var(--opale-toc-border) !default;
+$toc-text:                      var(--opale-toc-text) !default;
+$toc-link:                      var(--opale-toc-link) !default;
+$toc-link-hover:                var(--opale-toc-link-hover) !default;
+$toc-shadow:                    0 1px 3px var(--opale-shadow-color-sm) !default;
+$toc-active-link:               var(--opale-toc-active-link) !default;
+$toc-active-link-hover:         var(--opale-toc-active-link-hover) !default;
+$toc-active-border:             var(--opale-toc-active-border) !default;
 
 
 // Components
@@ -200,17 +202,17 @@ $border-radius-base:            3px !default;
 $border-radius-large:           4px !default;
 $border-radius-small:           2px !default;
 
-$hr-border:                     $gray-600 !default;
-$abbr-border-color:             $gray-600 !default;
-$blockquote-border-color:       rgba($black, .15) !default;
+$hr-border:                     var(--opale-hr-border) !default;
+$abbr-border-color:             var(--opale-abbr-border-color) !default;
+$blockquote-border-color:       var(--opale-blockquote-border-color) !default;
 
-$component-color:               $text-color !default;
-$component-bg:                  $gray-50 !default;
-$component-border:              $gray-300 !default;
+$component-color:               var(--opale-component-color) !default;
+$component-bg:                  var(--opale-component-bg) !default;
+$component-border:              var(--opale-component-border) !default;
 
-$component-active-color:        $brand-text !default;
-$component-active-bg:           shade($brand-primary, 600) !default;
-$component-active-border:       $component-active-bg !default;
+$component-active-color:        var(--opale-component-active-color) !default;
+$component-active-bg:           var(--opale-component-active-bg) !default;
+$component-active-border:       var(--opale-component-active-border) !default;
 
 $font-size-list:                .92em !default;
 
@@ -225,21 +227,22 @@ $collapsible-max-height:        10000px !default;
 $table-cell-padding:            8px !default;
 $table-condensed-cell-padding:  5px !default;
 
-$table-list-header-bg:          $body-bg !default;
+$table-list-header-bg:          var(--opale-table-list-header-bg) !default;
+$table-list-header-box-bg:      var(--opale-table-list-header-box-bg) !default;
 $table-list-header-border:      0 0 2px !default;
 $table-list-item-border:        0 !default;
 $table-list-color-odd-rows:     true !default;
 $table-list-color-even-rows:    false !default;
 $table-list-highlight-rows:     true !default;
 
-$table-bg:                      transparent !default;
+$table-bg:                      var(--opale-table-bg) !default;
 $table-accent-factor:           .15 !default;
 $table-hover-factor:            .4 !default;
-$table-bg-accent:               rgba($gray-500, $table-accent-factor) !default;
-$table-bg-hover:                rgba($gray-500, $table-hover-factor) !default;
-$table-bg-active:               $table-bg-hover !default;
+$table-bg-accent:               var(--opale-table-bg-accent) !default;
+$table-bg-hover:                var(--opale-table-bg-hover) !default;
+$table-bg-active:               var(--opale-table-bg-active) !default;
 
-$table-border-color:            $gray-300 !default;
+$table-border-color:            var(--opale-table-border-color) !default;
 
 $table-color-hover-factor:      - ($table-hover-factor * 2) !default;
 $table-color-border-shade:      100 !default;
@@ -247,8 +250,8 @@ $table-color-border-shade:      100 !default;
 
 // Issue statuses
 
-$status-default-bg:             $brand-primary !default;
-$status-default-color:          $brand-text !default;
+$status-default-bg:             var(--opale-status-default-bg) !default;
+$status-default-color:          var(--opale-status-default-color) !default;
 $status-default-colors-map: (
   status-1: (
     background:                 shade($blue, 500),
@@ -286,7 +289,7 @@ $priority-default-icons-map: (
   ),
   low2: (
     icon:                       tabler-icons.$ti-icon-chevrons-down,
-    color:                      color.mix($teal, $blue)
+    color:                      color-mix(in srgb, $teal 50%, $blue 50%)
   ),
   low3: (
     icon:                       tabler-icons.$ti-icon-chevron-down,
@@ -306,7 +309,7 @@ $priority-default-icons-map: (
   ),
   high3: (
     icon:                       tabler-icons.$ti-icon-chevrons-up,
-    color:                      color.mix($red, $orange)
+    color:                      color-mix(in srgb, $red 50%, $orange 50%)
   ),
   high2: (
     icon:                       tabler-icons.$ti-icon-arrow-up,
@@ -328,10 +331,10 @@ $priority-default-color-map: (
     link:                       shade($blue, 700),
   ),
   low2: (
-    border:                     shade(color.mix($teal, $blue), $table-color-border-shade),
-    background:                 shade(color.mix($teal, $blue), 200),
+    border:                     shade(color-mix(in srgb, $teal 50%, $blue 50%), $table-color-border-shade),
+    background:                 shade(color-mix(in srgb, $teal 50%, $blue 50%), 200),
     color:                      $text-color,
-    link:                       shade(color.mix($teal, $blue), 700),
+    link:                       shade(color-mix(in srgb, $teal 50%, $blue 50%), 700),
   ),
   low3: (
     border:                     shade($teal, $table-color-border-shade),
@@ -358,10 +361,10 @@ $priority-default-color-map: (
     link:                       shade($orange, 700),
   ),
   high3: (
-    border:                     shade(color.mix($red, $orange), $table-color-border-shade),
-    background:                 shade(color.mix($red, $orange), 300),
+    border:                     shade(color-mix(in srgb, $red 50%, $orange 50%), $table-color-border-shade),
+    background:                 shade(color-mix(in srgb, $red 50%, $orange 50%), 300),
     color:                      $text-color,
-    link:                       shade(color.mix($red, $orange), 700),
+    link:                       shade(color-mix(in srgb, $red 50%, $orange 50%), 700),
   ),
   high2: (
     border:                     shade($red, $table-color-border-shade),
@@ -385,8 +388,8 @@ $priority-color-map:            map.merge($priority-default-color-map, $priority
 $tracker-inline-padding:        1px 5px !default;
 $tracker-list-padding:          0 6px !default;
 
-$tracker-default-bg:            $gray-700 !default;
-$tracker-default-text:          $white !default;
+$tracker-default-bg:            var(--opale-tracker-default-bg) !default;
+$tracker-default-text:          var(--opale-tracker-default-text) !default;
 
 $tracker-default-colors-map: (
   1: (
@@ -424,20 +427,19 @@ $tracker-colors-map:            map.merge($tracker-default-colors-map, $tracker-
 
 // Diffs
 
-$diff-out-bg:                   color.adjust(shade($red, 100), $saturation: 50%) !default;
-$diff-out-bg-light:             rgba($diff-out-bg, .4) !default;
-
-$diff-in-bg:                    color.adjust(shade($green, 100), $saturation: 50%) !default;
-$diff-in-bg-light:              rgba($diff-in-bg, .4) !default;
+$diff-out-bg:                   var(--opale-diff-out-bg-color) !default;
+$diff-out-bg-light:             var(--opale-diff-out-bg-light-color) !default;
+$diff-in-bg:                    var(--opale-diff-in-bg-color) !default;
+$diff-in-bg-light:              var(--opale-diff-in-bg-light-color) !default;
 
 
 // Journal changes
 
-$journal-old-value-color:       color.adjust(shade($orange, 800), $saturation: 25%) !default;
-$journal-old-value-bg:          color.adjust(shade($orange, 50), $saturation: 50%) !default;
-$journal-new-value-color:       color.adjust(shade($green, 800), $saturation: 25%) !default;
-$journal-new-value-bg:          color.adjust(shade($green, 50), $saturation: 50%) !default;
-$journal-update-info-color:     shade($orange, 700) !default;
+$journal-old-value-color:       var(--opale-journal-old-value-color) !default;
+$journal-old-value-bg:          var(--opale-journal-old-value-bg) !default;
+$journal-new-value-color:       var(--opale-journal-new-value-color) !default;
+$journal-new-value-bg:          var(--opale-journal-new-value-bg) !default;
+$journal-update-info-color:     var(--opale-journal-update-info-color) !default;
 
 
 // Changesets
@@ -456,22 +458,22 @@ $btn-padding-vertical:          3px !default;
 $btn-padding-horizontal:        12px !default;
 $btn-padding-horizontal-small:  8px !default;
 
-$btn-link-color:                $link-color !default;
-$btn-link-bg:                   $body-bg !default;
-$btn-link-border:               $body-bg !default;
+$btn-link-color:                var(--opale-btn-link-color) !default;
+$btn-link-bg:                   var(--opale-btn-link-bg) !default;
+$btn-link-border:               var(--opale-btn-link-border) !default;
 
-$btn-default-color:             $gray-900 !default;
-$btn-default-bg:                $gray-100 !default;
-$btn-default-border:            $gray-500 !default;
-$btn-default-icon-color:        $gray-700 !default;
+$btn-default-color:             var(--opale-btn-default-color) !default;
+$btn-default-bg:                var(--opale-btn-default-bg) !default;
+$btn-default-border:            var(--opale-btn-default-border) !default;
+$btn-default-icon-color:        var(--opale-btn-default-icon-color) !default;
 
-$btn-primary-color:             $white !default;
-$btn-primary-bg:                $blue !default;
-$btn-primary-border:            $btn-primary-bg !default;
+$btn-primary-color:             var(--opale-btn-primary-color) !default;
+$btn-primary-bg:                var(--opale-btn-primary-bg) !default;
+$btn-primary-border:            var(--opale-btn-primary-border) !default;
 
-$btn-success-color:             $white !default;
-$btn-success-bg:                $green !default;
-$btn-success-border:            $btn-success-bg !default;
+$btn-success-color:             var(--opale-btn-success-color) !default;
+$btn-success-bg:                var(--opale-btn-success-bg) !default;
+$btn-success-border:            var(--opale-btn-success-border) !default;
 
 
 // Action icons
@@ -506,32 +508,32 @@ $icon-color-map: (
 
 // Admin menu icons
 
-$admin-menu-icon-color:         $gray-900 !default;
+$admin-menu-icon-color:         var(--opale-admin-menu-icon) !default;
 
 
 // Highlights
 
-$highlight-bg:                  shade($yellow, 200) !default;
-$highlight-border:              shade($yellow, 600) !default;
-$highlight-text:                shade($yellow, 800) !default;
-$highlight-link:                color.mix($yellow, $link-color) !default;
+$highlight-bg:                  var(--opale-highlight-bg) !default;
+$highlight-border:              var(--opale-highlight-border) !default;
+$highlight-text:                var(--opale-highlight-text) !default;
+$highlight-link:                var(--opale-highlight-link) !default;
 
 
 // Forms
 
-$input-bg:                      $white !default;
-$input-bg-disabled:             $gray-300 !default;
+$input-bg:                      var(--opale-input-bg) !default;
+$input-bg-disabled:             var(--opale-input-bg-disabled) !default;
 
-$input-color:                   $text-color !default;
-$input-border:                  $gray-500 !default;
+$input-color:                   var(--opale-input-color) !default;
+$input-border:                  var(--opale-input-border) !default;
 
 $input-border-radius:           $border-radius-small !default;
 $input-border-radius-large:     $border-radius-large !default;
 
-$input-border-focus:            color.adjust($brand-primary, $saturation: 25%) !default;
+$input-border-focus:            var(--opale-input-border-focus) !default;
 $input-border-focus-alpha:      -.4 !default;
 $input-shadow-focus-alpha:      -.8 !default;
-$input-color-placeholder:       $gray-600 !default;
+$input-color-placeholder:       var(--opale-input-color-placeholder) !default;
 
 $input-padding-vertical:        $btn-padding-vertical !default;
 $input-padding-horizontal:      8px !default;
@@ -542,8 +544,8 @@ $label-width:                   160px !default;
 $label-wide-width:              280px !default;
 $label-space:                   10px !default;
 
-$legend-color:                  $gray-800 !default;
-$legend-border-color:           $gray-200 !default;
+$legend-color:                  var(--opale-legend-color) !default;
+$legend-border-color:           var(--opale-legend-border-color) !default;
 
 $check-input-gutter:            18px !default;
 $check-input-margin-vertical:   3px !default;
@@ -555,15 +557,15 @@ $check-list-offset-top:         $input-padding-vertical + 1px;
 
 // Top
 
-$top-menu-bg:                   shade($brand-primary, 700) !default;
-$top-menu-text:                 shade($brand-primary, 100) !default;
-$top-menu-link:                 shade($brand-primary, 100) !default;
-$top-menu-link-hover:           shade($brand-primary, 50) !default;
+$top-menu-bg:                   var(--opale-top-menu-bg) !default;
+$top-menu-text:                 var(--opale-top-menu-text) !default;
+$top-menu-link:                 var(--opale-top-menu-link) !default;
+$top-menu-link-hover:           var(--opale-top-menu-link-hover) !default;
 
-$header-bg:                     $brand-primary !default;
-$header-text:                   $brand-text !default;
-$header-link:                   $brand-text !default;
-$header-root:                   $brand-accent !default;
+$header-bg:                     var(--opale-header-bg) !default;
+$header-text:                   var(--opale-header-text) !default;
+$header-link:                   var(--opale-header-link) !default;
+$header-root:                   var(--opale-header-root) !default;
 $header-padding-vertical:       10px !default;
 $header-padding-horizontal:     $padding-side !default;
 $header-title-size:             $font-size-h3 !default;
@@ -571,23 +573,23 @@ $header-title-line-height:      $line-height-computed * 1.5 !default;
 
 $responsive-header-height:      54px !default;
 
-$flyout-menu-bg:                shade($header-bg, 700) !default;
-$flyout-menu-text:              $white !default;
-$flyout-menu-link:              $white !default;
-$flyout-menu-link-active-bg:    shade($header-bg, 50) !default;
-$flyout-menu-link-active:       $text-color !default;
-$flyout-menu-header-bg:         shade($header-bg, 800) !default;
-$flyout-menu-header-border:     shade($header-bg, 800) !default;
-$flyout-menu-header-text:       $white !default;
+$flyout-menu-bg:                var(--opale-flyout-menu-bg) !default;
+$flyout-menu-text:              var(--opale-flyout-menu-text) !default;
+$flyout-menu-link:              var(--opale-flyout-menu-link) !default;
+$flyout-menu-link-active-bg:    var(--opale-flyout-menu-link-active-bg) !default;
+$flyout-menu-link-active:       var(--opale-flyout-menu-link-active) !default;
+$flyout-menu-header-bg:         var(--opale-flyout-menu-header-bg) !default;
+$flyout-menu-header-border:     var(--opale-flyout-menu-header-border) !default;
+$flyout-menu-header-text:       var(--opale-flyout-menu-header-text) !default;
 
-$quick-search-label-bg:         $top-menu-bg !default;
+$quick-search-label-bg:         var(--opale-quick-search-label-bg) !default;
 $quick-search-width:            200px !default;
-$quick-search-border:           $input-border !default;
-$quick-search-border-focus:     shade($header-bg, 800) !default;
+$quick-search-border:           var(--opale-quick-search-border) !default;
+$quick-search-border-focus:     functions.alpha(var(--opale-quick-search-border-focus), 1 + $input-border-focus-alpha) !default;
 $quick-search-border-radius:    0 $border-radius-small $border-radius-small 0 !default;
 $quick-search-box-width:        300px !default;
-$quick-search-dropdown-bg:      $body-bg !default;
-$quick-search-dropdown-border:  $gray-400 !default;
+$quick-search-dropdown-bg:      var(--opale-quick-search-dropdown-bg) !default;
+$quick-search-dropdown-border:  var(--opale-quick-search-dropdown-border) !default;
 
 $logo-image-width:              60px !default;
 $logo-image-height:             40px !default;
@@ -595,18 +597,18 @@ $logo-position-horizontal:      $header-padding-horizontal !default;
 $logo-position-vertical:        center !default;
 $logo-space:                    $header-padding-vertical !default;
 
-$main-menu-bg:                  $gray-100 !default;
-$main-menu-bg-hover:            $gray-100 !default;
-$main-menu-bg-active:           transparent !default;
-$main-menu-link:                $gray-900 !default;
-$main-menu-link-active:         $black !default;
-$main-menu-border:              $gray-400 !default;
-$main-menu-shadow-hover:        $gray-600 !default;
+$main-menu-bg:                  var(--opale-main-menu-bg) !default;
+$main-menu-bg-hover:            var(--opale-main-menu-bg-hover) !default;
+$main-menu-bg-active:           var(--opale-main-menu-bg-active) !default;
+$main-menu-link:                var(--opale-main-menu-link) !default;
+$main-menu-link-active:         var(--opale-main-menu-link-active) !default;
+$main-menu-border:              var(--opale-main-menu-border) !default;
+$main-menu-shadow-hover:        var(--opale-main-menu-shadow-hover) !default;
 $main-menu-shadow-width:        3px !default;
-$main-menu-shadow-active:       $brand-primary !default;
+$main-menu-shadow-active:       var(--opale-main-menu-shadow-active) !default;
 $main-menu-padding-vertical:    $padding-large-vertical !default;
 $main-menu-padding-horizontal:  5px !default;
-$main-menu-dropdown-bg:         $gray-50;
+$main-menu-dropdown-bg:         var(--opale-main-menu-dropdown-bg) !default;
 
 
 // Pagination
@@ -614,34 +616,34 @@ $main-menu-dropdown-bg:         $gray-50;
 $pagination-padding-vertical:   $btn-padding-vertical !default;
 $pagination-padding-horizontal: 10px !default;
 
-$pagination-color:              $gray-900 !default;
-$pagination-bg:                 $gray-200 !default;
-$pagination-border:             $gray-200 !default;
+$pagination-color:              var(--opale-pagination-color) !default;
+$pagination-bg:                 var(--opale-pagination-bg) !default;
+$pagination-border:             var(--opale-pagination-border) !default;
 
-$pagination-hover-color:        $gray-900 !default;
-$pagination-hover-bg:           $gray-300 !default;
-$pagination-hover-border:       $gray-300 !default;
+$pagination-hover-color:        var(--opale-pagination-hover-color) !default;
+$pagination-hover-bg:           var(--opale-pagination-hover-bg) !default;
+$pagination-hover-border:       var(--opale-pagination-hover-border) !default;
 
-$pagination-active-color:       $component-active-color !default;
-$pagination-active-bg:          $component-active-bg !default;
-$pagination-active-border:      $component-active-bg !default;
+$pagination-active-color:       var(--opale-pagination-active-color) !default;
+$pagination-active-bg:          var(--opale-pagination-active-bg) !default;
+$pagination-active-border:      var(--opale-pagination-active-border) !default;
 
-$pagination-inactive-color:     $gray-500 !default;
-$pagination-inactive-bg:        $gray-50 !default;
-$pagination-inactive-border:    $gray-100 !default;
+$pagination-inactive-color:     var(--opale-pagination-inactive-color) !default;
+$pagination-inactive-bg:        var(--opale-pagination-inactive-bg) !default;
+$pagination-inactive-border:    var(--opale-pagination-inactive-border) !default;
 
 
 // Tabs
 
 $tab-padding-vertical:          5px !default;
 $tab-padding-horizontal:        8px !default;
-$tab-border:                    $gray-500 !default;
-$tab-hover-bg:                  $gray-100 !default;
-$tab-hover-text:                $gray-950 !default;
-$tab-hover-border:              $tab-hover-bg !default;
-$tab-active-bg:                 $body-bg !default;
-$tab-active-text:               $text-color !default;
-$tab-active-border:             $tab-border !default;
+$tab-border:                    var(--opale-tab-border) !default;
+$tab-hover-bg:                  var(--opale-tab-hover-bg) !default;
+$tab-hover-text:                var(--opale-tab-hover-text) !default;
+$tab-hover-border:              var(--opale-tab-hover-border) !default;
+$tab-active-bg:                 var(--opale-tab-active-bg) !default;
+$tab-active-text:               var(--opale-tab-active-text) !default;
+$tab-active-border:             var(--opale-tab-active-border) !default;
 
 
 // Content and sidebar
@@ -650,49 +652,49 @@ $sidebar-width:                 270px !default;
 $sidebar-padding-vertical:      $padding-base-vertical !default;
 $sidebar-padding-horizontal:    $padding-side !default;
 $sidebar-width-computed:        $sidebar-width - ($sidebar-padding-horizontal * 2) - 1px !default;
-$sidebar-link-hover-bg:         $gray-200 !default;
-$sidebar-link-hover-text:       $gray-900 !default;
-$sidebar-link-active-bg:        $body-bg !default;
-$sidebar-link-active-border:    $gray-400 !default;
-$sidebar-link-active-side:      $red !default;
-$sidebar-link-active-text:      $gray-950 !default;
+$sidebar-link-hover-bg:         var(--opale-sidebar-link-hover-bg) !default;
+$sidebar-link-hover-text:       var(--opale-sidebar-link-hover-text) !default;
+$sidebar-link-active-bg:        var(--opale-sidebar-link-active-bg) !default;
+$sidebar-link-active-border:    var(--opale-sidebar-link-active-border) !default;
+$sidebar-link-active-side:      var(--opale-sidebar-link-active-side) !default;
+$sidebar-link-active-text:      var(--opale-sidebar-link-active-text) !default;
 $sidebar-switch-top-position:   1px !default;
 $sidebar-switch-size:           18px !default;
-$sidebar-switch-bg:             $gray-200 !default;
-$sidebar-switch-hover-bg:       $gray-300 !default;
-$sidebar-switch-border-color:   $gray-700 !default;
+$sidebar-switch-bg:             var(--opale-sidebar-switch-bg) !default;
+$sidebar-switch-hover-bg:       var(--opale-sidebar-switch-hover-bg) !default;
+$sidebar-switch-border-color:   var(--opale-sidebar-switch-border-color) !default;
 
 // Flash messages (alerts)
 
-$flash-success-bg:              shade($brand-success, 200) !default;
-$flash-success-border:          shade($brand-success, 250) !default;
-$flash-success-text:            shade($brand-success, 900) !default;
-$flash-success-link:            shade($brand-success, 950) !default;
+$flash-success-bg:              var(--opale-flash-success-bg) !default;
+$flash-success-border:          var(--opale-flash-success-border) !default;
+$flash-success-text:            var(--opale-flash-success-text) !default;
+$flash-success-link:            var(--opale-flash-success-link) !default;
 
-$flash-info-bg:                 shade($brand-info, 100) !default;
-$flash-info-border:             shade($brand-info, 200) !default;
-$flash-info-text:               shade($brand-info, 900) !default;
-$flash-info-link:               shade($brand-info, 950) !default;
+$flash-info-bg:                 var(--opale-flash-info-bg) !default;
+$flash-info-border:             var(--opale-flash-info-border) !default;
+$flash-info-text:               var(--opale-flash-info-text) !default;
+$flash-info-link:               var(--opale-flash-info-link) !default;
 
-$flash-warning-bg:              shade($brand-warning, 100) !default;
-$flash-warning-border:          shade($brand-warning, 200) !default;
-$flash-warning-text:            shade($brand-warning, 900) !default;
-$flash-warning-link:            shade($brand-warning, 950) !default;
+$flash-warning-bg:              var(--opale-flash-warning-bg) !default;
+$flash-warning-border:          var(--opale-flash-warning-border) !default;
+$flash-warning-text:            var(--opale-flash-warning-text) !default;
+$flash-warning-link:            var(--opale-flash-warning-link) !default;
 
-$flash-error-bg:                shade($brand-danger, 200) !default;
-$flash-error-border:            shade($brand-danger, 250) !default;
-$flash-error-text:              shade($brand-danger, 900) !default;
-$flash-error-link:              shade($brand-danger, 950) !default;
+$flash-error-bg:                var(--opale-flash-error-bg) !default;
+$flash-error-border:            var(--opale-flash-error-border) !default;
+$flash-error-text:              var(--opale-flash-error-text) !default;
+$flash-error-link:              var(--opale-flash-error-link) !default;
 
 
 // Progress bars
 
 $progress-height:               12px !default;
-$progress-bg:                   rgba($gray-500, .5) !default;
-$progress-bar-bg:               $brand-primary !default;
-$progress-bar-success-bg:       $brand-success !default;
-$progress-bar-danger-bg:        $brand-danger !default;
-$progress-bar-info-bg:          $brand-info !default;
+$progress-bg:                   var(--opale-progress-bg) !default;
+$progress-bar-bg:               var(--opale-progress-bar-bg) !default;
+$progress-bar-success-bg:       var(--opale-progress-bar-success-bg) !default;
+$progress-bar-danger-bg:        var(--opale-progress-bar-danger-bg) !default;
+$progress-bar-info-bg:          var(--opale-progress-bar-info-bg) !default;
 
 
 // Panels
@@ -700,30 +702,30 @@ $progress-bar-info-bg:          $brand-info !default;
 $panel-body-padding-vertical:   15px !default;
 $panel-body-padding-horizontal: 15px !default;
 $panel-body-padding:            $panel-body-padding-vertical $panel-body-padding-horizontal !default;
-$panel-color:                   $text-color !default;
-$panel-bg:                      $gray-50 !default;
-$panel-border:                  $gray-400 !default;
+$panel-color:                   var(--opale-panel-color) !default;
+$panel-bg:                      var(--opale-panel-bg) !default;
+$panel-border:                  var(--opale-panel-border) !default;
 $panel-border-radius:           $border-radius-base !default;
-$panel-shadow:                  0 1px 2px rgba($black, .07),
-                                0 3px 8px rgba($black, .04) !default;
+$panel-shadow:                  0 1px 2px var(--opale-shadow-color-sm),
+                                0 3px 8px var(--opale-shadow-color-xs) !default;
 
 
 // Tooltips
 
-$tooltip-bg:                    $white !default;
+$tooltip-bg:                    var(--opale-tooltip-bg) !default;
 $tooltip-border-width:          0 !default;
-$tooltip-border:                $gray-500 !default;
-$tooltip-text:                  $gray-800 !default;
-$tooltip-link:                  $link-color !default;
+$tooltip-border:                var(--opale-tooltip-border) !default;
+$tooltip-text:                  var(--opale-tooltip-text) !default;
+$tooltip-link:                  var(--opale-tooltip-link) !default;
 
 
 // Issue
 
-$issue-bg:                      $gray-50 !default;
-$issue-border:                  $gray-500 !default;
-$issue-text-light:              $text-color-light !default;
-$issue-text:                    $text-color !default;
-$issue-text-dark:               $text-color-dark !default;
+$issue-bg:                      var(--opale-issue-bg) !default;
+$issue-border:                  var(--opale-issue-border) !default;
+$issue-text-light:              var(--opale-issue-text-light) !default;
+$issue-text:                    var(--opale-issue-text) !default;
+$issue-text-dark:               var(--opale-issue-text-dark) !default;
 
 $issue-padding:                 15px !default;
 $issue-gravatar-size:           50px !default;
@@ -735,23 +737,23 @@ $issue-attribute-padding-h:     5px !default;
 
 // Context menu
 
-$context-menu-bg:               $body-bg !default;
-$context-menu-text:             $link-color !default;
-$context-menu-hover-bg:         $pagination-hover-bg !default;
-$context-menu-disabled-text:    $text-color-light !default;
+$context-menu-bg:               var(--opale-context-menu-bg) !default;
+$context-menu-text:             var(--opale-context-menu-text) !default;
+$context-menu-hover-bg:         var(--opale-context-menu-hover-bg) !default;
+$context-menu-disabled-text:    var(--opale-context-menu-disabled-text) !default;
 
 
 // Gantt
 
-$gantt-header-bg:               $gray-200 !default;
-$gantt-header-border:           $gray-500 !default;
-$gantt-header-text:             $gray-700 !default;
+$gantt-header-bg:               var(--opale-gantt-header-bg) !default;
+$gantt-header-border:           var(--opale-gantt-header-border) !default;
+$gantt-header-text:             var(--opale-gantt-header-text) !default;
 
 
 // jsToolBar
 
-$jstoolbar-icon-filter: none !default;
-$jstoolbar-hover-bg: color.adjust($tab-hover-bg, $lightness: -3%) !default;
+$jstoolbar-icon-filter:         var(--opale-jstoolbar-icon-filter) !default;
+$jstoolbar-hover-bg:            var(--opale-jstoolbar-hover-bg) !default;
 
 
 // Initials avatars colors
@@ -794,14 +796,14 @@ $intitials-avatars-colors-map: (
 
 // Speech "bubbles"
 
-$bubble-bg:                     $issue-bg !default;
-$bubble-border:                 $issue-border !default;
-$bubble-text:                   $issue-text !default;
+$bubble-bg:                     var(--opale-bubble-bg) !default;
+$bubble-border:                 var(--opale-bubble-border) !default;
+$bubble-text:                   var(--opale-bubble-text) !default;
 $bubble-gravatar-size:          24px !default;
 $bubble-gravatar-space:         12px !default;
 $bubble-padding-vertical:       8px !default;
 $bubble-padding-horizontal:     12px !default;
-$bubble-target-border:          color.adjust($brand-primary, $saturation: 25%) !default;
+$bubble-target-border:          var(--opale-bubble-target-border) !default;
 $bubble-target-shadow-alpha:    -.8 !default;
 
 
@@ -865,8 +867,8 @@ $redmine-responsive-min:        900px !default;
 
 $login-form-width:              24em !default;
 $login-form-label-width:        8em !default;
-$login-form-bg:                 shade($yellow, 100) !default;
-$login-form-border-color:       shade($yellow, 300) !default;
+$login-form-bg:                 var(--opale-login-form-bg) !default;
+$login-form-border-color:       var(--opale-login-form-border-color) !default;
 $login-form-box-breakpoint:     $screen-xs-min !default;
 $login-form-adjustments-map: (
   -2: da en en-GB ko pl tr uk,
@@ -877,7 +879,7 @@ $login-form-adjustments-map: (
 
 // Footer
 
-$footer-border-color:           $gray-400 !default;
+$footer-border-color:           var(--opale-footer-border-color) !default;
 
 
 // Content widths
@@ -891,54 +893,56 @@ $width-lg:                      $screen-lg - ($padding-side * 2) !default;
 // https://www.redmineup.com/pages/plugins/agile
 
 $agile-board-customize:         true !default;
-$agile-board-background:        $gray-100 !default;
+$agile-board-background:        var(--opale-agile-board-background) !default;
 $agile-issue-card-margin:       8px 10px !default;
 $agile-issue-card-padding:      7px !default;
-$agile-issue-card-border:       $gray-500;
+$agile-issue-card-border:       var(--opale-agile-issue-card-border);
 $agile-issue-card-border-width: 0 0 0 5px;
 $agile-issue-card-border-radius: $border-radius-large !default;
-$agile-issue-card-background:   $white !default;
-$agile-issue-card-color:        $text-color !default;
-$agile-issue-card-closed-background: $gray-300 !default;
+$agile-issue-card-background:   var(--opale-agile-issue-card-background) !default;
+$agile-issue-card-color:        var(--opale-agile-issue-card-color) !default;
+$agile-issue-card-closed-background: var(--opale-agile-issue-card-closed-background) !default;
+$agile-lightgreen:              var(--opale-agile-lightgreen) !default;
+$agile-yellow:                  var(--opale-agile-yellow) !default;
 $agile-issue-card-default-color-map: (
   bk-green: (
     border: $green,
-    background: color.scale($green, $saturation: -5%, $lightness: 80%),
+    background: functions.theme-tint($green, 80%),
     link: shade($green, 700),
   ),
   bk-blue: (
     border: $blue,
-    background: color.scale($blue, $saturation: 50%, $lightness: 80%),
+    background: functions.theme-tint($blue, 80%),
     link: shade($blue, 700),
   ),
   bk-turquoise: (
     border: $teal,
-    background: color.scale($teal, $saturation: -5%, $lightness: 80%),
+    background: functions.theme-tint($teal, 80%),
     link: shade($teal, 700),
   ),
   bk-lightgreen: (
-    border: color.adjust($green, $hue: -45deg),
-    background: color.scale(color.adjust($green, $hue: -45deg), $saturation: 75%, $lightness: 80%),
-    link: shade(color.adjust($green, $hue: -45deg), 700),
+    border: $agile-lightgreen,
+    background: functions.theme-tint($agile-lightgreen, 80%),
+    link: shade($agile-lightgreen, 700),
   ),
   bk-yellow: (
-    border: color.adjust($yellow, $hue: 2deg),
-    background: color.scale(color.adjust($yellow, $hue: 2deg), $saturation: 75%, $lightness: 80%),
+    border: $agile-yellow,
+    background: functions.theme-tint($agile-yellow, 80%),
     link: shade($yellow, 700),
   ),
   bk-orange: (
     border: $orange,
-    background: color.scale($orange, $saturation: 75%, $lightness: 80%),
+    background: functions.theme-tint($orange, 80%),
     link: shade($orange, 700),
   ),
   bk-red: (
     border: $red,
-    background: color.scale($red, $saturation: 75%, $lightness: 85%),
+    background: functions.theme-tint($red, 85%),
     link: shade($red, 700),
   ),
   bk-purple: (
     border: $purple,
-    background: color.scale($purple, $saturation: 75%, $lightness: 85%),
+    background: functions.theme-tint($purple, 85%),
     link: shade($purple, 700),
   ),
   bk-gray: (
@@ -946,6 +950,6 @@ $agile-issue-card-default-color-map: (
     background: $gray-300,
     link: $link-color,
   ),
-) !default;
+  ) !default;
 $agile-issue-card-custom-color-map: () !default;
 $agile-issue-card-color-map:    map.merge($agile-issue-card-default-color-map, $agile-issue-card-custom-color-map);

@@ -1,5 +1,5 @@
-@use "sass:color";
 @use "sass:map";
+@use "../functions";
 @use "../variables";
 @use "../mixins/issues";
 @use "../vendor/bootstrap/mixins/clearfix";
@@ -551,7 +551,7 @@ div.thumbnails {
   > div {
     &:target {
       $border: variables.$bubble-target-border;
-      $shadow: color.adjust(variables.$bubble-target-border, $alpha: variables.$bubble-target-shadow-alpha);
+      $shadow: functions.alpha(variables.$bubble-target-border, 1 + variables.$bubble-target-shadow-alpha);
 
       position: relative;
       margin-top: -(variables.$responsive-header-height + 4px);

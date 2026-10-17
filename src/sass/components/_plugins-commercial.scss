@@ -1,5 +1,5 @@
-@use "sass:color";
 @use "sass:map";
+@use "../functions";
 @use "../variables";
 @use "../functions/parse-length";
 @use "../mixins/shadows";
@@ -103,7 +103,7 @@ html.agile-board-fullscreen .icon.icon-fullscreen {
       .checklist,
       .info,
       .sub-issues {
-        border-color: color.adjust(variables.$black, $alpha: -.85);
+        border-color: functions.alpha(variables.$black, .15);
       }
 
       p.issue-id,
@@ -121,7 +121,7 @@ html.agile-board-fullscreen .icon.icon-fullscreen {
 
       p.project {
         border-radius: variables.$agile-issue-card-border-radius - 1px;
-        border-color: color.adjust(variables.$black, $alpha: -.85);
+        border-color: functions.alpha(variables.$black, .15);
         background-clip: padding-box;
       }
 
@@ -297,16 +297,16 @@ div.add-note {
       &--open,
       &--focus {
         .select2-selection {
-          border-color: color.adjust(variables.$input-border-focus, $alpha: variables.$input-border-focus-alpha);
+          border-color: functions.alpha(variables.$input-border-focus, 1 + variables.$input-border-focus-alpha);
           outline: 0;
-          box-shadow: inset 0 1px 2px color.adjust(variables.$black, $alpha: -.925), 0 0 0 2px color.adjust(variables.$input-border-focus, $alpha: variables.$input-shadow-focus-alpha);
+          box-shadow: inset 0 1px 2px functions.alpha(variables.$black, .075), 0 0 0 2px functions.alpha(variables.$input-border-focus, 1 + variables.$input-shadow-focus-alpha );
         }
       }
     }
 
     .select2-search__field {
       &:focus {
-        border-color: color.adjust(variables.$input-border-focus, $alpha: variables.$input-border-focus-alpha);
+        border-color: functions.alpha(variables.$input-border-focus, 1 + variables.$input-border-focus-alpha);
       }
     }
   }
@@ -317,7 +317,7 @@ span.tag-label-color {
     padding: 0 !important; // stylelint-disable-line declaration-no-important
     border: 0 !important; // stylelint-disable-line declaration-no-important
     border-radius: variables.$badge-border-radius;
-    box-shadow: inset 0 -1px 0 color.adjust(variables.$black, $alpha: -.88);
+    box-shadow: inset 0 -1px 0 functions.alpha(variables.$black, .12);
     font-size: variables.$font-size-small-px;
 
     a,
@@ -330,7 +330,7 @@ span.tag-label-color {
     > span {
       display: inline-block;
       padding: 1px 5px;
-      text-shadow: 0 1px 0 color.adjust(variables.$black, $alpha: -.8);
+      text-shadow: 0 1px 0 functions.alpha(variables.$black, .2);
     }
 
     a {

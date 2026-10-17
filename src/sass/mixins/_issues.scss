@@ -1,4 +1,4 @@
-@use "sass:color";
+@use "../functions";
 @use "../variables";
 @use "../mixins/variants";
 
@@ -41,26 +41,21 @@
     text-align: left;
 
     &:hover {
-      @if color.channel($background, 'hue', $space: hsl) > 15deg and color.channel($background, 'hue', $space: hsl) < 40deg {
-        background-color: color.adjust(color.adjust($background, $hue: -8deg), $lightness: -8%);
-      } @else {
-        background-color: color.adjust($background, $lightness: -10%);
-      }
-
+      background-color: functions.theme-tint($background, 10%, high);
       color: $color;
     }
   }
 
   a#{$parent} {
     &.closed {
-      color: color.mix($color, $background, 75%);
+      color: color-mix(in srgb, #{$color} 75%, #{$background});
 
       &::after {
-        border-top-color: rgba($color, .95);
+        border-top-color: functions.alpha($color, .95);
       }
 
       &:hover::after {
-        border-top-color: rgba($color, .25);
+        border-top-color: functions.alpha($color, .25);
       }
     }
   }

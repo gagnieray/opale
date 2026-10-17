@@ -1,5 +1,5 @@
-@use "sass:color";
 @use "sass:map";
+@use "../functions";
 @use "../variables";
 @use "../mixins/shadows";
 @use "../vendor/bootstrap/mixins/text-truncate";
@@ -198,22 +198,22 @@ table.gantt-table {
   }
 
   .task_late {
-    border: 1px solid color.adjust(variables.$progress-bar-danger-bg, $lightness: -10%);
+    border: 1px solid functions.theme-tint(variables.$progress-bar-danger-bg, 10%, high);
     background: variables.$progress-bar-danger-bg;
   }
 
   .task_done {
-    border: 1px solid color.adjust(variables.$progress-bar-success-bg, $lightness: -10%);
+    border: 1px solid functions.theme-tint(variables.$progress-bar-success-bg, 10%, high);
     background: variables.$progress-bar-success-bg;
   }
 
   .task_todo {
-    border: 1px solid color.adjust(variables.$progress-bg, $lightness: -20%);
+    border: 1px solid functions.theme-tint(variables.$progress-bg, 20%, high);
     background: variables.$progress-bg;
 
     &.parent {
-      border: 1px solid color.adjust(variables.$progress-bg, $lightness: -30%);
-      background: color.adjust(variables.$progress-bg, $lightness: -10%);
+      border: 1px solid functions.theme-tint(variables.$progress-bg, 30%, high);
+      background: functions.theme-tint(variables.$progress-bg, 10%, high);
     }
   }
 
@@ -227,7 +227,7 @@ table.gantt-table {
     }
 
     &.task_todo {
-      border: 1px solid color.adjust(variables.$progress-bar-info-bg, $lightness: -10%);
+      border: 1px solid functions.theme-tint(variables.$progress-bar-info-bg, 10%, high);
       background: variables.$progress-bar-info-bg;
     }
 
@@ -242,7 +242,7 @@ table.gantt-table {
 
   .version-behind-schedule,
   .issue-behind-schedule {
-    color: color.adjust(variables.$brand-warning, $lightness: -20%);
+    color: functions.theme-tint(variables.$brand-warning, 20%, high);
   }
 
   .version-overdue,

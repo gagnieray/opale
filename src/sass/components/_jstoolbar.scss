@@ -1,4 +1,4 @@
-@use "sass:color";
+@use "../functions";
 @use "../variables";
 @use "../vendor/bootstrap/mixins/clearfix";
 
@@ -25,8 +25,8 @@
         > a {
           &:hover,
           &:focus {
-            border-color: color.adjust(variables.$tab-hover-border, $lightness: -3%) color.adjust(variables.$tab-hover-border, $lightness: -3%) variables.$tab-border;
-            background-color: color.adjust(variables.$tab-hover-bg, $lightness: -3%);
+            border-color: functions.theme-tint(variables.$tab-hover-border, 3%, high) functions.theme-tint(variables.$tab-hover-border, 3%, high) variables.$tab-border;
+            background-color: functions.theme-tint(variables.$tab-hover-bg, 3%, high);
           }
 
           &.selected {

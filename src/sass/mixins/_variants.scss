@@ -2,6 +2,7 @@
 @use "sass:string";
 @use "sass:map";
 @use "../variables";
+@use "../functions";
 
 // Icon variant
 
@@ -69,50 +70,25 @@
 // Button variant
 
 @mixin button-variant($color, $bg, $border) {
-  $correction: 1;
-
-  @if color.channel($bg, 'hue', $space: hsl) > 120 and color.channel($bg, 'hue', $space: hsl) < 160 or color.channel($bg, 'lightness', $space: hsl) > 90 {
-    $correction: .5;
-  }
-
-  $normal-shadow: color.adjust($border, $lightness: - (12% * $correction));
-  $focus-bg: color.adjust($bg, $lightness: - (12% * $correction));
-  $focus-border: color.adjust($border, $lightness: - (12% * $correction));
-  $focus-shadow: color.adjust($focus-border, $lightness: - (12% * $correction));
-  $active-bg: color.adjust($bg, $lightness: - (12% * $correction));
-  $active-border: color.adjust($border, $lightness: - (15% * $correction));
+  $normal-shadow: functions.theme-tint($border, 12%, high);
+  $focus-bg: functions.theme-tint($bg, 12%, high);
+  $focus-border: functions.theme-tint($border, 12%, high);
+  $focus-shadow: functions.theme-tint($focus-border, 12%, high);
+  $active-bg: functions.theme-tint($bg, 12%, high);
+  $active-border: functions.theme-tint($border, 15%, high);
   $active-shadow: inset 0 3px 4px -2px $active-border;
 
-  @if color.channel($bg, 'lightness', $space: hsl) > 98 {
-    $focus-bg: color.adjust($bg, $lightness: -5%);
-    $focus-border: color.adjust($border, $lightness: -5%);
-    $normal-shadow: none;
-    $focus-shadow: none;
-  }
-
+  border-color: $border $border $normal-shadow;
   background-color: $bg;
+  box-shadow: 0 1px 0 $normal-shadow;
   color: $color;
-
-  @if $normal-shadow == "none" {
-    border-color: $border;
-    box-shadow: none;
-  } @else {
-    border-color: $border $border $normal-shadow;
-    box-shadow: 0 1px 0 $normal-shadow;
-  }
 
   &:hover,
   &:focus {
+    border-color: $focus-border $focus-border $focus-shadow;
     background-color: $focus-bg;
+    box-shadow: 0 1px 0 $focus-shadow;
     color: $color;
-
-    @if $focus-shadow == "none" {
-      border-color: $focus-border;
-      box-shadow: none;
-    } @else {
-      border-color: $focus-border $focus-border $focus-shadow;
-      box-shadow: 0 1px 0 $focus-shadow;
-    }
   }
 
   &:active {

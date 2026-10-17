@@ -1,0 +1,14 @@
+@use "themes/opale";
+
+// Use the default Opale theme
+
+:root {
+    @include opale.theme;
+}
+
+
+// Allow themes to be selected explicitly
+
+[data-theme="opale"] {
+    @include opale.theme;
+}
