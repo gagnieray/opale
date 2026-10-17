@@ -1,0 +1,24 @@
+@use "themes/opale";
+@use "themes/opale-dark";
+
+// Use the default Opale theme
+
+:root,
+[data-theme="opale"] {
+    @include opale.theme;
+}
+
+// Use Opale Dark when the system prefers a dark color scheme
+// and no theme has been selected explicitly
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        @include opale-dark.theme;
+    }
+}
+
+// Allow themes to be selected explicitly
+
+[data-theme="opale-dark"] {
+    @include opale-dark.theme;
+}

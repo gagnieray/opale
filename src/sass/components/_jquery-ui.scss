@@ -1,4 +1,4 @@
-@use "sass:color";
+@use "../functions";
 @use "../variables";
 @use "../mixins/variants";
 @use "../mixins/shadows";
@@ -57,8 +57,8 @@
     }
 
     &.ui-button:hover {
-      border-color: color.adjust(variables.$header-bg, $lightness: -12%);
-      background: color.adjust(variables.$header-bg, $lightness: -10%);
+      border-color: functions.theme-tint(variables.$header-bg, 12%, high);
+      background: functions.theme-tint(variables.$header-bg, 10%, high);
     }
   }
 }

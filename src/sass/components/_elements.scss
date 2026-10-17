@@ -1,5 +1,5 @@
-@use "sass:color";
 @use "sass:math";
+@use "../functions";
 @use "../variables";
 @use "../mixins/forms";
 @use "../mixins/shadows";
@@ -330,7 +330,7 @@ a.close-icon:not(:has(svg)) {
 
   th.filename {
     border-color: variables.$brand-primary;
-    border-bottom-color: color.adjust(variables.$body-bg, $lightness: -10%);
+    border-bottom-color: functions.theme-tint(variables.$body-bg, 10%, high);
     background-color: variables.$brand-primary;
     color: variables.$brand-text;
   }
@@ -345,8 +345,8 @@ a.close-icon:not(:has(svg)) {
   }
 
   th.line-num {
-    border-color: color.adjust(variables.$body-bg, $lightness: -10%);
-    background-color: color.adjust(variables.$body-bg, $lightness: -5%);
+    border-color: functions.theme-tint(variables.$body-bg, 10%, high);
+    background-color: functions.theme-tint(variables.$body-bg, 5%, high);
     color: variables.$text-color-light;
   }
 
@@ -362,17 +362,17 @@ a.close-icon:not(:has(svg)) {
   }
 
   tr:hover {
-    background-color: color.adjust(variables.$body-bg, $lightness: -2%);
+    background-color: functions.theme-tint(variables.$body-bg, 2%, high);
 
     th.line-num {
-      background-color: color.adjust(variables.$body-bg, $lightness: -10%);
+      background-color: functions.theme-tint(variables.$body-bg, 10%, high);
     }
   }
 
   tr:target {
     th.line-num {
-      border-color: color.adjust(color.adjust(variables.$highlight-bg, $hue: -8deg), $lightness: -15%);
-      background-color: color.adjust(color.adjust(variables.$highlight-bg, $hue: -8deg), $lightness: -7%);
+      border-color: functions.theme-tint(variables.$highlight-bg, 15%, high);
+      background-color: functions.theme-tint(variables.$highlight-bg, 7%, high);
       color: variables.$highlight-text;
     }
 
@@ -536,7 +536,7 @@ table.projects {
     }
 
     &.total {
-      border-top: 2px solid color.adjust(variables.$table-border-color, $lightness: -5%);
+      border-top: 2px solid functions.theme-tint(variables.$table-border-color, 5%, high);
       background-color: variables.$table-bg-active;
       font-weight: variables.$font-weight-bold;
     }
@@ -614,7 +614,7 @@ div#roadmap {
 
       &::before {
         $border: variables.$bubble-target-border;
-        $shadow: color.adjust(variables.$bubble-target-border, $alpha: variables.$bubble-target-shadow-alpha);
+        $shadow: functions.alpha(variables.$bubble-target-border, 1 + variables.$bubble-target-shadow-alpha);
 
         content: "";
         display: block;
@@ -719,7 +719,7 @@ div#version-summary {
       height: variables.$line-height-computed;
       margin-right: variables.$line-height-computed * .5;
       animation: spin 1s linear infinite;
-      border: 3px solid color.adjust(variables.$highlight-text, $alpha: -.7);
+      border: 3px solid functions.alpha(variables.$highlight-text, .3);
       border-radius: 50%;
       border-top-color: variables.$highlight-text;
       vertical-align: bottom;

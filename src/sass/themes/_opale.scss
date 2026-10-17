@@ -1,0 +1,92 @@
+@use "../functions";
+@use "../variables";
+@use "../mixins/theme-properties";
+
+// Default color palette
+
+$blue: #169 !default;
+$indigo: #4e65e5 !default;
+$purple: #614ba6 !default;
+$pink: #eb5286 !default;
+$red: #e5123d !default;
+$orange: #fc8c12 !default;
+$yellow: #ffc107 !default;
+$green: #029934 !default;
+$teal: #00b3ad !default;
+
+
+// Neutral colors
+
+$white: #fff !default;
+$black: #000 !default;
+$gray: hsl(228deg 20% 85%) !default;
+
+
+// Brand colors
+
+$brand-primary: #628db6 !default;
+
+
+// Surface colors
+
+$body-bg: $white !default;
+$card-bg: $white !default;
+$sidebar-bg: functions.shade-color($gray, variables.$shade-map, 100, $white, $black ) !default;
+$header-bg: $brand-primary !default;
+
+
+// Text colors
+
+$text-color-light: functions.shade-color($gray, variables.$shade-map, 750, $white, $black ) !default;
+$text-color: functions.shade-color($gray, variables.$shade-map, 800, $white, $black ) !default;
+$text-color-dark: functions.shade-color($gray, variables.$shade-map, 950, $white, $black ) !default;
+
+
+// Link colors
+
+$link-color: $blue !default;
+$link-hover-color: $red !default;
+
+
+@mixin theme {
+    @include theme-properties.apply-opale-theme(
+        $shade-map: variables.$shade-map,
+
+        $blue: $blue,
+        $indigo: $indigo,
+        $purple: $purple,
+        $pink: $pink,
+        $red: $red,
+        $orange: $orange,
+        $yellow: $yellow,
+        $green: $green,
+        $teal: $teal,
+
+        $white: $white,
+        $black: $black,
+        $gray: $gray,
+
+        $brand-primary: $brand-primary,
+
+        $body-bg: $body-bg,
+        $card-bg: $card-bg,
+        $sidebar-bg: $sidebar-bg,
+        $header-bg: $header-bg,
+
+        $text-color-light: $text-color-light,
+        $text-color: $text-color,
+        $text-color-dark: $text-color-dark,
+
+        $link-color: $link-color,
+        $link-hover-color: $link-hover-color,
+
+        $low-mixer: $white,
+        $high-mixer: $black
+    );
+
+    color-scheme: light;
+
+    // Default-theme-specific corrections
+    --opale-login-form-bg: #{functions.shade-color($yellow, variables.$shade-map, 100, $white, $black)};
+    --opale-login-form-border-color: #{functions.shade-color($yellow, variables.$shade-map, 300, $white, $black)};
+}

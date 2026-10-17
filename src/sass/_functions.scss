@@ -1,3 +1,6 @@
 // Functions
 
 @use "functions/parse-length";
+@forward "functions/shade-color";
+@forward "functions/theme-tint";
+@forward "functions/alpha";

@@ -1,0 +1,12 @@
+// Creates a theme-aware tint by mixing the color with a theme shade mixer.
+@function theme-tint($color, $amount, $direction: low) {
+    $mixer: var(--opale-shade-low-mixer);
+
+    @if $direction == high {
+        $mixer: var(--opale-shade-high-mixer);
+    }
+
+    @return color-mix(in srgb,
+        #{$color} #{100% - $amount},
+        #{$mixer});
+}

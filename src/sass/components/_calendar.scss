@@ -1,4 +1,4 @@
-@use "sass:color";
+@use "../functions";
 @use "../variables";
 @use "../mixins/variants";
 
@@ -165,7 +165,7 @@ ul.cal {
         padding: variables.$table-cell-padding;
         border: 1px solid variables.$table-border-color;
         border-radius: variables.$border-radius-base;
-        background: color.adjust(variables.$yellow, $lightness: 40%);
+        background: functions.theme-tint(variables.$yellow, 40%, low);
         box-shadow: variables.$panel-shadow;
       }
     }

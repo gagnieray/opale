@@ -1,0 +1,23 @@
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
+
+// Creates a shade from a Sass color at compile time.
+@function shade-color($color,
+        $shade-map,
+        $shade: 500,
+        $low-mixer: #fff,
+        $high-mixer: #000) {
+        $mixer: $high-mixer;
+        $saturation: math.div($shade - 500, 20);
+
+        @if $shade < 500 {
+                $mixer: $low-mixer;
+                $saturation: 0;
+        }
+
+        @return color.adjust(color.mix($mixer,
+                        $color,
+                        map.get($shade-map, $shade)),
+                $saturation: $saturation * 1%);
+}

@@ -1,0 +1,6 @@
+// Creates a transparent version of a color using CSS color-mix().
+@function alpha($color, $opacity) {
+    @return color-mix(in srgb,
+        #{$color} #{$opacity * 100%},
+        transparent);
+}

@@ -1,0 +1,374 @@
+@use "sass:color";
+@use "../functions";
+
+
+@mixin apply-opale-theme($shade-map,
+
+    $blue,
+    $indigo,
+    $purple,
+    $pink,
+    $red,
+    $orange,
+    $yellow,
+    $green,
+    $teal,
+
+    $white,
+    $black,
+    $gray,
+
+    $brand-primary,
+
+    $body-bg,
+    $card-bg,
+    $sidebar-bg,
+    $header-bg,
+
+    $text-color-light,
+    $text-color,
+    $text-color-dark,
+    $link-color,
+    $link-hover-color,
+
+    $low-mixer,
+    $high-mixer) {
+    // Base colors
+
+    --opale-blue:                         #{$blue};
+    --opale-indigo:                       #{$indigo};
+    --opale-purple:                       #{$purple};
+    --opale-pink:                         #{$pink};
+    --opale-red:                          #{$red};
+    --opale-orange:                       #{$orange};
+    --opale-yellow:                       #{$yellow};
+    --opale-green:                        #{$green};
+    --opale-teal:                         #{$teal};
+    --opale-white:                        #{$white};
+    --opale-black:                        #{$black};
+    --opale-gray:                         #{$gray};
+
+    // Mixer
+    --opale-shade-low-mixer:              #{$low-mixer};
+    --opale-shade-high-mixer:             #{$high-mixer};
+
+
+    // Gray scale
+
+    --opale-gray-50:                      #{functions.shade-color($gray, $shade-map, 50, $low-mixer, $high-mixer)};
+    --opale-gray-100:                     #{functions.shade-color($gray, $shade-map, 100, $low-mixer, $high-mixer)};
+    --opale-gray-200:                     #{functions.shade-color($gray, $shade-map, 200, $low-mixer, $high-mixer)};
+    --opale-gray-250:                     #{functions.shade-color($gray, $shade-map, 250, $low-mixer, $high-mixer)};
+    --opale-gray-300:                     #{functions.shade-color($gray, $shade-map, 300, $low-mixer, $high-mixer)};
+    --opale-gray-400:                     #{functions.shade-color($gray, $shade-map, 400, $low-mixer, $high-mixer)};
+    --opale-gray-500:                     #{$gray};
+    --opale-gray-600:                     #{functions.shade-color($gray, $shade-map, 600, $low-mixer, $high-mixer)};
+    --opale-gray-700:                     #{functions.shade-color($gray, $shade-map, 700, $low-mixer, $high-mixer)};
+    --opale-gray-750:                     #{functions.shade-color($gray, $shade-map, 750, $low-mixer, $high-mixer)};
+    --opale-gray-800:                     #{functions.shade-color($gray, $shade-map, 800, $low-mixer, $high-mixer)};
+    --opale-gray-900:                     #{functions.shade-color($gray, $shade-map, 900, $low-mixer, $high-mixer)};
+    --opale-gray-950:                     #{functions.shade-color($gray, $shade-map, 950, $low-mixer, $high-mixer)};
+
+    // Shared border & shadow colors  
+
+    --opale-border-color-soft:            #{rgba($high-mixer, .10)};
+    --opale-border-color-medium:          #{rgba($high-mixer, .15)};
+    --opale-border-color-strong:          #{rgba($high-mixer, .25)};
+    --opale-shadow-color-xs:              #{rgba($black, .04)};
+    --opale-shadow-color-sm:              #{rgba($black, .07)};
+    --opale-shadow-color-md:              #{rgba($black, .15)};
+    --opale-shadow-color-lg:              #{rgba($black, .30)};
+
+    // Surfaces
+
+    --opale-body-bg:                      #{$body-bg};
+    --opale-card-bg:                      #{$card-bg};
+    --opale-sidebar-bg:                   #{$sidebar-bg};
+    --opale-header-bg:                    #{$header-bg};
+
+    // Brand colors
+
+    --opale-brand-primary:                #{$brand-primary};
+    --opale-brand-text:                   #{$white};
+    --opale-brand-accent:                 #{functions.shade-color($brand-primary, $shade-map, 50, $low-mixer, $high-mixer)};
+    --opale-brand-info:                   #{$blue};
+    --opale-brand-success:                #{$green};
+    --opale-brand-important:              #{$purple};
+    --opale-brand-warning:                #{$orange};
+    --opale-brand-danger:                 #{$red};
+
+    // State colors
+
+    --opale-state-info:                   #{functions.shade-color($blue, $shade-map, 100, $low-mixer, $high-mixer)};
+    --opale-state-success:                #{functions.shade-color($green, $shade-map, 100, $low-mixer, $high-mixer)};
+    --opale-state-important:              #{functions.shade-color($purple, $shade-map, 100, $low-mixer, $high-mixer)};
+    --opale-state-warning:                #{functions.shade-color($orange, $shade-map, 100, $low-mixer, $high-mixer)};
+    --opale-state-danger:                 #{functions.shade-color($red, $shade-map, 100, $low-mixer, $high-mixer)};
+
+    // Scaffolding
+
+    --opale-text-color-light:             #{$text-color-light};
+    --opale-text-color:                   #{$text-color};
+    --opale-text-color-dark:              #{$text-color-dark};
+    --opale-link-color:                   #{$link-color};
+    --opale-link-hover-color:             #{$link-hover-color};
+    --opale-link-color-issue-closed:      #{$text-color-light};
+    --opale-link-color-project-closed:    #{$text-color-light};
+    --opale-link-color-user-locked:       #{$text-color-light};
+
+    // Typography
+
+    --opale-headings-anchor-color:        var(--opale-gray-400);
+    --opale-headings-anchor-color-active: var(--opale-gray-600);
+
+    // Wiki
+
+    --opale-wiki-text:                    var(--opale-text-color);
+    --opale-wiki-preview-bg:              var(--opale-body-bg);
+    --opale-toc-bg:                       var(--opale-gray-50);
+    --opale-toc-border:                   var(--opale-gray-300);
+    --opale-toc-text:                     var(--opale-text-color);
+    --opale-toc-link:                     var(--opale-link-color);
+    --opale-toc-link-hover:               var(--opale-link-hover-color);
+    --opale-toc-active-link:              #{color.adjust($blue, $lightness: -10%)};
+    --opale-toc-active-link-hover:        #{functions.shade-color($blue, $shade-map, 700, $low-mixer, $high-mixer)};
+    --opale-toc-active-border:            var(--opale-link-color);
+
+    // Components
+
+    --opale-hr-border:                    var(--opale-gray-600);
+    --opale-abbr-border-color:            var(--opale-gray-600);
+    --opale-blockquote-border-color:      var(--opale-border-color-medium);
+    --opale-component-color:              var(--opale-text-color);
+    --opale-component-bg:                 var(--opale-gray-50);
+    --opale-component-border:             var(--opale-gray-300);
+    --opale-component-active-color:       var(--opale-brand-text);
+    --opale-component-active-bg:          #{functions.shade-color($brand-primary, $shade-map, 600, $low-mixer, $high-mixer)};
+    --opale-component-active-border:      var(--opale-component-active-bg);
+
+    // Tables
+
+    --opale-table-list-header-bg:         var(--opale-body-bg);
+    --opale-table-list-header-box-bg:     var(--opale-panel-bg);
+    --opale-table-bg:                     transparent;
+    --opale-table-bg-accent:              rgb(from var(--opale-gray-500) r g b / .15);
+    --opale-table-bg-hover:               rgb(from var(--opale-gray-500) r g b / .4);
+    --opale-table-bg-active:              var(--opale-table-bg-hover);
+    --opale-table-border-color:           var(--opale-gray-300);
+
+    // Status defaults
+
+    --opale-status-default-bg:            var(--opale-brand-primary);
+    --opale-status-default-color:         var(--opale-brand-text);
+
+    // Tracker defaults
+
+    --opale-tracker-default-bg:           var(--opale-gray-700);
+    --opale-tracker-default-text:         var(--opale-white);
+
+    // Diffs
+
+    --opale-diff-out-bg-color:            #{color.adjust(functions.shade-color($red, $shade-map, 100, $low-mixer, $high-mixer), $saturation: 50%)};
+    --opale-diff-out-bg-light-color:      #{rgba(color.adjust(functions.shade-color($red, $shade-map, 100, $low-mixer, $high-mixer), $saturation: 50%), .4)};
+    --opale-diff-in-bg-color:             #{color.adjust(functions.shade-color($green, $shade-map, 100, $low-mixer, $high-mixer), $saturation: 50%)};
+    --opale-diff-in-bg-light-color:       #{rgba(color.adjust(functions.shade-color($green, $shade-map, 100, $low-mixer, $high-mixer), $saturation: 50%), .4)};
+
+    // Journal changes
+
+    --opale-journal-old-value-color:      #{color.adjust(functions.shade-color($orange, $shade-map, 800, $low-mixer, $high-mixer), $saturation: 25%)};
+    --opale-journal-old-value-bg:         #{color.adjust(functions.shade-color($orange, $shade-map, 50, $low-mixer, $high-mixer), $saturation: 50%)};
+    --opale-journal-new-value-color:      #{color.adjust(functions.shade-color($green, $shade-map, 800, $low-mixer, $high-mixer), $saturation: 25%)};
+    --opale-journal-new-value-bg:         #{color.adjust(functions.shade-color($green, $shade-map, 50, $low-mixer, $high-mixer), $saturation: 50%)};
+    --opale-journal-update-info-color:    #{functions.shade-color($orange, $shade-map, 700, $low-mixer, $high-mixer)};
+
+
+    // Buttons
+
+    --opale-btn-link-color:               var(--opale-link-color);
+    --opale-btn-link-bg:                  var(--opale-body-bg);
+    --opale-btn-link-border:              var(--opale-body-bg);
+    --opale-btn-default-color:            var(--opale-gray-900);
+    --opale-btn-default-bg:               var(--opale-gray-100);
+    --opale-btn-default-border:           var(--opale-gray-500);
+    --opale-btn-default-icon-color:       var(--opale-gray-700);
+    --opale-btn-primary-color:            var(--opale-white);
+    --opale-btn-primary-bg:               var(--opale-blue);
+    --opale-btn-primary-border:           var(--opale-btn-primary-bg);
+    --opale-btn-success-color:            var(--opale-white);
+    --opale-btn-success-bg:               var(--opale-green);
+    --opale-btn-success-border:           var(--opale-btn-success-bg);
+
+    // Highlights
+
+    --opale-highlight-bg:                 #{functions.shade-color($yellow, $shade-map, 200, $low-mixer, $high-mixer)};
+    --opale-highlight-border:             #{functions.shade-color($yellow, $shade-map, 600, $low-mixer, $high-mixer)};
+    --opale-highlight-text:               #{functions.shade-color($yellow, $shade-map, 800, $low-mixer, $high-mixer)};
+    --opale-highlight-link:               color-mix(in srgb, var(--opale-yellow) 50%, var(--opale-link-color) 50%);
+
+    // Forms
+
+    --opale-input-bg:                     var(--opale-card-bg);
+    --opale-input-bg-disabled:            var(--opale-gray-300);
+    --opale-input-color:                  var(--opale-text-color);
+    --opale-input-border:                 var(--opale-gray-500);
+    --opale-input-border-focus:           #{color.adjust($brand-primary, $saturation: 25%)};
+    --opale-input-color-placeholder:      var(--opale-gray-600);
+    --opale-legend-color:                 var(--opale-gray-800);
+    --opale-legend-border-color:          var(--opale-gray-200);
+
+    // Top menu and header
+
+    --opale-top-menu-bg:                  #{functions.shade-color($brand-primary, $shade-map, 700, $low-mixer, $high-mixer)};
+    --opale-top-menu-text:                #{functions.shade-color($brand-primary, $shade-map, 100, $low-mixer, $high-mixer)};
+    --opale-top-menu-link:                var(--opale-top-menu-text);
+    --opale-top-menu-link-hover:          #{functions.shade-color($brand-primary, $shade-map, 50, $low-mixer, $high-mixer)};
+    --opale-header-text:                  var(--opale-brand-text);
+    --opale-header-link:                  var(--opale-brand-text);
+    --opale-header-root:                  var(--opale-brand-accent);
+    --opale-flyout-menu-bg:               var(--opale-sidebar-bg);
+    --opale-flyout-menu-text:             var(--opale-text-color);
+    --opale-flyout-menu-link:             var(--opale-text-color);
+    --opale-flyout-menu-link-active-bg:   var(--opale-gray-200);
+    --opale-flyout-menu-link-active:      var(--opale-link-color);
+    --opale-flyout-menu-header-bg:        var(--opale-header-bg);
+    --opale-flyout-menu-header-border:    var(--opale-border-color-medium);
+    --opale-flyout-menu-header-text:      var(--opale-brand-text);
+    --opale-admin-menu-icon:              var(--opale-gray-900);
+    --opale-quick-search-label-bg:        var(--opale-top-menu-bg);
+    --opale-quick-search-border:          var(--opale-input-border);
+    --opale-quick-search-border-focus:    var(--opale-input-border-focus);
+    --opale-quick-search-dropdown-bg:     var(--opale-card-bg);
+    --opale-quick-search-dropdown-border: var(--opale-gray-400);
+    --opale-main-menu-bg:                 var(--opale-sidebar-bg);
+    --opale-main-menu-bg-hover:           var(--opale-gray-100);
+    --opale-main-menu-bg-active:          transparent;
+    --opale-main-menu-link:               var(--opale-gray-900);
+    --opale-main-menu-link-active:        var(--opale-gray-950);
+    --opale-main-menu-border:             var(--opale-gray-400);
+    --opale-main-menu-shadow-hover:       var(--opale-gray-600);
+    --opale-main-menu-shadow-active:      var(--opale-brand-primary);
+    --opale-main-menu-dropdown-bg:        var(--opale-gray-50);
+
+    // Pagination
+
+    --opale-pagination-color:             var(--opale-gray-900);
+    --opale-pagination-bg:                var(--opale-gray-200);
+    --opale-pagination-border:            var(--opale-gray-200);
+    --opale-pagination-hover-color:       var(--opale-gray-900);
+    --opale-pagination-hover-bg:          var(--opale-gray-300);
+    --opale-pagination-hover-border:      var(--opale-gray-300);
+    --opale-pagination-active-color:      var(--opale-component-active-color);
+    --opale-pagination-active-bg:         var(--opale-component-active-bg);
+    --opale-pagination-active-border:     var(--opale-component-active-bg);
+    --opale-pagination-inactive-color:    var(--opale-gray-500);
+    --opale-pagination-inactive-bg:       var(--opale-gray-50);
+    --opale-pagination-inactive-border:   var(--opale-gray-100);
+
+    // Tabs
+
+    --opale-tab-border:                   var(--opale-gray-500);
+    --opale-tab-hover-bg:                 var(--opale-gray-100);
+    --opale-tab-hover-text:               var(--opale-gray-950);
+    --opale-tab-hover-border:             var(--opale-tab-hover-bg);
+    --opale-tab-active-bg:                var(--opale-body-bg);
+    --opale-tab-active-text:              var(--opale-text-color);
+    --opale-tab-active-border:            var(--opale-tab-border);
+
+    // Sidebar
+
+    --opale-sidebar-link-hover-bg:        var(--opale-gray-200);
+    --opale-sidebar-link-hover-text:      var(--opale-gray-900);
+    --opale-sidebar-link-active-bg:       var(--opale-body-bg);
+    --opale-sidebar-link-active-border:   var(--opale-gray-400);
+    --opale-sidebar-link-active-side:     var(--opale-red);
+    --opale-sidebar-link-active-text:     var(--opale-gray-950);
+    --opale-sidebar-switch-bg:            var(--opale-gray-200);
+    --opale-sidebar-switch-hover-bg:      var(--opale-gray-300);
+    --opale-sidebar-switch-border-color:  var(--opale-gray-700);    
+
+    // Flash messages
+
+    --opale-flash-success-bg:             #{functions.shade-color($green, $shade-map, 200, $low-mixer, $high-mixer)};
+    --opale-flash-success-border:         #{functions.shade-color($green, $shade-map, 250, $low-mixer, $high-mixer)};
+    --opale-flash-success-text:           #{functions.shade-color($green, $shade-map, 900, $low-mixer, $high-mixer)};
+    --opale-flash-success-link:           #{functions.shade-color($green, $shade-map, 950, $low-mixer, $high-mixer)};
+    --opale-flash-info-bg:                #{functions.shade-color($blue, $shade-map, 100, $low-mixer, $high-mixer)};
+    --opale-flash-info-border:            #{functions.shade-color($blue, $shade-map, 200, $low-mixer, $high-mixer)};
+    --opale-flash-info-text:              #{functions.shade-color($blue, $shade-map, 900, $low-mixer, $high-mixer)};
+    --opale-flash-info-link:              #{functions.shade-color($blue, $shade-map, 950, $low-mixer, $high-mixer)};
+    --opale-flash-warning-bg:             #{functions.shade-color($orange, $shade-map, 100, $low-mixer, $high-mixer)};
+    --opale-flash-warning-border:         #{functions.shade-color($orange, $shade-map, 200, $low-mixer, $high-mixer)};
+    --opale-flash-warning-text:           #{functions.shade-color($orange, $shade-map, 900, $low-mixer, $high-mixer)};
+    --opale-flash-warning-link:           #{functions.shade-color($orange, $shade-map, 950, $low-mixer, $high-mixer)};
+    --opale-flash-error-bg:               #{functions.shade-color($red, $shade-map, 200, $low-mixer, $high-mixer)};
+    --opale-flash-error-border:           #{functions.shade-color($red, $shade-map, 250, $low-mixer, $high-mixer)};
+    --opale-flash-error-text:             #{functions.shade-color($red, $shade-map, 900, $low-mixer, $high-mixer)};
+    --opale-flash-error-link:             #{functions.shade-color($red, $shade-map, 950, $low-mixer, $high-mixer)};
+
+    // Progress bars
+
+    --opale-progress-bg:                  #{rgba($gray, .50)};
+    --opale-progress-bar-bg:              var(--opale-brand-primary);
+    --opale-progress-bar-success-bg:      var(--opale-brand-success);
+    --opale-progress-bar-danger-bg:       var(--opale-brand-danger);
+    --opale-progress-bar-info-bg:         var(--opale-brand-info);
+
+    // Panels
+
+    --opale-panel-color:                  var(--opale-text-color);
+    --opale-panel-bg:                     var(--opale-gray-50);
+    --opale-panel-border:                 var(--opale-gray-400);
+
+    // Tooltips
+
+    --opale-tooltip-bg:                   var(--opale-card-bg);
+    --opale-tooltip-border:               var(--opale-gray-500);
+    --opale-tooltip-text:                 var(--opale-gray-800);
+    --opale-tooltip-link:                 var(--opale-link-color);
+
+    // Issue
+
+    --opale-issue-bg:                     var(--opale-gray-50);
+    --opale-issue-border:                 var(--opale-gray-500);
+    --opale-issue-text-light:             var(--opale-text-color-light);
+    --opale-issue-text:                   var(--opale-text-color);
+    --opale-issue-text-dark:              var(--opale-text-color-dark);
+
+    // Context menu
+
+    --opale-context-menu-bg:              var(--opale-card-bg);
+    --opale-context-menu-text:            var(--opale-link-color);
+    --opale-context-menu-hover-bg:        var(--opale-gray-300);
+    --opale-context-menu-disabled-text:   var(--opale-gray-600);
+
+    // Gantt
+
+    --opale-gantt-header-bg:              var(--opale-gray-200);
+    --opale-gantt-header-border:          var(--opale-gray-500);
+    --opale-gantt-header-text:            var(--opale-gray-700);
+
+    // JSToolbar
+
+    --opale-jstoolbar-icon-filter:        none;
+    --opale-jstoolbar-hover-bg:           color-mix(in srgb, var(--opale-tab-hover-bg) 97%, var(--opale-shade-high-mixer) 3%);
+
+    // Speech bubbles
+
+    --opale-bubble-bg:                    var(--opale-issue-bg);
+    --opale-bubble-border:                var(--opale-issue-border);
+    --opale-bubble-text:                  var(--opale-issue-text);
+    --opale-bubble-target-border:         #{color.adjust($brand-primary, $saturation: 25%)};
+    --opale-login-form-bg:                var(--opale-card-bg);
+    --opale-login-form-border-color:      var(--opale-gray-300);
+    --opale-footer-border-color:          var(--opale-gray-400);
+
+    // Agile plugin
+
+    --opale-agile-board-background:             var(--opale-gray-100);
+    --opale-agile-issue-card-border:            var(--opale-gray-500);
+    --opale-agile-issue-card-background:        var(--opale-card-bg);
+    --opale-agile-issue-card-color:             var(--opale-text-color);
+    --opale-agile-issue-card-closed-background: var(--opale-gray-300);
+    --opale-agile-lightgreen:                   #{color.adjust($green, $hue: -45deg)};
+    --opale-agile-yellow:                       #{color.adjust($yellow, $hue: 2deg)};
+}

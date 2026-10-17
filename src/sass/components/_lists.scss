@@ -1,7 +1,7 @@
-@use "sass:color";
 @use "sass:map";
 @use "../variables";
 @use "../functions/parse-length";
+@use "../functions";
 @use "../mixins/issues";
 @use "../mixins/variants";
 @use "../vendor/bootstrap/mixins/clearfix";
@@ -36,10 +36,8 @@ table.list {
     color: variables.$gray-750;
     vertical-align: bottom;
 
-    @if variables.$table-list-header-bg == variables.$body-bg {
-      @at-root .box & {
-        background-color: variables.$panel-bg;
-      }
+    @at-root .box & {
+      background-color: variables.$table-list-header-box-bg;
     }
 
     a {
@@ -274,7 +272,7 @@ tr.issue {
     text-align: left;
     white-space: normal;
 
-    > span {
+    >span {
       display: block;
       margin-bottom: variables.$line-height-computed * .25;
       padding: variables.$table-cell-padding;
@@ -286,7 +284,7 @@ tr.issue {
     }
 
     @media screen and (min-width: variables.$screen-sm-min) {
-      > .wiki {
+      >.wiki {
         max-height: 20em;
         padding: variables.$padding-wiki;
         overflow: auto;
@@ -373,7 +371,7 @@ tr.entry {
 @if variables.$table-list-color-odd-rows {
   table.list:not(.odd-even) tbody tr:nth-child(odd):not(.ui-sortable-helper),
   .odd {
-    > td {
+    >td {
       background-color: variables.$table-bg-accent;
     }
   }
@@ -382,21 +380,21 @@ tr.entry {
 @if variables.$table-list-color-even-rows {
   table.list:not(.odd-even) tbody tr:nth-child(even):not(.ui-sortable-helper),
   .even {
-    > td {
+    >td {
       background-color: variables.$table-bg-accent;
     }
   }
 }
 
 @if variables.$table-list-highlight-rows {
-  table.list > tbody > tr:nth-child(n):hover:not(.ui-sortable-helper) {
+  table.list>tbody>tr:nth-child(n):hover:not(.ui-sortable-helper) {
     background-color: variables.$table-bg-hover;
 
     @if variables.$color-priorities {
       @each $priority-id, $priority-color in variables.$priority-color-map {
         @if $priority-id != "default" {
           &.priority-#{$priority-id} {
-            background-color: color.adjust(map.get($priority-color, background), $alpha: variables.$table-color-hover-factor);
+            background-color: functions.alpha(map.get($priority-color, background), 1 + variables.$table-color-hover-factor);
           }
         }
       }
@@ -415,11 +413,9 @@ tr.entry {
   }
 
   @each $priority-id, $priority-icon in variables.$priority-icons-map {
-    @include issues.priority-icon(
-      ".priority-#{$priority-id}",
+    @include issues.priority-icon(".priority-#{$priority-id}",
       map.get($priority-icon, color),
-      map.get($priority-icon, icon)
-    );
+      map.get($priority-icon, icon));
   }
 }
 
@@ -449,87 +445,87 @@ tr.entry {
 }
 
 @if variables.$color-trackers {
-  tr.issue .id > a,
-  tr.issue .issue_id > a,
-  tr.issue .legacy_id > a,
+  tr.issue .id>a,
+  tr.issue .issue_id>a,
+  tr.issue .legacy_id>a,
   a.issue,
-  .relations > span > a.issue,
-  .parent > a.issue {
-    border-radius: variables.$border-radius-small (variables.$border-radius-small * 3) (variables.$border-radius-small * 3) variables.$border-radius-small;
+  .relations>span>a.issue,
+  .parent>a.issue {
+    border-radius: variables.$border-radius-small (
+      variables.$border-radius-small * 3) (variables.$border-radius-small * 3) variables.$border-radius-small;
     background-color: variables.$tracker-default-bg;
     color: variables.$tracker-default-text;
 
     &:hover {
-      background-color: color.adjust(variables.$tracker-default-bg, $lightness: -10%);
-      color: variables.$tracker-default-text;
-      text-decoration: none;
+      background-color: functions.theme-tint(variables.$tracker-default-bg, 10%, high
+      );
+    color: variables.$tracker-default-text;
+    text-decoration: none;
+  }
+
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+}
+
+a.issue {
+  margin-right: 1px;
+  padding: variables.$tracker-inline-padding;
+  font-weight: variables.$font-weight-normal;
+
+  &.closed {
+    position: relative;
+    color: color-mix(in srgb, variables.$tracker-default-text 75%, variables.$tracker-default-bg);
+    text-decoration: none;
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      right: 5px;
+      bottom: 0;
+      left: 5px;
+      height: calc(50% - 2px * .5);
+      transform: rotate(-4deg);
+      transition: border-color variables.$transition-time;
+      border-top: 2px solid functions.alpha(variables.$tracker-default-text, .95);
     }
 
-    &:focus,
-    &:active {
-      text-decoration: none;
+    &:hover::after {
+      border-top-color: functions.alpha(variables.$tracker-default-text, .25);
     }
   }
+}
 
-  a.issue {
-    margin-right: 1px;
-    padding: variables.$tracker-inline-padding;
-    font-weight: variables.$font-weight-normal;
+tr.issue .id>a,
+tr.issue .legacy_id>a {
+  display: block;
+  padding: variables.$tracker-list-padding;
 
-    &.closed {
-      position: relative;
-      color: color.mix(variables.$tracker-default-text, variables.$tracker-default-bg, 75%);
-      text-decoration: none;
-
-      &::after {
-        content: "";
-        display: block;
-        position: absolute;
-        right: 5px;
-        bottom: 0;
-        left: 5px;
-        height: calc(50% - 2px * .5);
-        transform: rotate(-4deg);
-        transition: border-color variables.$transition-time;
-        border-top: 2px solid color.adjust(variables.$tracker-default-text, $alpha: -.05);
-      }
-
-      &:hover::after {
-        border-top-color: color.adjust(variables.$tracker-default-text, $alpha: -.75);
-      }
-    }
+  &::before {
+    content: "#";
+    color: color-mix(in srgb, variables.$tracker-default-text 50%, variables.$tracker-default-bg);
   }
+}
 
-  tr.issue .id > a,
-  tr.issue .legacy_id > a {
-    display: block;
-    padding: variables.$tracker-list-padding;
+tr.issue .issue_id>a {
+  display: inline-block;
+  padding: variables.$tracker-list-padding;
+}
 
-    &::before {
-      content: "#";
-      color: color.mix(variables.$tracker-default-text, variables.$tracker-default-bg, 50%);
-    }
-  }
-
-  tr.issue .issue_id > a {
-    display: inline-block;
-    padding: variables.$tracker-list-padding;
-  }
-
-  @each $tracker-id, $tracker-colors in variables.$tracker-colors-map {
-    @include issues.tracker(
-      ".tracker-#{$tracker-id}",
-      map.get($tracker-colors, background),
-      map.get($tracker-colors, color)
-    );
-  }
+@each $tracker-id, $tracker-colors in variables.$tracker-colors-map {
+  @include issues.tracker(".tracker-#{$tracker-id}",
+    map.get($tracker-colors, background),
+    map.get($tracker-colors, color));
+}
 }
 
 
 // List groups
 
 tr.group {
-  > td {
+  >td {
     border-bottom: 1px solid variables.$table-border-color;
     font-weight: variables.$font-weight-bold;
     text-align: left;
@@ -724,11 +720,11 @@ table.files {
 table.list.enumerations {
   table-layout: fixed;
 
-  + h3 {
+  +h3 {
     margin-top: variables.$line-height-computed * 2;
   }
 
-  + p {
+  +p {
     margin-bottom: variables.$line-height-computed * 2;
   }
 }
@@ -746,7 +742,7 @@ table.list.enumerations {
     }
   }
 
-  > span {
+  >span {
     margin-right: variables.$padding-base-horizontal;
 
     &:last-child {
@@ -763,7 +759,7 @@ table.list.enumerations {
 // Definition lists
 
 #list-definition {
-  > div {
+  >div {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -880,22 +876,21 @@ table.list.enumerations {
 // Search results highlight
 
 .highlight {
-  background-color: color.adjust(variables.shade(variables.$yellow, 100), $saturation: 25%);
-  color: color.adjust(variables.shade(variables.$yellow, 800), $saturation: 25%);
+  background-color: variables.shade(variables.$yellow, 100);
+  color: variables.shade(variables.$yellow, 800);
 
   &.token-1 {
-    background-color: color.adjust(variables.shade(variables.$red, 100), $saturation: 25%);
-    color: color.adjust(variables.shade(variables.$red, 800), $saturation: 25%);
+    background-color: variables.shade(variables.$red, 100);
+    color: variables.shade(variables.$red, 800);
   }
 
   &.token-2 {
-    background-color: color.adjust(variables.shade(variables.$green, 100), $saturation: 25%);
-    color: color.adjust(variables.shade(variables.$green, 800), $saturation: 25%);
+    background-color: variables.shade(variables.$green, 100);
+    color: variables.shade(variables.$green, 800);
   }
 
   &.token-3 {
-    background-color: color.adjust(variables.shade(variables.$blue, 100), $saturation: 25%);
-    color: color.adjust(variables.shade(variables.$blue, 800), $saturation: 25%);
+    background-color: variables.shade(variables.$blue, 100);
+    color: variables.shade(variables.$blue, 800);
   }
 }
-

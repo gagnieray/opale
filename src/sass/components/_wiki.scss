@@ -1,7 +1,7 @@
-@use "sass:color";
 @use "sass:map";
 @use "sass:math";
 @use "../variables";
+@use "../functions";
 
 .wiki.wiki-page {
   margin-bottom: variables.$line-height-computed;
@@ -205,7 +205,7 @@ div.wiki {
   code {
     padding: .2em .33em;
     border-radius: variables.$border-radius-base;
-    background-color: color.adjust(variables.$gray-500, $alpha: -.5);
+    background-color: functions.alpha(variables.$gray-500, .5);
     font-size: variables.$font-size-small;
   }
 
@@ -237,7 +237,7 @@ div.wiki {
     padding: 12px 15px;
     overflow: auto hidden;
     border-radius: variables.$border-radius-base;
-    background-color: color.adjust(variables.$gray-500, $alpha: -.7);
+    background-color: functions.alpha(variables.$gray-500, .3);
     font-size: variables.$font-size-small;
 
     code {
@@ -432,10 +432,10 @@ p.footnote {
       border-color: map.get($markdown-alert-color, color);
 
       .markdown-alert-title {
-        color: color.adjust(map.get($markdown-alert-color, color), $lightness: -17%);
+        color: functions.theme-tint(map.get($markdown-alert-color, color), 17%, high);
 
         svg {
-          stroke: color.adjust(map.get($markdown-alert-color, color), $lightness: -17%);
+          stroke: functions.theme-tint(map.get($markdown-alert-color, color), 17%, high);
         }
       }
     }
