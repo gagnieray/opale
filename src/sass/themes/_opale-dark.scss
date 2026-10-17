@@ -1,0 +1,250 @@
+@use "../variables";
+@use "../mixins/theme-properties";
+
+// Opale Dark color palette
+$blue: #58a6ff !default;
+$indigo: #79c0ff !default;
+$purple: #d2a8ff !default;
+$pink: #db61a2 !default;
+$red: #ff7b72 !default;
+$orange: #f78166 !default;
+$yellow: #e3b341 !default;
+$green: #7ee787 !default;
+$teal: #56d4dd !default;
+
+// Neutral colors
+$white: #fff !default;
+$black: #000 !default;
+$gray: #9da7b3 !default;
+
+// Brand colors
+$brand-primary: #1f6feb !default;
+
+// Surface & UI core variables
+$dark-bg: #0d1117 !default;
+$dark-surface: #161b22 !default;
+$dark-header: #24364b !default;
+$dark-top-menu: #1b2938 !default;
+$dark-border: #30363d !default;
+$dark-border-hover: #8b949e !default;
+$dark-raised: #21262d !default;
+$dark-active-bg: #1f3a5b !default;
+
+// State colors
+$dark-success-emphasis: #238636 !default;
+$dark-success-bg: #12261e !default;
+$dark-success-link: #a7f3b7 !default;
+$dark-info-bg: #0c2d6b !default;
+$dark-info-link: #a5d6ff !default;
+$dark-warning-emphasis: #9e6a03 !default;
+$dark-warning-bg: #2d240f !default;
+$dark-warning-link: #f2cc60 !default;
+$dark-highlight-bg: #332b00 !default;
+$dark-danger-emphasis: #da3633 !default;
+$dark-danger-bg: #301b20 !default;
+$dark-danger-link: #ffa198 !default;
+
+// Surface colors
+$body-bg: $dark-bg !default;
+$card-bg: $dark-surface !default;
+$sidebar-bg: $dark-surface !default;
+$header-bg: $dark-header !default;
+
+// Text colors
+$text-color-light: $gray !default;
+$text-color: #e6edf3 !default;
+$text-color-dark: #f0f6fc !default;
+
+// Link colors
+$link-color: $blue !default;
+$link-hover-color: $indigo !default;
+
+// Button colors
+$btn-border: rgba($text-color-dark, .1) !default;
+
+@mixin theme {
+    @include theme-properties.apply-opale-theme(
+        $shade-map: variables.$shade-map,
+        $blue: $blue,
+        $indigo: $indigo,
+        $purple: $purple,
+        $pink: $pink,
+        $red: $red,
+        $orange: $orange,
+        $yellow: $yellow,
+        $green: $green,
+        $teal: $teal,
+        $white: $white,
+        $black: $black,
+        $gray: $gray,
+        $brand-primary: $brand-primary,
+        $body-bg: $body-bg,
+        $card-bg: $card-bg,
+        $sidebar-bg: $sidebar-bg,
+        $header-bg: $header-bg,
+        $text-color-light: $text-color-light,
+        $text-color: $text-color,
+        $text-color-dark: $text-color-dark,
+        $link-color: $link-color,
+        $link-hover-color: $link-hover-color,
+        $low-mixer: $black,
+        $high-mixer: $white
+    );
+
+    color-scheme: dark;
+
+    // Opale Dark specific corrections
+    --opale-top-menu-bg: #{$dark-top-menu};
+    --opale-top-menu-text: #{$text-color};
+    --opale-top-menu-link-hover: #{$white};
+
+    // Header
+    --opale-header-text: #{$text-color};
+    --opale-header-link: #{$text-color};
+    --opale-header-root: #{$blue};
+
+    // Component
+    --opale-component-bg: #{$dark-surface};
+    --opale-component-border: #{$dark-border};
+    --opale-component-active-color: #{$white};
+    --opale-component-active-bg: #{$dark-active-bg};
+    --opale-issue-border: var(--opale-gray-200);
+    --opale-hr-border: var(--opale-gray-200);
+
+    // Tables
+    --opale-table-list-header-bg: #{$dark-surface};
+    --opale-table-list-header-text: #{$text-color-light};
+    --opale-table-list-header-link: #{$text-color};
+    --opale-table-bg-accent: #{rgba($dark-surface, .6)};
+    --opale-table-bg-hover: #{$dark-raised};
+    --opale-table-border-color: #{$dark-border};
+
+    // Forms
+    --opale-input-bg: #{$dark-bg};
+    --opale-input-bg-disabled: #{$dark-raised};
+    --opale-input-border: #{$dark-border};
+    --opale-input-border-focus: #{$blue};
+    --opale-input-color-placeholder: #{$text-color-light};
+
+    // Button
+    --opale-btn-default-color: #{$text-color};
+    --opale-btn-default-bg: #{$dark-raised};
+    --opale-btn-default-border: #{$dark-border};
+    --opale-btn-default-icon-color: #{$text-color-light};
+    --opale-btn-primary-color: #{$white};
+    --opale-btn-primary-bg: #{$brand-primary};
+    --opale-btn-primary-border: #{$btn-border};
+    --opale-btn-success-color: #{$white};
+    --opale-btn-success-bg: #{$dark-success-emphasis};
+    --opale-btn-success-border: #{$btn-border};
+
+    // Menu
+    --opale-main-menu-bg: #{$dark-header};
+    --opale-main-menu-bg-hover: #{$dark-header};
+    --opale-main-menu-link: #{$text-color};
+    --opale-main-menu-link-active: #{$text-color};
+    --opale-main-menu-border: #{$dark-border};
+    --opale-main-menu-shadow-hover: #{$text-color-light};
+    --opale-main-menu-shadow-active: #{$orange};
+    --opale-main-menu-dropdown-bg: #{$dark-surface};
+
+    // Sidebar
+    --opale-sidebar-link-hover-bg: #{$dark-raised};
+    --opale-sidebar-link-hover-text: #{$text-color};
+    --opale-sidebar-link-active-bg: #{$dark-surface};
+    --opale-sidebar-link-active-border: #{$dark-border};
+    --opale-sidebar-link-active-side: #{$orange};
+    --opale-sidebar-link-active-text: #{$text-color};
+    --opale-sidebar-switch-bg: #{$dark-raised};
+    --opale-sidebar-switch-hover-bg: #{$dark-border};
+    --opale-sidebar-switch-border-color: #{$dark-border};
+
+    // Tab
+    --opale-tab-border: #{$dark-border};
+    --opale-tab-hover-bg: #{$dark-raised};
+    --opale-tab-hover-text: #{$text-color};
+    --opale-tab-hover-border: #{$dark-border};
+    --opale-tab-active-bg: #{$dark-surface};
+
+    // Pagination
+    --opale-pagination-color: #{$text-color};
+    --opale-pagination-bg: #{$dark-surface};
+    --opale-pagination-border: #{$dark-border};
+    --opale-pagination-hover-color: #{$white};
+    --opale-pagination-hover-bg: #{$dark-border};
+    --opale-pagination-hover-border: #{$dark-border-hover};
+    --opale-pagination-active-bg: #{$brand-primary};
+    --opale-pagination-active-border: #{$brand-primary};
+    --opale-pagination-inactive-color: #{$text-color-light};
+    --opale-pagination-inactive-bg: #{$dark-surface};
+    --opale-pagination-inactive-border: #{$dark-border};
+
+    // Panel
+    --opale-panel-bg: #{$dark-surface};
+    --opale-panel-border: #{$dark-border};
+
+    // Tooltip
+    --opale-tooltip-bg: #{$dark-surface};
+    --opale-tooltip-border: #{$dark-border};
+    --opale-tooltip-text: #{$text-color};
+
+    // Context menu
+    --opale-context-menu-bg: #{$dark-surface};
+    --opale-context-menu-text: #{$text-color};
+    --opale-context-menu-hover-bg: #{$dark-raised};
+    --opale-context-menu-disabled-text: #{$text-color-light};
+
+    // Gantt
+    --opale-gantt-header-bg: #{$dark-surface};
+    --opale-gantt-header-border: #{$dark-border};
+    --opale-gantt-header-text: #{$text-color-light};
+
+    // Highlight
+    --opale-highlight-bg: #{$dark-highlight-bg};
+    --opale-highlight-border: #{$dark-warning-emphasis};
+    --opale-highlight-text: #{$yellow};
+    --opale-highlight-link: #{$dark-warning-link};
+
+    // Flash
+    --opale-flash-success-bg: #{$dark-success-bg};
+    --opale-flash-success-border: #{$dark-success-emphasis};
+    --opale-flash-success-text: #{$green};
+    --opale-flash-success-link: #{$dark-success-link};
+    --opale-flash-info-bg: #{$dark-info-bg};
+    --opale-flash-info-border: #{$brand-primary};
+    --opale-flash-info-text: #{$indigo};
+    --opale-flash-info-link: #{$dark-info-link};
+    --opale-flash-warning-bg: #{$dark-warning-bg};
+    --opale-flash-warning-border: #{$dark-warning-emphasis};
+    --opale-flash-warning-text: #{$yellow};
+    --opale-flash-warning-link: #{$dark-warning-link};
+    --opale-flash-error-bg: #{$dark-danger-bg};
+    --opale-flash-error-border: #{$dark-danger-emphasis};
+    --opale-flash-error-text: #{$red};
+    --opale-flash-error-link: #{$dark-danger-link};
+
+    // Diff
+    --opale-diff-in-bg-color: #{$dark-success-bg};
+    --opale-diff-in-bg-light-color: #{$dark-success-bg};
+    --opale-diff-out-bg-color: #{$dark-danger-bg};
+    --opale-diff-out-bg-light-color: #{$dark-danger-bg};
+
+    // Journal
+    --opale-journal-old-value-color: #{$red};
+    --opale-journal-old-value-bg: #{$dark-danger-bg};
+    --opale-journal-new-value-color: #{$green};
+    --opale-journal-new-value-bg: #{$dark-success-bg};
+    --opale-journal-update-info-color: #{$text-color-light};
+
+    // Toolbar
+    --opale-jstoolbar-icon-filter: invert(1) brightness(.9);
+    --opale-jstoolbar-hover-bg: #{$dark-raised};
+
+    // Login
+    --opale-login-form-bg: #{$dark-surface};
+    --opale-login-form-border-color: #{$dark-border};
+
+    // Footer
+    --opale-footer-border-color: #{$dark-border};
+    --opale-footer-text-color: #{$text-color-light};
+}
