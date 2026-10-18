@@ -690,7 +690,7 @@ div.thumbnails {
   }
 
   > p,
-  .journal-content > p {
+  .journal-content:not(.wiki) > p {
     padding-right: variables.$bubble-padding-horizontal;
     padding-left: variables.$bubble-padding-horizontal;
 
@@ -703,13 +703,14 @@ div.thumbnails {
   .wiki,
   .details,
   .details + p,
-  .journal-content > p,
+  .journal-content:not(.wiki) > p,
   .journal-details,
   .journal-note {
     border-top: 1px solid variables.$bubble-border;
   }
 
-  .details {
+  .details,
+  .journal-details {
     margin: 0;
     padding: variables.$bubble-padding-vertical 0;
     padding-left: variables.$bubble-padding-horizontal + 20px;
@@ -739,8 +740,7 @@ div.thumbnails {
   }
 
   .wiki,
-  .journal-content > p,
-  .journal-content .journal-details,
+  .journal-content:not(.wiki) > p,
   .journal-content .journal-note {
     margin-bottom: 0;
     padding: variables.$issue-padding;
