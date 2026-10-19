@@ -26,9 +26,8 @@
       .gravatar-with-child {
         position: relative;
 
-        > span[role="img"].avatar,
-        > img.gravatar {
-          top: 0;
+        > img.gravatar,
+        > .avatar {
           width: variables.$issue-gravatar-size;
           height: variables.$issue-gravatar-size;
           margin-right: 10px;
@@ -43,12 +42,16 @@
             height: variables.$issue-gravatar-size * .5;
             border: 2px solid rgb(255 255 255 / .9);
             border-radius: 20%;
+
+            &.gravatar-child,
+            &.group-avatar {
+              background-color: variables.$gray-200;
+            }
           }
         }
       }
 
       > img.gravatar {
-        top: 0;
         width: variables.$issue-gravatar-size;
         height: variables.$issue-gravatar-size;
         margin-right: 10px;
@@ -667,8 +670,7 @@ div.thumbnails {
         border-right-color: variables.$bubble-border;
       }
 
-      > .gravatar {
-        top: 0;
+      > img.gravatar {
         margin-top: variables.$line-height-computed - variables.$bubble-gravatar-size;
         margin-left: -(variables.$bubble-gravatar-size + variables.$bubble-gravatar-space + variables.$bubble-padding-horizontal + 1px);
         float: left;
@@ -679,8 +681,8 @@ div.thumbnails {
           margin-left: -(variables.$bubble-padding-horizontal + 14px);
         }
 
-        > .gravatar,
-        > span[role="img"].avatar {
+        > img.gravatar,
+        > .avatar {
           transform: translate3d(-(variables.$bubble-gravatar-size), -5px, 0);
         }
       }
