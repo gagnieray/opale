@@ -90,6 +90,10 @@
   margin-right: variables.$padding-side;
 }
 
+.nodata.nodata-left:not(:has(svg))::before {
+  float: left;
+}
+
 @media screen and (max-width: variables.$redmine-responsive-max) {
   body .dashboard {
     .splitcontentleft,

@@ -29,7 +29,8 @@ div.flash,
     }
   }
 
-  > :last-child {
+  > :last-child,
+  p:empty {
     margin-bottom: 0;
   }
 }
