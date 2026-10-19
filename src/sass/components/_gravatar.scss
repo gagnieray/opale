@@ -44,7 +44,6 @@ h3 .avatar:not(.gravatar) {
 
 img.gravatar {
   position: relative;
-  top: -.15em;
   overflow: hidden;
   border-radius: variables.$border-radius-large;
   line-height: 1;
@@ -55,17 +54,4 @@ img.gravatar {
   h4 & {
     margin-right: 5px;
   }
-}
-
-// Administration -> /users
-
-.username img.gravatar {
-  margin-right: .5em;
-}
-
-// Used on 12px Gravatar img tags without the icon background
-
-.icon-gravatar {
-  margin-right: 5px;
-  float: left;
 }

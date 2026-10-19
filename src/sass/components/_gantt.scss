@@ -95,13 +95,8 @@ table.gantt-table {
         display: inline-block;
       }
 
-      img.gravatar {
-        margin-right: 3px;
-        margin-left: 2px;
-        float: none;
-      }
-
-      span.icon-avatar {
+      img.gravatar,
+      .avatar {
         margin-right: 3px;
         margin-bottom: 2px;
         margin-left: 2px;

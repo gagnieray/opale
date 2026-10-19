@@ -615,8 +615,13 @@ label[for="closed"] {
     @include forms.check-list;
   }
 
-  .gravatar {
-    margin-right: variables.$padding-small-vertical;
+  img.gravatar {
+    top: -.1em;
+    margin-right: .5em;
+  }
+
+  .avatar:not(.gravatar) {
+    margin: 0 .5em .5em 0;
   }
 }
 

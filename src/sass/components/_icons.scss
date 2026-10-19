@@ -229,7 +229,7 @@ span.icon-label {
 
 // Buttons icons
 
-.icon,
+.icon:not(.group),
 .icon-only {
   display: inline-flex;
   align-items: center;
